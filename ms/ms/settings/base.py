@@ -45,14 +45,14 @@ MANAGERS = ADMINS
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#databases
 DATABASES = {
     'default':{
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'merrydb',
-            'USER': 'root',
-            'PASSWORD': '1qaz,2wsx',
-            'HOST': 'localhost',
-            'PORT': '',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'merrydb',
+        'USER': 'root',
+        'PASSWORD': '1qaz,2wsx',
+        'HOST': 'localhost',
+        'PORT': '',
+        }
     }
-}
 ########## END DATABASE CONFIGURATION
 
 
