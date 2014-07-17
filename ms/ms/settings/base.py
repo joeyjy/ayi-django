@@ -52,7 +52,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '',
         }
-    }
+}
 ########## END DATABASE CONFIGURATION
 
 
