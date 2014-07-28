@@ -1,1 +1,75 @@
 /*! project specific CSS goes here. */
+header{
+	background: #fff;
+	border-bottom: 15px solid #55DCCD;
+	position: fixed;
+	top:0;
+	left:0;
+	right:0;
+	z-index:1000;
+}
+header a{
+	color:#000;
+}
+#logo-box{
+	float:left;
+}
+#logo-box a{
+	float:left;
+	padding: 20px 15px;
+	font-size: 18px;
+	line-height: 20px;
+}
+#logo-box a img{
+	width:200px;
+	height:50px;
+}
+header .navbar-text{
+	margin-top:35px;
+	margin-bottom:35px;
+}
+header .navbar-text font{
+	color:#DA86AA;
+	font-weight:bold;
+}
+header ul.navbar-right li.dropdown {
+	margin: 20px auto;
+	font-size:16px;
+	font-weight:bold;
+}
+#wechat-qr{
+	margin:10px 30px 10px 0;
+}
+#wechat-qr img{
+	width: 70px;
+	height: 70px;
+}
+#social{
+	margin:34px auto;
+}
+#social img{
+	float:left;
+	margin-right:5px;
+	width: 22px;
+	height: 22px;
+}
+.footer-line{
+	padding:25px 0;
+	background-color:#1B1B1B;
+}
+#f-ul{
+	list-style: none;
+	float:left;
+	width:100%;
+}
+#f-ul li{
+	float:left;
+	width:25%;
+	text-align:center;
+}
+#f-ul li a{
+	color:#fff;
+}
+#f-ul li a:hover{
+	color:#52CCB7;
+}
