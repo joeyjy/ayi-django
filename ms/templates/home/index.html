@@ -16,13 +16,19 @@
   <ul class="carousel-inner">
   	
     <li class="item active">
-      <img src="/static/img/1.jpg" alt="image 1">
+      <img src="/static/img/s1.png" alt="image 1">
     </li>
     <li class="item">
-      <img src="/static/img/2.jpg" alt="image 2">
+      <img src="/static/img/s2.png" alt="image 2">
     </li>
-    <li class="item">
-      <img src="/static/img/3.jpg" alt="image 2">
+     <li class="item">
+      <img src="/static/img/s3.png" alt="image 3">
+    </li>
+     <li class="item">
+      <img src="/static/img/s4.png" alt="image 4">
+    </li>
+     <li class="item">
+      <img src="/static/img/s5.png" alt="image 5">
     </li>
   </ul>
   <!-- Controls
@@ -47,8 +53,14 @@
 		</div>
 		<div class="set-area">
       		<div class="choose-box">
-      			<input type="text" class="date-box"><span class="glyphicon glyphicon-calendar"></span>
-      			<input type="text" class="time-box"><span class="glyphicon glyphicon-time"></span>
+      			<div class="input-group date-div">
+	      			<input type="text" class="date-box" readonly="readonly">
+	      			<span class="input-group-addon glyphicon glyphicon-calendar"></span>
+      			</div>
+      			<div class="input-group time-div">
+	      			<input type="text" class="time-box" readonly="readonly">
+	      			<span class="input-group-addon glyphicon glyphicon-time"></span>
+      			</div>
       			<select id="type-box" name="guests">
       				<option value="1">One Time</option>
             	</select>
@@ -60,27 +72,27 @@
 <div class="container fea-area">
 	<ul>
 		<li>
-			<img src="" alt="f1" />
+			<img src="/static/img/f1.png" alt="feature" />
 			<p>100% Satisfaction Guarantee</p>
 			<font>Learn More</font>
 		</li>
 		<li>
-			<img src="" alt="f2" />
+			<img src="/static/img/f2.png" alt="feature" />
 			<p>Professionally trained and certified cleaners</p>
 			<font>Learn More</font>
 		</li>
 		<li>
-			<img src="" alt="f3" />
+			<img src="/static/img/f3.png" alt="feature" />
 			<p>Insured and Bonded</p>
 			<font>Learn More</font>
 		</li>
 		<li>
-			<img src="" alt="f4" />
+			<img src="/static/img/f4.png" alt="feature" />
 			<p>Trust & Safety</p>
 			<font>Learn More</font>
 		</li>
 		<li>
-			<img src="" alt="f5" />
+			<img src="/static/img/f5.png" alt="feature" />
 			<p>English-speaking Customer Service</p>
 			<font>Learn More</font>
 		</li>
@@ -89,35 +101,40 @@
 <div class="container info-area">
 	<ul>
 		<li>
-			<img src="" alt="f1" />
+			<img src="/static/img/i1.png" alt="info" />
 			<p>1. BOOK</p>
 			<font>Tell us when you want to clean your home</font>
 		</li>
 		<li>
-			<img src="" alt="f2" />
+			<img src="/static/img/i2.png" alt="info" />
 			<p>2. CLEAN</p>
 			<font>Professionally certified cleaner cleans your place</font>
 		</li>
 		<li>
-			<img src="" alt="f3" />
+			<img src="/static/img/i3.png" alt="info" />
 			<p>3. ENJOY</p>
 			<font>Come home to a speaking clean home</font>
 		</li>
 	</ul>
+	<div id="wi"><a href="#" class="btn btn-contrast btn-large home-wi">WHAT'S INCLUDED?</a></div>
 </div>
 {% endblock content %}
 {% block extra_js %}
 <script src="/static/js/jquery.datetimepicker.js"></script>
 <script>
 $('.date-box').datetimepicker({
+	closeOnDateSelect:true,
 	timepicker:false,
-	format:'Y/d/m'
+	format:'Y/m/d'
 	});
 $('.time-box').datetimepicker({
 	datepicker:false,
 	format:'H:i',
 	step:60
 	});
+$('.input-group').click(function(){
+	$(this).children('input').focus();
+})
 $('.carousel').carousel({
 	interval: 2000,
 	pause: false

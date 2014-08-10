@@ -7,3 +7,16 @@ def index(request):
 
     return render_to_response('home/index.html',
                                   RequestContext(request, locals()))
+
+def clean_info(request):
+    pass
+
+    return render_to_response('home/info.html',
+                                  RequestContext(request, locals()))
+
+def clean_needs(request):
+    pass
+
+    return render_to_response('home/needs.html',
+                                  RequestContext(request, locals()))
+                                  

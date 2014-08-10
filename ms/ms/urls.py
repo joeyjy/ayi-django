@@ -10,6 +10,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     #url(r'^$', TemplateView.as_view(template_name='base.html')),
     url(r'^$', 'home.views.index', name='home_index'),
+    url(r'^clean-info/$', 'home.views.clean_info', name='clean_info'),
+    url(r'^clean-needs/$', 'home.views.clean_needs', name='clean_needs'),
     # Examples:
     # url(r'^$', 'ms.views.home', name='home'),
     # url(r'^ms/', include('ms.foo.urls')),

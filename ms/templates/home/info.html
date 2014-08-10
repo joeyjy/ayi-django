@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/step.css">
+{% endblock extra_css %}
+{% block content %}
+<div class="container page-box">
+	<div id="custom-step">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-2">
+				 <div class="service_border bdr-blue"></div>
+                 <div class="service_icon active">
+                        1
+                 </div>
+                 <div class="service_content">
+                     <h3>Date <br> And Time</h3>
+                 </div>
+			</div>
+			<div class="col-md-2">
+				 <div class="service_border bdr-default"></div>
+                 <div class="service_icon active">
+                        2
+                 </div>
+                 <div class="service_content">
+                     <h3>Contact <br> Information</h3>
+                 </div>
+			</div>
+			<div class="col-md-2">
+				 <div class="service_border bdr-default"></div>
+                 <div class="service_icon default">
+                        3
+                 </div>
+                 <div class="service_content text-default">
+                     <h3>Cleaning <br> needs</h3>
+                 </div>
+			</div>
+			<div class="col-md-2">
+                 <div class="service_icon default">
+                        4
+                 </div>
+                 <div class="service_content text-default">
+                     <h3>CONFIRM<br> AND PAY</h3>
+                 </div>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+	<div class="top-line">
+		<h3>Contact info</h3>
+	</div>
+	<div class="col-md-8">
+		<form action="#" method="post">
+			<ul class="form-inner">
+				<li>
+					<input id="id_name" type="text" name="name" placeholder="Name">
+				</li>
+				<li>
+					<input id="id_email" type="text" name="email" placeholder="Email">
+				</li>
+				<li>
+					<input id="id_mobile" type="text" name="mobile" placeholder="Mobile No.">
+				</li>
+				<li>
+					<input id="id_password" type="password" name="password" placeholder="Password">
+				</li>
+				<li>
+					<select id="id_compound">
+						<option>Compound Name</option>
+						<option>Compound Name</option>
+					</select>
+				</li>
+				<li>
+					<select id="id_area">
+						<option>Area</option>
+						<option>Area</option>
+					</select>
+				</li>
+				<li>
+					<input id="id_street_name" type="text" name="street_name" placeholder="Street Name">
+				</li>
+				<li>
+					<input id="id_cross_street" type="text" name="cross_street" placeholder="Cross Street">
+				</li>
+			</ul>
+			<ul class="form-other">
+				<li>
+					<input id="id_street_no" type="text" name="street_no" placeholder="Street No.">
+				</li>
+				<li>
+					<input id="id_bldg_no" type="text" name="bldg_no" placeholder="bldg No.">
+				</li>
+				<li>
+					<input id="id_apt_no" type="text" name="apt_no" placeholder="Apt No.">
+				</li>
+			</ul>
+			<button id="s2-sm" type="submit">NEXT</button>
+		</form>
+	</div>
+	<div class="col-md-1"></div>
+	<div class="col-md-3">
+		<div class="feature-info">
+			<h2>Commitment to Trust and Safety</h2>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit ETXsed diam nonummy nibh euismod tincidunt. <a>Learn More</a></p>
+		</div>
+		<div class="feature-info">
+			<h2>Free Security</h2>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit ETXsed diam nonummy nibh euismod tincidunt. <a>Learn More</a></p>
+		</div>
+	</div>
+</div>
+{% endblock content %}
+{% block extra_js %}
+
+{% endblock extra_js %}
