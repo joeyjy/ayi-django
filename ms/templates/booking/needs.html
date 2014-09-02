@@ -103,14 +103,16 @@
 {% endblock content %}
 {% block extra_js %}
 <script type="text/javascript">
+$('#id_bedroom').val('3');
+$('#id_bathroom').val('2');
+$('#id_hour').val('3');
+$(".no-laundry").click(function(){
+	$(this).addClass("tiffany-blue-btn");
+});
 
-		$(".no-laundry").click(function(){
-        	$(this).addClass("tiffany-blue-btn");
-        });
-        
-        $("#id_laundry").click(function(){
-        	$(".no-laundry").removeClass("tiffany-blue-btn");
-        	});
+$("#id_laundry").click(function(){
+	$(".no-laundry").removeClass("tiffany-blue-btn");
+});
 
 </script>
 {% endblock extra_js %}

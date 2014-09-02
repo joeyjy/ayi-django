@@ -9,12 +9,14 @@ BEDROOM_NUM = (
     (2,"2 Bedrooms"),
     (3,"3 Bedrooms"),
     (4,"4 Bedrooms"),
+    (5,"5+ Bedrooms"),
 )
 BATHROOM_NUM = (
     (1,"1 Bathroom"),
     (2,"2 Bathrooms"),
     (3,"3 Bathrooms"),
     (4,"4 Bathrooms"),
+    (5,"5+ Bathrooms"),
 )
 LAUNDRY = (
     (1,"YES(+30 MINS)"),

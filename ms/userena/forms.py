@@ -11,6 +11,7 @@ from accounts.models import MyProfile
 from userena import settings as userena_settings
 from userena.models import UserenaSignup
 from userena.utils import get_profile_model, get_user_model
+from accounts.constant import COMPOUND, AREA
 
 import random
 
@@ -21,7 +22,9 @@ USERNAME_RE = r'^[\.\w]+$'
 class SignupForm(forms.ModelForm):
     class Meta:
         model = MyProfile
-        fields = ('mobile','area','street','compound','cross','street_num','bldg_num','apt_num',)
+        fields = ('mobile','street','cross','street_num','bldg_num','apt_num',)
+    compound = forms.IntegerField(widget=forms.Select(choices=COMPOUND), initial=1)
+    area = forms.IntegerField(widget=forms.Select(choices=AREA), initial=1)
     """
     Form for creating a new user account.
 
@@ -31,13 +34,16 @@ class SignupForm(forms.ModelForm):
     """
     username = forms.RegexField(regex=USERNAME_RE,
                                 max_length=30,
-                                widget=forms.TextInput(attrs=attrs_dict),
+                                widget=forms.TextInput(attrs=dict(attrs_dict,
+                                                                  placeholder='Full Name')),
                                 label=_("Username"),
                                 error_messages={'invalid': _('Username must contain only letters, numbers, dots and underscores.')})
     email = forms.EmailField(widget=forms.TextInput(attrs=dict(attrs_dict,
-                                                               maxlength=75)),
+                                                               maxlength=75,
+                                                               placeholder='Email Address')),
                              label=_("Email"))
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict,
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs=dict(attrs_dict,
+                                                                      placeholder='Password'),
                                                            render_value=False),
                                 label=_("Create password"))
     #password2 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict,
@@ -96,7 +102,7 @@ class SignupForm(forms.ModelForm):
                                                                                                            self.cleaned_data['street_num'],
                                                                                                            self.cleaned_data['bldg_num'],
                                                                                                            self.cleaned_data['apt_num'])
-        print "aaaaaaaa"
+        
         new_user = UserenaSignup.objects.create_user(username,
                                                      email,
                                                      password,

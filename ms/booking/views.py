@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
@@ -33,6 +34,8 @@ def clean_needs(request):
 @login_required(login_url='/accounts/signin/')
 @csrf_exempt
 def history(request, username):
+    if request.user.username != username and not request.user.has_perm('auth.change_booking'):
+        raise PermissionDenied
     booking_list = Booking.objects.filter(booker__username=username)
 
     return render_to_response('booking/history.html',

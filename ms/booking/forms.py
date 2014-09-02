@@ -17,6 +17,7 @@ from django.utils.safestring import mark_safe
 from django.views.generic import ListView
 
 from models import Booking
+from booking.constant import *
 
 class BookingForm(forms.ModelForm):                                                                                                             
     class Meta:
@@ -25,7 +26,6 @@ class BookingForm(forms.ModelForm):
         #           'description': forms.Textarea(attrs={'placeholder': 'Description should be less than 300 words'})
         #}
         fields = ('bedroom', 'bathroom', 'laundry', 'hour', 'message',)
-
 #    def __init__(self, *args, **kwargs):
 #        super(RentForm, self).__init__(*args, **kwargs)
 #        self.fields['metro'].widget = \
