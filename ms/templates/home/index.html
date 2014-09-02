@@ -47,24 +47,28 @@
 		<div class="welcome-area">
 			<div class="blk-middle">
 				<h1>WANT A CLEAN HOME?</h1>
-				<p>BOOK ONLINE OR SPEAK TO AN <u>ENGLISH SPEAKING REPRESENTATIVE</u></p>
-				<a href="#" class="btn btn-contrast btn-large how-it-works">HOW IT WORKS</a>
+				<p>BOOK ONLINE or CALL 1234 1234 FOR ENGLISH SERVICE</p>
+				<a href="#mark-1" class="btn btn-contrast btn-large how-it-works">HOW IT WORKS</a>
       		</div>
 		</div>
 		<div class="set-area">
       		<div class="choose-box">
+      		<form action="" method="post" id="clean-time-form">
+      			{% csrf_token %}
       			<div class="input-group date-div">
-	      			<input type="text" class="date-box" readonly="readonly">
+	      			<input type="text" class="date-box" readonly="readonly" name="clean_date">
 	      			<span class="input-group-addon glyphicon glyphicon-calendar"></span>
       			</div>
       			<div class="input-group time-div">
-	      			<input type="text" class="time-box" readonly="readonly">
+	      			<input type="text" class="time-box" readonly="readonly" name="clean_time">
 	      			<span class="input-group-addon glyphicon glyphicon-time"></span>
       			</div>
-      			<select id="type-box" name="guests">
+      			<select id="type-box" name="clean_type">
       				<option value="1">One Time</option>
+      				<option value="2">Weekly</option>
             	</select>
-            	<button>BOOK NOW</button>
+            	<button id="clean-book" type="submit">BOOK NOW</button>
+            </form>
       		</div>
 		</div>
 	</div>
@@ -98,7 +102,7 @@
 		</li>
 	</ul>
 </div>
-<div class="container info-area">
+<div class="container info-area" id="mark-1">
 	<ul>
 		<li>
 			<img src="/static/img/i1.png" alt="info" />
@@ -123,9 +127,10 @@
 <script src="/static/js/jquery.datetimepicker.js"></script>
 <script>
 $('.date-box').datetimepicker({
+	startDate:new Date(),
 	closeOnDateSelect:true,
 	timepicker:false,
-	format:'Y/m/d'
+	format:'d M 2014'
 	});
 $('.time-box').datetimepicker({
 	datepicker:false,
@@ -136,8 +141,21 @@ $('.input-group').click(function(){
 	$(this).children('input').focus();
 })
 $('.carousel').carousel({
-	interval: 2000,
+	interval: 5500,
 	pause: false
 	})
+</script>
+<script type="text/javascript">
+$('.date-box').val('{{ default_date }}');
+$('.time-box').val('09:00');
+$("#clean-book").click(function(){
+	if ($('.date-box').val()=="" || $('.time-box').val()==""){
+		alert ("please choose the time");
+		return false;
+	}else{
+		return true;
+	}
+	$("#clean-time-form").submit();
+});
 </script>
 {% endblock extra_js %}

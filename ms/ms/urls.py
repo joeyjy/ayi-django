@@ -5,13 +5,15 @@ from django.views.generic import TemplateView
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from userena import views as userena_views
 admin.autodiscover()
 
 urlpatterns = patterns('',
     #url(r'^$', TemplateView.as_view(template_name='base.html')),
     url(r'^$', 'home.views.index', name='home_index'),
-    url(r'^clean-info/$', 'home.views.clean_info', name='clean_info'),
-    url(r'^clean-needs/$', 'home.views.clean_needs', name='clean_needs'),
+    url(r'^clean-info/$', userena_views.signup, name='clean_info'),
+    url(r'^clean-needs/$', 'booking.views.clean_needs', name='clean_needs'),
+    url(r'^history/(?P<username>[\.\w-]+)$', 'booking.views.history', name='booking_history'),
     # Examples:
     # url(r'^$', 'ms.views.home', name='home'),
     # url(r'^ms/', include('ms.foo.urls')),
@@ -21,6 +23,8 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^captcha/', include('captcha.urls')),
+    url(r'^accounts/', include('userena.urls')),
 )
 
 # Uncomment the next line to serve media files in dev.

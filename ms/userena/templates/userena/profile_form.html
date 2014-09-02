@@ -1,0 +1,96 @@
+{% extends 'userena/base_userena.html' %}
+{% load i18n %}
+{% load url from future %}
+
+{% block title %}{% trans "Account setup" %}{% endblock %}
+
+{% block content_title %}<h2>{% blocktrans with profile.user.username as username %}Account &raquo; {{ username }}{% endblocktrans %}</h2>{% endblock %}
+
+{% block content_extra %}
+
+<ul id="box-nav">
+    <li class="first"><a href="{% url 'userena_profile_detail' user.username %}"><span>{% trans 'View profile' %}</span></a></li>
+    <li class="selected"><a href="{% url 'userena_profile_edit' user.username %}">{% trans "Edit profile" %}</a></li>
+    <li><a href="{% url 'userena_password_change' user.username %}">{% trans "Change password" %}</a></li>
+    <li class="last"><a href="{% url 'userena_email_change' user.username %}">{% trans "Change email" %}</a></li>
+  </ul>
+<h3>{% trans "CRM Page" %}</h3>
+<div id="r-column">
+	<h5 id="a-active">My Account</h5>
+	<h5><a href="{% url 'booking_history' user.username %}">Cleaning History</a></h5>
+	<h5><a href="{% url 'userena_signout'%}">Log Out</a></h5>
+	<div id="a-box">
+		<div id="a-type">Account B</div>
+		<div id="a-rest">5,000 RMB</div>
+	</div>
+</div>
+<div id="l-column">
+	
+	<ul class="form-inner">
+				<li class="form-fields input-group">
+					<font>Name</font>
+					<input type="text" value="{{ request.user.username }}" disabled="disabled">
+				</li>
+				<li class="form-fields">
+					<font>Email</font>
+					<input type="text" value="{{ request.user.email }}" disabled="disabled">
+				</li>
+				<li class="form-fields">
+					<font>Join Date</font>
+					<input type="text" value="{{ request.user.date_joined }}" disabled="disabled">
+				</li>
+	</ul>
+	<form action="" enctype="multipart/form-data" method="post">
+	{% csrf_token %}
+	<ul class="form-inner a-op">
+				<li class="form-fields">
+					<font>Mobile No.</font>
+					{{ form.mobile }}
+					{{ form.mobile.errors }}
+				</li>
+				<li class="form-fields">
+					<font>Compound Name<span class="optional-area">(Optional)</span></font>
+					{{ form.compound }}
+					{{ form.compound.errors }}
+				</li>
+				<li class="make-line"></li>
+				<li class="form-fields">
+					<font>Area<span class="optional-area">(Optional)</span></font>
+					{{ form.area }}
+					{{ form.area.errors }}
+				</li>
+				<li class="form-fields">
+					<font>Street No.</font>
+					{{ form.street_num }}
+					{{ form.street_num.errors }}
+				</li>
+				<li class="make-line"></li>
+				<li class="form-fields">
+					<font>Street Name</font>
+					{{ form.street }}
+					{{ form.street.errors }}
+				</li>
+				<li class="form-fields">
+					<font>Cross Street</font>
+					{{ form.cross }}
+					{{ form.cross.errors }}
+				</li>
+				<li class="make-line"></li>
+				<li class="form-fields">
+					<font>Bldg. No.<span class="optional-area">(Optional)</span></font>
+					{{ form.bldg_num }}
+					{{ form.bldg_num.errors }}
+				</li>
+				<li class="form-fields">
+					<font>Apt. No.<span class="optional-area">(Optional)</span></font>
+					{{ form.apt_num }}
+					{{ form.apt_num.errors }}
+				</li>
+	</ul>
+	{{ form.privacy }}
+	<input id="s2-sm" type="submit" value="{% trans "Save changes" %}" />
+	</form>
+</div>
+
+
+{% endblock %}

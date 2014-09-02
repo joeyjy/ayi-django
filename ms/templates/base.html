@@ -30,7 +30,7 @@
     	<div class="container">
     		<div id="logo-box">
     			<a href="/">
-    				<img src="/static/img/site-logo.png" alt="merry logo" />
+    				<img src="/static/img/site-logo.jpg" alt="merry logo" />
     			</a>
     		</div>
     		<div class="collapse navbar-collapse">
@@ -46,10 +46,19 @@
     					<p class="navbar-text"><a href="/">中文</a>/<font>EN</font></p>
     				</li>
     				<li>
-    					<p class="navbar-text"><a href="/">Contact Us</a></p>
+    					<p class="navbar-text">
+    						<a id="contact-us" data-toggle="tooltip" data-placement="bottom" title="support@merryservices.com">Contact Us</a>
+    						<div class="tooltip fade bottom in" role="tooltip" id="tooltip86303"><div class="tooltip-arrow"></div><div class="tooltip-inner">support@merryservices.com<br />1234 1234</div></div>
+    					</p>
     				</li>
-    				<li class="dropdown">
-    					<a href="/">Login</a>
+    				<li>
+    					<p class="navbar-text">
+    					{% if request.user.id %}
+		        			<strong>Hi, <a href="{% url 'userena_profile_edit' request.user.username %}">{{request.user}}</a></strong>&nbsp;&nbsp;<a href="{% url 'userena_signout' %}" id="sign_btn">Sign out</a>
+		        		{%else%}
+		        			<strong><a href="{% url 'userena_signin' %}">Login</a></strong>
+		        		{% endif%}
+		        		</p>
     				</li>
     			</ul>
     		</div>
@@ -74,6 +83,7 @@
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/headroom.js"></script>
+<script src="/static/js/ms.js"></script>
 {% block extra_js %}{% endblock extra_js %}
 </body>
 </html>

@@ -127,6 +127,13 @@ FIXTURE_DIRS = (
 )
 ########## END FIXTURE CONFIGURATION
 
+########## AUTHENTICATION_BACKENDS
+AUTHENTICATION_BACKENDS = (
+    'userena.backends.UserenaAuthenticationBackend',
+    'guardian.backends.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+########## AUTHENTICATION_BACKENDS
 
 ########## TEMPLATE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-context-processors
@@ -194,6 +201,12 @@ DJANGO_APPS = (
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
+	'userena',
+	'guardian',
+	'easy_thumbnails',
+	'accounts',
+        'booking',
+        'captcha',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -249,3 +262,13 @@ INSTALLED_APPS += (
 # Don't need to use South when setting up a test database.
 SOUTH_TESTS_MIGRATE = False
 ########## END SOUTH CONFIGURATION
+
+ANONYMOUS_USER_ID = -1
+AUTH_PROFILE_MODULE = 'accounts.MyProfile'
+
+#### tencent email backend ####                                                                                                              
+TENCENT_EMAIL_HOST = "smtp.exmail.qq.com"
+TENCENT_EMAIL_PORT = 25
+TENCENT_EMAIL_USER = "info@merryservices.com"
+TENCENT_FROM_EMAIL = "Merry Services <info@merryservices.com>"
+TENCENT_EMAIL_PASSWORD = "1qaz,2wsx"

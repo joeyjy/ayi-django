@@ -1,0 +1,139 @@
+h3 {
+	padding: 30px 0 5px 50px;
+	font-weight: bold;
+	color: #54DDCD;
+	border-bottom: 1px solid #54DDCD;
+	margin:0;
+}
+.page-box {
+	background: #fff;
+}
+#r-column {
+	width:20%;
+	float:left;
+	padding: 20px 0 130px 0;
+	background-color: #EFFBFB;
+	text-align:center;
+}
+#r-column h5 {
+	font-size: 16px;
+	font-weight: bold;
+	padding:5px 0;
+	margin-bottom:40px;
+	margin-top:0;
+}
+#r-column h5 a {
+	color: #000;
+}
+#a-active{
+	color:#fff;
+	background-color: #55DCCE;
+}
+#r-column #a-box {
+	margin-top: 40px;
+	padding:10px;
+}
+#a-type{
+	padding: 5px 0;
+	font-size: 20px;
+	border: 1px solid #54DDCD;
+	border-bottom: 0;
+}
+#a-rest{
+	padding: 20px 0;
+	font-size: 16px;
+	border: 1px solid #54DDCD;
+}
+#l-column {
+	width:80%;
+	float:left;
+	padding: 47px 25px;
+}
+.form-inner{
+	padding: 0;
+	margin: 0;
+	margin-left: 0px!important;
+	list-style: none;
+	overflow:hidden;
+}
+.form-inner .form-fields{
+	width: 48%;
+	margin-right: 2%;
+	float: left;
+	margin-bottom: 10px;
+}
+.form-inner li input, .form-inner li select{
+	width: 60%;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	height: 36px;
+	padding: 6px 10px;
+	margin-bottom: 5px;
+	font-size: 14px;
+	line-height: 20px;
+	color: #858585;
+	border-radius: 4px;
+	vertical-align: middle;
+}
+.form-inner li font {
+	position: relative;
+	width:40%;
+	font-size: 14px;
+	font-weight: bold;
+	color: #858585;
+	padding: 12px 0;
+	vertical-align: middle;
+	float: left;
+	line-height: 16px;
+}
+.optional-area{
+	position:absolute;
+	font-size:12px;
+	font-style:italic;
+	left:0;
+	top:30px;
+	font-weight: normal;
+	line-height: 12px;
+}
+.errorlist{
+	color:red;
+	list-style: none;
+	font-size:12px;
+	padding:0;
+}
+.a-op{
+	margin-top:30px;
+}
+#s2-sm{
+	margin-top:30px;
+	background-color:#55DCCD;
+	color:#fff;
+	border-radius: 4px;
+	border:0;
+	font-size:26px;
+	font-weight:bold;
+	width:100%;
+}
+.make-line{
+	clear:both;
+	width:100%;
+}
+#id_privacy{
+	display:none;
+}
+#l-column table{
+	width:100%;
+	
+}
+#l-column table th{
+	text-align:center;
+	border:1px solid silver;
+	padding:5px 0;
+	font-weight:bold;
+	background-color:#DEF8F5;
+}
+#l-column table td{
+	text-align:center;
+	border:1px solid silver;
+	padding:5px 0;
+}

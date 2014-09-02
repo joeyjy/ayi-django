@@ -72,6 +72,16 @@ header ul.navbar-right li.dropdown {
 #f-ul li a:hover{
 	color:#52CCB7;
 }
+#contact-us{
+	cursor:pointer;
+	text-decoration: none;
+}
+#tooltip86303{
+	top: 53px;
+	left: -37.5px;
+	display: none;
+}
 .page-box{
-	margin-top:95px
+	margin-top:95px;
+	background: #effbfb;
 }

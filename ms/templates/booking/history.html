@@ -1,0 +1,43 @@
+{% extends 'userena/base_userena.html' %}
+{% load i18n %}
+{% load url from future %}
+
+{% block title %}{% trans "clean history" %}{% endblock %}
+
+{% block content_extra %}
+<div id="r-column">
+	<h5><a href="{% url 'userena_profile_edit' user.username %}">My Account</a></h5>
+	<h5 id="a-active">Cleaning History</h5>
+	<h5><a href="{% url 'userena_signout'%}">Log Out</a></h5>
+	<div id="a-box">
+		<div id="a-type">Account B</div>
+		<div id="a-rest">5,000 RMB</div>
+	</div>
+</div>
+<div id="l-column">
+	<table cellspacing="0" cellpadding="0">
+		<tr>
+			<th width="15%">Date</th>
+			<th width="15%">Hours</th>
+			<th width="15%">Ayi</th>
+			<th width="15%">Status</th>
+			<th width="10%">Cancel</th>
+			<th width="10%">Change</th>
+			<th width="20%">Rating</th>
+		</tr>
+		{% for one in booking_list %}
+		<tr>
+			<td width="15%">{{ one.clean_time|date:"Y.m.d" }}</td>
+			<td width="15%">{{ one.hour }}</td>
+			<td width="15%">NO. 001</td>
+			<td width="15%">{{ one.status }}</td>
+			<td width="10%"><a>Cancel</a></td>
+			<td width="10%"><a>Change</a></td>
+			<td width="20%">Rating</td>
+		</tr>
+		{% endfor %}
+	</table>
+
+</div>
+
+{% endblock %}
