@@ -171,9 +171,21 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+#    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'johnny.middleware.LocalStoreClearMiddleware',
+    'johnny.middleware.QueryCacheMiddleware',
 )
 ########## END MIDDLEWARE CONFIGURATION
 
+########## SOME JOHNNYCACHE SETTING
+CACHES = {
+    'default' : dict(
+        BACKEND = 'johnny.backends.memcached.MemcachedCache',
+        LOCATION = ['127.0.0.1:11211'],
+        JOHNNY_CACHE = True,
+    )
+}
+JOHNNY_MIDDLEWARE_KEY_PREFIX='jc_myproj'
 
 ########## URL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#root-urlconf
@@ -191,9 +203,10 @@ DJANGO_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # 'debug_toolbar',
     # Useful template tags:
     # 'django.contrib.humanize',
-
+    
     # Admin panel and documentation:
     'django.contrib.admin',
     # 'django.contrib.admindocs',
@@ -259,6 +272,8 @@ INSTALLED_APPS += (
     # Database migration helpers:
     'south',
 )
+
+# INTERNAL_IPS = ('127.0.0.1',)
 # Don't need to use South when setting up a test database.
 SOUTH_TESTS_MIGRATE = False
 ########## END SOUTH CONFIGURATION

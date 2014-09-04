@@ -47,16 +47,16 @@
     				</li>
     				<li>
     					<p class="navbar-text">
-    						<a id="contact-us" data-toggle="tooltip" data-placement="bottom" title="support@merryservices.com">Contact Us</a>
-    						<div class="tooltip fade bottom in" role="tooltip" id="tooltip86303"><div class="tooltip-arrow"></div><div class="tooltip-inner">support@merryservices.com<br />1234 1234</div></div>
+    						<a id="contact-us" data-toggle="tooltip" data-placement="bottom">Contact Us</a>
+    						<div class="tooltip fade bottom in" role="tooltip" id="tooltip86303"><div class="tooltip-arrow"></div><div class="tooltip-inner">support@merryservices.com<br />021-6380 1553</div></div>
     					</p>
     				</li>
     				<li>
     					<p class="navbar-text">
     					{% if request.user.id %}
-		        			<strong>Hi, <a href="{% url 'userena_profile_edit' request.user.username %}">{{request.user}}</a></strong>&nbsp;&nbsp;<a href="{% url 'userena_signout' %}" id="sign_btn">Sign out</a>
+		        			<strong><a href="{% url 'userena_profile_edit' request.user.username %}">{{request.user}}</a></strong>&nbsp;&nbsp;<a href="{% url 'userena_signout' %}" id="sign_btn">Sign out</a>
 		        		{%else%}
-		        			<strong><a href="{% url 'userena_signin' %}">Login</a></strong>
+		        			<strong><a href="{% url 'userena_signin' %}">Sign In</a></strong>
 		        		{% endif%}
 		        		</p>
     				</li>

@@ -144,7 +144,7 @@ def signup(request, signup_form=SignupForm,
 
             return redirect(redirect_to)
         else:
-        	print form.errors
+            print form.errors
     if not extra_context: extra_context = dict()
     extra_context['form'] = form
     return ExtraContextTemplateView.as_view(template_name=template_name,

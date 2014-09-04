@@ -16,7 +16,7 @@
 <div id="r-column">
 	<h5 id="a-active">My Account</h5>
 	<h5><a href="{% url 'booking_history' user.username %}">Cleaning History</a></h5>
-	<h5><a href="{% url 'userena_signout'%}">Log Out</a></h5>
+	<h5><a href="{% url 'userena_signout'%}">Sign Out</a></h5>
 	<div id="a-box">
 		<div id="a-type">Account B</div>
 		<div id="a-rest">5,000 RMB</div>
@@ -26,23 +26,34 @@
 	
 	<ul class="form-inner">
 				<li class="form-fields input-group">
-					<font>Name</font>
-					<input type="text" value="{{ request.user.username }}" disabled="disabled">
+					<font>User Name</font>
+					<input type="text" value="{{ profile.user.username }}" disabled="disabled">
 				</li>
 				<li class="form-fields">
 					<font>Email</font>
-					<input type="text" value="{{ request.user.email }}" disabled="disabled">
+					<input type="text" value="{{ profile.user.email }}" disabled="disabled">
 				</li>
 				<li class="form-fields">
 					<font>Join Date</font>
-					<input type="text" value="{{ request.user.date_joined }}" disabled="disabled">
+					<input type="text" value="{{ profile.user.date_joined }}" disabled="disabled">
 				</li>
 	</ul>
 	<form action="" enctype="multipart/form-data" method="post">
 	{% csrf_token %}
 	<ul class="form-inner a-op">
 				<li class="form-fields">
-					<font>Mobile No.</font>
+					<font>First Name</font>
+					{{ form.first_name }}
+					{{ form.first_name.errors }}
+				</li>
+				<li class="form-fields">
+					<font>Last Name</font>
+					{{ form.last_name }}
+					{{ form.last_name.errors }}
+				</li>
+				<li class="make-line"></li>
+				<li class="form-fields">
+					<font>Mobile #<span class="optional-area">(must be 11 digits)</span></font>
 					{{ form.mobile }}
 					{{ form.mobile.errors }}
 				</li>
@@ -58,7 +69,7 @@
 					{{ form.area.errors }}
 				</li>
 				<li class="form-fields">
-					<font>Street No.</font>
+					<font>Street #</font>
 					{{ form.street_num }}
 					{{ form.street_num.errors }}
 				</li>
@@ -75,12 +86,12 @@
 				</li>
 				<li class="make-line"></li>
 				<li class="form-fields">
-					<font>Bldg. No.<span class="optional-area">(Optional)</span></font>
+					<font>Bldg #<span class="optional-area">(Optional)</span></font>
 					{{ form.bldg_num }}
 					{{ form.bldg_num.errors }}
 				</li>
 				<li class="form-fields">
-					<font>Apt. No.<span class="optional-area">(Optional)</span></font>
+					<font>Apt #<span class="optional-area">(Optional)</span></font>
 					{{ form.apt_num }}
 					{{ form.apt_num.errors }}
 				</li>

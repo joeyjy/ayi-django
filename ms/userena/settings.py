@@ -12,7 +12,7 @@ USERENA_SIGNIN_AFTER_SIGNUP = getattr(settings,
 
 USERENA_REDIRECT_ON_SIGNOUT = getattr(settings,
                                       'USERENA_REDIRECT_ON_SIGNOUT',
-                                      None)
+                                      '/')
 
 USERENA_SIGNIN_REDIRECT_URL = getattr(settings,
                                       'USERENA_SIGNIN_REDIRECT_URL',

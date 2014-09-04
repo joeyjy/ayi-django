@@ -104,6 +104,9 @@ h3 {
 .a-op{
 	margin-top:30px;
 }
+.a-op li input, .a-op li select{
+	color:#000;
+}
 #s2-sm{
 	margin-top:30px;
 	background-color:#55DCCD;

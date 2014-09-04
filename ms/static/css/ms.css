@@ -81,6 +81,13 @@ header ul.navbar-right li.dropdown {
 	left: -37.5px;
 	display: none;
 }
+#tooltip86303 .tooltip-arrow{
+	border-bottom-color: #fff;
+}
+#tooltip86303 .tooltip-inner{
+	color: #000;
+	background-color: #FFF;
+}
 .page-box{
 	margin-top:95px;
 	background: #effbfb;

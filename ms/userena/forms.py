@@ -22,9 +22,16 @@ USERNAME_RE = r'^[\.\w]+$'
 class SignupForm(forms.ModelForm):
     class Meta:
         model = MyProfile
+        widgets = {'mobile': forms.TextInput(attrs={"placeholder":"Mobile #", "maxlength":"11"}),
+                   'street': forms.TextInput(attrs={"placeholder":"Street Name"}),
+                   'cross' : forms.TextInput(attrs={"placeholder":"Cross Street"}),
+                   'street_num' : forms.TextInput(attrs={"placeholder":"Street #"}),
+                   'bldg_num' : forms.TextInput(attrs={"placeholder":"Buliding #"}),
+                   'apt_num' : forms.TextInput(attrs={"placeholder":"Apartment #"}),
+        }
         fields = ('mobile','street','cross','street_num','bldg_num','apt_num',)
-    compound = forms.IntegerField(widget=forms.Select(choices=COMPOUND), initial=1)
-    area = forms.IntegerField(widget=forms.Select(choices=AREA), initial=1)
+    compound = forms.IntegerField(widget=forms.Select(choices=COMPOUND), initial=0)
+    area = forms.IntegerField(widget=forms.Select(choices=AREA), initial=0)
     """
     Form for creating a new user account.
 
@@ -35,17 +42,29 @@ class SignupForm(forms.ModelForm):
     username = forms.RegexField(regex=USERNAME_RE,
                                 max_length=30,
                                 widget=forms.TextInput(attrs=dict(attrs_dict,
-                                                                  placeholder='Full Name')),
+                                                                  placeholder='User Name')),
                                 label=_("Username"),
                                 error_messages={'invalid': _('Username must contain only letters, numbers, dots and underscores.')})
     email = forms.EmailField(widget=forms.TextInput(attrs=dict(attrs_dict,
                                                                maxlength=75,
                                                                placeholder='Email Address')),
                              label=_("Email"))
+    email2 = forms.EmailField(widget=forms.TextInput(attrs=dict(attrs_dict,
+                                                               maxlength=75,
+                                                               placeholder='Confirm Email')),
+                             label=_("Confirm Email"))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs=dict(attrs_dict,
                                                                       placeholder='Password'),
                                                            render_value=False),
                                 label=_("Create password"))
+    first_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder":"First Name"}),
+                                 label=_(u'First name'),
+                                 max_length=30,
+                                 required=True)
+    last_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder":"Last Name"}),
+                                label=_(u'Last name'),
+                                max_length=30,
+                                required=True)
     #password2 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict,
     #                                                       render_value=False),
     #                            label=_("Repeat password"))
@@ -84,24 +103,27 @@ class SignupForm(forms.ModelForm):
         it doesn't apply to a single field.
 
         """
-        #if 'password1' in self.cleaned_data and 'password2' in self.cleaned_data:
-        #    if self.cleaned_data['password1'] != self.cleaned_data['password2']:
-        #        raise forms.ValidationError(_('The two password fields didn\'t match.'))
+        if 'email' in self.cleaned_data and 'email2' in self.cleaned_data:
+            if self.cleaned_data['email'] != self.cleaned_data['email2']:
+                raise forms.ValidationError(_('The two email fields didn\'t match.'))
         return self.cleaned_data
 
     def save(self):
         """ Creates a new user and account. Returns the newly created user. """
-        username, email, password, compound, mobile, street, area, cross, street_num, bldg_num, apt_num = (self.cleaned_data['username'],
-                                                                                                           self.cleaned_data['email'],
-                                                                                                           self.cleaned_data['password1'],
-                                                                                                           self.cleaned_data['compound'],
-                                                                                                           self.cleaned_data['mobile'],
-                                                                                                           self.cleaned_data['street'],
-                                                                                                           self.cleaned_data['area'],
-                                                                                                           self.cleaned_data['cross'],
-                                                                                                           self.cleaned_data['street_num'],
-                                                                                                           self.cleaned_data['bldg_num'],
-                                                                                                           self.cleaned_data['apt_num'])
+        username, email, password, first_name, last_name, \
+        compound, mobile, street, area, cross, street_num, bldg_num, apt_num = (self.cleaned_data['username'],
+                                                                                self.cleaned_data['email'],
+                                                                                self.cleaned_data['password1'],
+                                                                                self.cleaned_data['first_name'],
+                                                                                self.cleaned_data['last_name'],
+                                                                                self.cleaned_data['compound'],
+                                                                                self.cleaned_data['mobile'],
+                                                                                self.cleaned_data['street'],
+                                                                                self.cleaned_data['area'],
+                                                                                self.cleaned_data['cross'],
+                                                                                self.cleaned_data['street_num'],
+                                                                                self.cleaned_data['bldg_num'],
+                                                                                self.cleaned_data['apt_num'])
         
         new_user = UserenaSignup.objects.create_user(username,
                                                      email,
@@ -127,6 +149,9 @@ class SignupForm(forms.ModelForm):
         #                                       bldg_num = self.cleaned_data['bldg_num'],
         #                                       apt_num = self.cleaned_data['apt_num'])
         #print "bbbbbbb"
+        new_user.first_name = first_name
+        new_user.last_name = last_name
+        new_user.save()
         return new_user
 
 class SignupFormOnlyEmail(SignupForm):
@@ -252,12 +277,16 @@ class ChangeEmailForm(forms.Form):
 
 class EditProfileForm(forms.ModelForm):
     """ Base form used for fields that are always required """
-    first_name = forms.CharField(label=_(u'First name'),
+    compound = forms.IntegerField(widget=forms.Select(choices=COMPOUND), initial=0)
+    area = forms.IntegerField(widget=forms.Select(choices=AREA), initial=0)
+    first_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder":"First Name"}),
+                                 label=_(u'First name'),
                                  max_length=30,
-                                 required=False)
-    last_name = forms.CharField(label=_(u'Last name'),
+                                 required=True)
+    last_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder":"Last Name"}),
+                                label=_(u'Last name'),
                                 max_length=30,
-                                required=False)
+                                required=True)
 
     def __init__(self, *args, **kw):
         super(EditProfileForm, self).__init__(*args, **kw)
@@ -269,6 +298,14 @@ class EditProfileForm(forms.ModelForm):
 
     class Meta:
         model = get_profile_model()
+        widgets = {'mobile': forms.TextInput(attrs={"placeholder":"Mobile #"}),
+                   'street': forms.TextInput(attrs={"placeholder":"Street Name"}),
+                   'cross' : forms.TextInput(attrs={"placeholder":"Cross Street"}),
+                   'street_num' : forms.TextInput(attrs={"placeholder":"Street #"}),
+                   'bldg_num' : forms.TextInput(attrs={"placeholder":"Buliding #"}),
+                   'apt_num' : forms.TextInput(attrs={"placeholder":"Apartment #"}),
+        }
+        fields = ('mobile','street','cross','street_num','bldg_num','apt_num',)
         exclude = ['user']
 
     def save(self, force_insert=False, force_update=False, commit=True):

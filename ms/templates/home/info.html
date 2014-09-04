@@ -50,7 +50,7 @@
 </div>
 <div class="container">
 	<div class="top-line col-md-8">
-		<h3>Contact info</h3>
+		<h3>Personal information</h3>
 		<a href="{% url 'userena_signin' %}">Already have an account</a>
 	</div>
 	<div class="col-md-8">
@@ -58,7 +58,7 @@
 			{% csrf_token %}
 			<ul class="form-inner">
 				<li class="form-fields">
-					<font>Full Name</font>
+					<font>User Name</font>
 					{{ form.username }}
 					{{ form.username.errors }}
 				</li>
@@ -69,16 +69,39 @@
 				</li>
 				<li class="make-line"></li>
 				<li class="form-fields">
-					<font>Mobile #</font>
+					<font>Mobile #<span class="optional-area">(must be 11 digits)</span></font>
 					{{ form.mobile }}
 					{{ form.mobile.errors }}
 				</li>
+				<li class="form-fields">
+					<font>Confirm Email</font>
+					{{ form.email2 }}
+					{{ form.email2.errors }}
+					{{ form.non_field_errors }}
+				</li>
+				<li class="make-line"></li>
+				<li class="form-fields">
+					<font>First Name</font>
+					{{ form.first_name }}
+					{{ form.first_name.errors }}
+				</li>
+				<li class="form-fields">
+					<font>Last Name</font>
+					{{ form.last_name }}
+					{{ form.last_name.errors }}
+				</li>
+				<li class="make-line"></li>
 				<li class="form-fields">
 					<font>Password</font>
 					{{ form.password1 }}
 					{{ form.password1.errors }}
 				</li>
-				<li class="make-line"></li>
+			</ul>
+			<div class="top-line">
+				<h3>Housing information</h3><br />
+			</div>
+			<div style="clear:both;"></div>
+			<ul class="form-inner">
 				<li class="form-fields">
 					<font>Compound Name<span class="optional-area">(Optional)</span></font>
 					{{ form.compound }}
