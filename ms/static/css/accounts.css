@@ -1,3 +1,66 @@
+#si-content{
+	margin: 60px 0 0 120px;
+	overflow:hidden;
+}
+#si-box{
+	border:1px solid silver;
+	padding:35px;
+	float:left;
+}
+.si-field label{
+	display:block;
+	font-size:14px;
+	font-weight:bold;
+}
+.si-field label a{
+	font-size:12px;
+	font-weight:normal;
+}
+.si-field input{
+	width: 350px;
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	height: 36px;
+	padding: 6px 10px;
+	margin-bottom: 5px;
+	font-size: 14px;
+	line-height: 20px;
+	color: #858585;
+	border-radius: 4px;
+	vertical-align: middle;
+}
+#si_sub {
+	background-color: #84d6d2;
+	color: #fff;
+	border-radius: 4px;
+	border: 0;
+	font-size: 24px;
+	font-weight: bold;
+	width: 100%;
+	margin:20px 0;
+}
+#si-su{
+	font-size:12px;
+	font-weight:bold;
+	margin-top:15px;
+	padding-top:15px;
+	border-top:1px solid silver;
+	text-align:center;
+}
+#si-fea{
+	float:left;
+	overflow:hidden;
+	padding:20px 0 0 60px;
+}
+#si-fea p{
+	color:gray;
+	font-size: 18px;
+	line-height: 19px;
+	font-weight: bold;
+	padding-left: 40px;
+	margin-bottom: 23px;
+	background: url(/static/img/checked.png) left center no-repeat;
+}
 h3 {
 	padding: 30px 0 5px 50px;
 	font-weight: bold;
@@ -139,4 +202,17 @@ h3 {
 	text-align:center;
 	border:1px solid silver;
 	padding:5px 0;
+}
+#l-column table td a{
+	cursor:pointer;
+}
+#l-column table td a:hover{
+	text-decoration:none;
+}
+.tooltip-inner {
+	color: #000;
+	background-color: #84D6D2;
+}
+.tooltip.top .tooltip-arrow {
+	border-top-color: #84D6D2;	
 }

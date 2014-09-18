@@ -46,7 +46,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default':{
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'merrydb',
+        'NAME': 'merry',
         'USER': 'root',
         'PASSWORD': '1qaz,2wsx',
         'HOST': 'localhost',
@@ -287,3 +287,8 @@ TENCENT_EMAIL_PORT = 25
 TENCENT_EMAIL_USER = "info@merryservices.com"
 TENCENT_FROM_EMAIL = "Merry Services <info@merryservices.com>"
 TENCENT_EMAIL_PASSWORD = "1qaz,2wsx"
+
+CAPTCHA_NOISE_FUNCTIONS = ()
+CAPTCHA_OUTPUT_FORMAT = u'<font>%(image)s</font> %(hidden_field)s %(text_field)s'
+CAPTCHA_LENGTH = 5
+#CAPTCHA_BACKGROUND_COLOR = '#55DCCD'

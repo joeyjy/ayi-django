@@ -11,7 +11,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.utils.translation import ugettext as _
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 
 from userena.forms import (SignupForm, SignupFormOnlyEmail, AuthenticationForm,
                            ChangeEmailForm, EditProfileForm)
@@ -111,6 +111,12 @@ def signup(request, signup_form=SignupForm,
     if userena_settings.USERENA_DISABLE_SIGNUP:
         raise PermissionDenied
 
+    if request.GET.get('nc')=='1':
+        from captcha.models import CaptchaStore
+        from captcha.helpers import captcha_image_url
+        new_key = CaptchaStore.generate_key()                                                                                               
+        new_image_url= captcha_image_url(new_key)
+        return HttpResponse(new_image_url)
     # If no usernames are wanted and the default form is used, fallback to the
     # default form that doesn't display to enter the username.
     if userena_settings.USERENA_WITHOUT_USERNAMES and (signup_form == SignupForm):
@@ -130,8 +136,9 @@ def signup(request, signup_form=SignupForm,
 
 
             if success_url: redirect_to = success_url
-            else: redirect_to = reverse('userena_signup_complete',
-                                        kwargs={'username': user.username})
+            #else: redirect_to = reverse('userena_signup_complete',
+            #                            kwargs={'username': user.username})
+            else: redirect_to = reverse('clean_needs')
 
             # A new signed user should logout the old one.
             if request.user.is_authenticated():
@@ -441,16 +448,16 @@ def signin(request, auth_form=AuthenticationForm,
     if request.method == 'POST':
         form = auth_form(request.POST, request.FILES)
         if form.is_valid():
-            identification, password, remember_me = (form.cleaned_data['identification'],
-                                                     form.cleaned_data['password'],
-                                                     form.cleaned_data['remember_me'])
+            identification, password = (form.cleaned_data['identification'],
+                                                     form.cleaned_data['password'])
             user = authenticate(identification=identification,
                                 password=password)
             if user.is_active:
                 login(request, user)
-                if remember_me:
-                    request.session.set_expiry(userena_settings.USERENA_REMEMBER_ME_DAYS[1] * 86400)
-                else: request.session.set_expiry(0)
+                #if remember_me:
+                #    request.session.set_expiry(userena_settings.USERENA_REMEMBER_ME_DAYS[1] * 86400)
+                #else: request.session.set_expiry(0)
+                request.session.set_expiry(0)
 
                 if userena_settings.USERENA_USE_MESSAGES:
                     messages.success(request, _('You have been signed in.'),
@@ -684,7 +691,8 @@ def profile_edit(request, username, edit_profile_form=EditProfileForm,
     profile = user.get_profile()
 
     user_initial = {'first_name': user.first_name,
-                    'last_name': user.last_name}
+                    'last_name': user.last_name,
+                    'area':profile.area,}
 
     form = edit_profile_form(instance=profile, initial=user_initial)
 

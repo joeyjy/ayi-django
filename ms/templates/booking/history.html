@@ -2,15 +2,17 @@
 {% load i18n %}
 {% load url from future %}
 
-{% block title %}{% trans "clean history" %}{% endblock %}
+{% block title %}{% trans "Clean History" %}{% endblock %}
 
 {% block content_extra %}
 <div id="r-column">
 	<h5><a href="{% url 'userena_profile_edit' user.username %}">My Account</a></h5>
 	<h5 id="a-active">Cleaning History</h5>
+	<h5><a href="{% url 'billing' user.username %}">Billing History</a></h5>
+	<h5><a href="{% url 'userena_password_change' user.username %}">{% trans "Change Password" %}</a></h5>
 	<h5><a href="{% url 'userena_signout'%}">Sign Out</a></h5>
 	<div id="a-box">
-		<div id="a-type">Account B</div>
+		<div id="a-type">Account Balance</div>
 		<div id="a-rest">5,000 RMB</div>
 	</div>
 </div>
@@ -29,11 +31,11 @@
 		<tr>
 			<td width="15%">{{ one.clean_time|date:"Y.m.d" }}</td>
 			<td width="15%">{{ one.hour }}</td>
-			<td width="15%">NO. 001</td>
-			<td width="15%">{{ one.status }}</td>
-			<td width="10%"><a>Cancel</a></td>
-			<td width="10%"><a>Change</a></td>
-			<td width="20%">Rating</td>
+			<td width="15%">{{ one.clean_ayi }}</td>
+			<td width="15%">{{ one.get_status_display }}</td>
+			<td width="10%"><a href="{% url 'booking_cancel' user.username one.id %}">Cancel</a></td>
+			<td width="10%"><a class="poptip" data-toggle="tooltip" data-placement="top" title="Change the booking? Call 021-6380-1553">Change</a></td>
+			<td width="20%"><a class="poptip" data-toggle="tooltip" data-placement="top" title="Not available yet">1 to 10</a></td>
 		</tr>
 		{% endfor %}
 	</table>
@@ -41,3 +43,8 @@
 </div>
 
 {% endblock %}
+{% block extra_js %}
+<script type="text/javascript">
+$('.poptip').tooltip();
+</script>
+{% endblock extra_js %}

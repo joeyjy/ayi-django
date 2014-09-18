@@ -7,11 +7,13 @@ try:
 except ImportError:
     from django.utils.hashcompat import sha_constructor
 
-from accounts.models import MyProfile
+from accounts.models import Compound, MyProfile
 from userena import settings as userena_settings
 from userena.models import UserenaSignup
 from userena.utils import get_profile_model, get_user_model
 from accounts.constant import COMPOUND, AREA
+from accounts.email import create_mail_welcome
+from captcha.fields import CaptchaField
 
 import random
 
@@ -29,9 +31,12 @@ class SignupForm(forms.ModelForm):
                    'bldg_num' : forms.TextInput(attrs={"placeholder":"Buliding #"}),
                    'apt_num' : forms.TextInput(attrs={"placeholder":"Apartment #"}),
         }
-        fields = ('mobile','street','cross','street_num','bldg_num','apt_num',)
-    compound = forms.IntegerField(widget=forms.Select(choices=COMPOUND), initial=0)
+        fields = ('mobile','street','cross','street_num','bldg_num','apt_num','compound',)
     area = forms.IntegerField(widget=forms.Select(choices=AREA), initial=0)
+
+    def __init__(self, *args, **kwargs):
+        super(SignupForm, self).__init__(*args, **kwargs)
+        self.fields['compound'].empty_label = 'Please Choose'
     """
     Form for creating a new user account.
 
@@ -51,7 +56,7 @@ class SignupForm(forms.ModelForm):
                              label=_("Email"))
     email2 = forms.EmailField(widget=forms.TextInput(attrs=dict(attrs_dict,
                                                                maxlength=75,
-                                                               placeholder='Confirm Email')),
+                                                               placeholder='Confirm Email Address')),
                              label=_("Confirm Email"))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs=dict(attrs_dict,
                                                                       placeholder='Password'),
@@ -65,6 +70,7 @@ class SignupForm(forms.ModelForm):
                                 label=_(u'Last name'),
                                 max_length=30,
                                 required=True)
+    captcha = CaptchaField()
     #password2 = forms.CharField(widget=forms.PasswordInput(attrs=attrs_dict,
     #                                                       render_value=False),
     #                            label=_("Repeat password"))
@@ -152,6 +158,7 @@ class SignupForm(forms.ModelForm):
         new_user.first_name = first_name
         new_user.last_name = last_name
         new_user.save()
+        create_mail_welcome(new_user)
         return new_user
 
 class SignupFormOnlyEmail(SignupForm):
@@ -197,7 +204,7 @@ def identification_field_factory(label, error_required):
 
     """
     return forms.CharField(label=label,
-                           widget=forms.TextInput(attrs=attrs_dict),
+                           widget=forms.TextInput(attrs={"placeholder":"Email Address"}),
                            max_length=75,
                            error_messages={'required': _("%(error)s") % {'error': error_required}})
 
@@ -206,20 +213,20 @@ class AuthenticationForm(forms.Form):
     A custom form where the identification can be a e-mail address or username.
 
     """
-    identification = identification_field_factory(_(u"Email or username"),
+    identification = identification_field_factory(_(u"Email Address"),
                                                   _(u"Either supply us with your email or username."))
     password = forms.CharField(label=_("Password"),
-                               widget=forms.PasswordInput(attrs=attrs_dict, render_value=False))
-    remember_me = forms.BooleanField(widget=forms.CheckboxInput(),
-                                     required=False,
-                                     label=_(u'Remember me for %(days)s') % {'days': _(userena_settings.USERENA_REMEMBER_ME_DAYS[0])})
+                               widget=forms.PasswordInput(attrs={"placeholder":"Password"}, render_value=False))
+    #remember_me = forms.BooleanField(widget=forms.CheckboxInput(),
+    #                                 required=False,
+    #                                 label=_(u'Remember me for %(days)s') % {'days': _(userena_settings.USERENA_REMEMBER_ME_DAYS[0])})
 
     def __init__(self, *args, **kwargs):
         """ A custom init because we need to change the label if no usernames is used """
         super(AuthenticationForm, self).__init__(*args, **kwargs)
         # Dirty hack, somehow the label doesn't get translated without declaring
         # it again here.
-        self.fields['remember_me'].label = _(u'Remember me for %(days)s') % {'days': _(userena_settings.USERENA_REMEMBER_ME_DAYS[0])}
+        #self.fields['remember_me'].label = _(u'Remember me for %(days)s') % {'days': _(userena_settings.USERENA_REMEMBER_ME_DAYS[0])}
         if userena_settings.USERENA_WITHOUT_USERNAMES:
             self.fields['identification'] = identification_field_factory(_(u"Email"),
                                                                          _(u"Please supply your email."))
@@ -277,7 +284,6 @@ class ChangeEmailForm(forms.Form):
 
 class EditProfileForm(forms.ModelForm):
     """ Base form used for fields that are always required """
-    compound = forms.IntegerField(widget=forms.Select(choices=COMPOUND), initial=0)
     area = forms.IntegerField(widget=forms.Select(choices=AREA), initial=0)
     first_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder":"First Name"}),
                                  label=_(u'First name'),
@@ -295,6 +301,7 @@ class EditProfileForm(forms.ModelForm):
         new_order.insert(0, 'first_name')
         new_order.insert(1, 'last_name')
         self.fields.keyOrder = new_order
+        self.fields['compound'].empty_label = 'Please Choose'
 
     class Meta:
         model = get_profile_model()
@@ -305,7 +312,7 @@ class EditProfileForm(forms.ModelForm):
                    'bldg_num' : forms.TextInput(attrs={"placeholder":"Buliding #"}),
                    'apt_num' : forms.TextInput(attrs={"placeholder":"Apartment #"}),
         }
-        fields = ('mobile','street','cross','street_num','bldg_num','apt_num',)
+        fields = ('mobile','street','cross','street_num','bldg_num','apt_num','compound','area',)
         exclude = ['user']
 
     def save(self, force_insert=False, force_update=False, commit=True):

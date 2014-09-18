@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     url(r'^$', 'home.views.index', name='home_index'),
     url(r'^clean-info/$', userena_views.signup, name='clean_info'),
     url(r'^clean-needs/$', 'booking.views.clean_needs', name='clean_needs'),
-    url(r'^history/(?P<username>[\.\w-]+)$', 'booking.views.history', name='booking_history'),
+    #url(r'^history/(?P<username>[\.\w-]+)$', 'booking.views.history', name='booking_history'),
     # Examples:
     # url(r'^$', 'ms.views.home', name='home'),
     # url(r'^ms/', include('ms.foo.urls')),
@@ -28,7 +28,7 @@ urlpatterns = patterns('',
 )
 
 # Uncomment the next line to serve media files in dev.
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar

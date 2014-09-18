@@ -6,7 +6,7 @@ COMPOUND = (
     (4, "Expo Area"),
 )
 AREA=(
-    (0, "Please Choose"),
+    ('', "Please Choose"),
     (1, "Bund Area"),
     (2, "Expo Area"),
     (3, "Gubei"),

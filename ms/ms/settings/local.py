@@ -27,7 +27,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DATABASES = {
     'default':{
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'merrydb',
+            'NAME': 'merry',
             'USER': 'root',
             'PASSWORD': '1qaz,2wsx',
             'HOST': 'localhost',

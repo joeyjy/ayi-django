@@ -50,8 +50,8 @@
 </div>
 <div class="container">
 	<div class="top-line col-md-8">
-		<h3>Personal information</h3>
-		<a href="{% url 'userena_signin' %}">Already have an account</a>
+		<h3>Personal Information</h3>
+		<a href="{% url 'userena_signin' %}">Repeat Customer?</a>
 	</div>
 	<div class="col-md-8">
 		<form method="post">
@@ -86,19 +86,19 @@
 					{{ form.first_name.errors }}
 				</li>
 				<li class="form-fields">
-					<font>Last Name</font>
-					{{ form.last_name }}
-					{{ form.last_name.errors }}
-				</li>
-				<li class="make-line"></li>
-				<li class="form-fields">
 					<font>Password</font>
 					{{ form.password1 }}
 					{{ form.password1.errors }}
 				</li>
+				<li class="make-line"></li>
+				<li class="form-fields">
+					<font>Last Name</font>
+					{{ form.last_name }}
+					{{ form.last_name.errors }}
+				</li>
 			</ul>
 			<div class="top-line">
-				<h3>Housing information</h3><br />
+				<h3>Housing Information</h3><br />
 			</div>
 			<div style="clear:both;"></div>
 			<ul class="form-inner">
@@ -140,6 +140,10 @@
 					{{ form.apt_num }}
 					{{ form.apt_num.errors }}
 				</li>
+				<li class="form-fields">
+					{{ form.captcha }}
+					{{ form.captcha.errors }}
+				</li>
 			</ul>
 			<button id="s2-sm" type="submit">NEXT</button>
 		</form>
@@ -148,12 +152,47 @@
 	<div class="col-md-3">
 		<div class="feature-info">
 			<h2>Commitment to Trust and Safety</h2>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit ETXsed diam nonummy nibh euismod tincidunt. <a>Learn More</a></p>
+			<p>All Merry cleaners are background checked for your safety and peace of mind.</p>
 		</div>
 		<div class="feature-info">
-			<h2>Free Security</h2>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit ETXsed diam nonummy nibh euismod tincidunt. <a>Learn More</a></p>
+			<h2>100% Satisfaction Guarantee</h2>
+			<p>If you are not completely satisfied with your cleaning, we will come back and re-clean it for free!</p>
 		</div>
 	</div>
 </div>
 {% endblock content %}
+{% block extra_js %}
+<script type="text/javascript">
+$(document).ready(function(){
+	$.ajaxSetup({
+			  data: {csrfmiddlewaretoken: '{{ csrf_token }}' }
+	});
+	$('.captcha').click(function(){
+	    $.get("?nc=1", function(result){
+	       	//alert(result);
+	        $('.captcha').attr("src",result);
+	        $('#id_captcha_0').attr("value",result.split('/')[3]);
+	     });
+	return false;
+	});
+	$('#id_compound').change(function(){
+		//alert ($(this).children('option:selected').val()); 
+		var pk = $(this).children('option:selected').val();
+		if (pk){
+		$.get('/accounts/compound/'+pk, function (data) {
+            //$("#id_location").data('position', data);
+            $('#id_area, #id_street_num, #id_street, #id_cross').attr('readonly','true');
+            $('#id_area').val(data.area);
+            $('#id_street_num').val(data.address);
+            $('#id_street').val(data.name);
+            $('#id_cross').val(data.cross);
+        });
+		}else{
+			$('#id_area, #id_street_num, #id_street, #id_cross').removeAttr('readonly');
+			$('#id_area, #id_street_num, #id_street, #id_cross').val('');
+		}
+	});
+});
+$('.poptip').tooltip();
+</script>
+{% endblock extra_js %}

@@ -111,4 +111,8 @@ urlpatterns = patterns('',
     #url(r'^$',
     #   userena_views.ProfileListView.as_view(),
     #   name='userena_profile_list'),
+    url(r'^history/(?P<username>[\.\w-]+)$', 'booking.views.history', name='booking_history'),
+    url(r'^billing/(?P<username>[\.\w-]+)$', 'booking.views.billing', name='billing'),
+    url(r'^booking_cancel/(?P<username>[\.\w-]+)/(?P<pk>\d+)$', 'booking.views.booking_cancel', name='booking_cancel'),
+    url(r'^compound/(?P<pk>\d+)$', 'booking.views.compound_info', name='compound_info'),
 )

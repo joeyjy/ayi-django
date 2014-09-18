@@ -1,7 +1,7 @@
 /*! project specific CSS goes here. */
 header{
 	background: #fff;
-	border-bottom: 5px solid #55DCCD;
+	border-bottom: 5px solid #84d6d2;
 	position: fixed;
 	top:0;
 	left:0;
@@ -16,7 +16,7 @@ header a{
 }
 #logo-box a{
 	float:left;
-	padding: 20px 15px;
+	padding: 15px 15px;
 	font-size: 18px;
 	line-height: 20px;
 }
@@ -50,9 +50,15 @@ header ul.navbar-right li.dropdown {
 	height: 22px;
 }
 .footer-line{
-	margin-top:25px;
-	padding:25px 0;
+	margin-top:100px;
+	padding:25px 0 150px 0;
 	background-color:#1B1B1B;
+	position:relative;
+}
+.footer-line img{
+	position:absolute;
+	left:160px;
+	top: -100px;
 }
 #f-ul{
 	list-style: none;
@@ -62,8 +68,8 @@ header ul.navbar-right li.dropdown {
 	padding:0;
 }
 #f-ul li{
-	float:left;
-	width:25%;
+	float:right;
+	padding:0 40px;
 	text-align:center;
 }
 #f-ul li a{
@@ -73,22 +79,66 @@ header ul.navbar-right li.dropdown {
 	color:#52CCB7;
 }
 #contact-us{
-	cursor:pointer;
+	font-weight:bold;
 	text-decoration: none;
+}
+.lm{
+	cursor:pointer;
+}
+.bpop{
+	background-color: #FFF;
+	border-radius: 10px 10px 10px 10px;
+	color: #111;
+	display: none;
+	padding: 12px;
+}
+.b-close {
+	border-radius: 7px 7px 7px 7px;
+	font: bold 131% sans-serif;
+	padding: 0 6px 2px;
+	position: absolute;
+	right: -7px;
+	top: -7px;
+	background-color: #DA86AA;
+	color: #FFF;
+	cursor: pointer;
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+}
+.b-content{
+	width:600px;
+}
+.b-content h3{
+	margin: 10px 0 25px 0;
+}
+.b-content p font{
+	color:green;
+	font-weight:bold;
 }
 #tooltip86303{
 	top: 53px;
 	left: -37.5px;
 	display: none;
 }
-#tooltip86303 .tooltip-arrow{
-	border-bottom-color: #fff;
+#tooltip86302{
+	top: 22px;
+	left: -93.5px;
+	display: none;
 }
-#tooltip86303 .tooltip-inner{
-	color: #000;
-	background-color: #FFF;
+#tooltip86302 .tool-qr{
+	max-width: 208px;
+	padding: 3px 4px;
+	overflow: hidden;
 }
 .page-box{
 	margin-top:95px;
 	background: #effbfb;
+}
+.tooltip-inner {
+	color: #000;
+	background-color: #84D6D2;
+}
+.tooltip.bottom .tooltip-arrow {
+	border-bottom-color: #84D6D2;	
 }

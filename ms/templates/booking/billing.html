@@ -1,0 +1,30 @@
+{% extends 'userena/base_userena.html' %}
+{% load i18n %}
+{% load url from future %}
+
+{% block title %}{% trans "Billing History" %}{% endblock %}
+
+{% block content_extra %}
+<div id="r-column">
+	<h5><a href="{% url 'userena_profile_edit' user.username %}">My Account</a></h5>
+	<h5><a href="{% url 'booking_history' user.username %}">Cleaning History</a></h5>
+	<h5 id="a-active">Billing History</h5>
+	<h5><a href="{% url 'userena_password_change' user.username %}">{% trans "Change Password" %}</a></h5>
+	<h5><a href="{% url 'userena_signout'%}">Sign Out</a></h5>
+	<div id="a-box">
+		<div id="a-type">Account Balance</div>
+		<div id="a-rest">5,000 RMB</div>
+	</div>
+</div>
+<div id="l-column">
+	<table cellspacing="0" cellpadding="0">
+		<tr>
+			<th width="20%">Date</th>
+			<th width="40%">Description</th>
+			<th width="20%">Amount</th>
+			<th width="20%">Balance</th>
+		</tr>
+	</table>
+</div>
+
+{% endblock %}

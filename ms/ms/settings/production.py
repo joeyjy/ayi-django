@@ -54,7 +54,7 @@ SERVER_EMAIL = EMAIL_HOST_USER
 DATABASES = {
     'default':{
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'merrydb',
+            'NAME': 'merry',
             'USER': 'root',
             'PASSWORD': '1qaz,2wsx',
             'HOST': 'localhost',

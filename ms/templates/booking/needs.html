@@ -66,11 +66,39 @@
 				</li>
 				<li class="ne-li-1">
 					<font>ADD LAUNDRY<span class="optional-area">(Optional)</span></font>
+					<button class="laundry add-require add-re" type="button" data-toggle="tooltip" data-placement="top" title="+1 Hour">YES</button>
 					{{ form.laundry }}
 					{{ form.laundry.errors }}
 				</li>
 				<li class="ne-li-2">
-					<button class="no-laundry tiffany-blue-btn" type="button">NO</button>
+					<button class="laundry add-require tiffany-blue-btn" type="button">NO</button>
+				</li>
+				<li class="ne-li-1">
+					<font>REFRIGERATOR<span class="optional-area">(Optional)</span></font>
+					<button class="refrigerator add-require add-re" type="button" data-toggle="tooltip" data-placement="top" title="+1 Hour">YES</button>
+					{{ form.refrigerator }}
+					{{ form.refrigerator.errors }}
+				</li>
+				<li class="ne-li-2">
+					<button class="refrigerator add-require tiffany-blue-btn" type="button">NO</button>
+				</li>
+				<li class="ne-li-1">
+					<font>HAND WASH CLOTHES<span class="optional-area">(Optional)</span></font>
+					<button class="hand_wash add-require add-re" type="button" data-toggle="tooltip" data-placement="top" title="+1 Hour">YES</button>
+					{{ form.hand_wash }}
+					{{ form.hand_wash.errors }}
+				</li>
+				<li class="ne-li-2">
+					<button class="hand_wash add-require tiffany-blue-btn" type="button">NO</button>
+				</li>
+				<li class="ne-li-1">
+					<font>IRON CLOTHES<span class="optional-area">(Optional)</span></font>
+					<button class="iron_clothe add-require add-re" type="button" data-toggle="tooltip" data-placement="top" title="+1 Hour">YES</button>
+					{{ form.iron_clothe }}
+					{{ form.iron_clothe.errors }}
+				</li>
+				<li class="ne-li-2">
+					<button class="iron_clothe add-require tiffany-blue-btn" type="button">NO</button>
 				</li>
 				<li class="ne-li-1">
 					<font style="width:380px;">NUMBER OF HOURS<span class="optional-area">We recommend 3 hours based on our experience with places like yours</span></font>
@@ -79,10 +107,11 @@
 					{{ form.hour }}
 					{{ form.hour.errors }}
 				</li>
-				<li class="ne-li-3"><h3>COMMENTS/MESSAGE</h3></li>
-				<li class="ne-li-3">
+				<li class="ne-li-3"><h3>SPECIAL INSTRUCTIONS</h3></li>
+				<li class="ne-li-3 msg-char">
 					{{ form.message }}
 					{{ form.message.errors }}
+					<span id="message-char">maximum of 300 characters, <var>300</var> left.</span>
 				</li>
 			</ul>
 			<button id="s2-sm" type="submit">NEXT</button>
@@ -91,12 +120,12 @@
 	<div class="col-md-1"></div>
 	<div class="col-md-3">
 		<div class="feature-info">
-			<h2>Commitment to Trust and Safety</h2>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit ETXsed diam nonummy nibh euismod tincidunt. <a>Learn More</a></p>
+			<h2>What's Included in the Cleaning</h2>
+			<p></p>
 		</div>
 		<div class="feature-info">
-			<h2>Free Security</h2>
-			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit ETXsed diam nonummy nibh euismod tincidunt. <a>Learn More</a></p>
+			<h2>Cleaning Supplies Provided</h2>
+			<p></p>
 		</div>
 	</div>
 </div>
@@ -106,13 +135,26 @@
 $('#id_bedroom').val('3');
 $('#id_bathroom').val('2');
 $('#id_hour').val('3');
-$(".no-laundry").click(function(){
+$(".add-require").click(function(){
+	var need = $(this).attr('class').split(' ')[0];
+	$('.'+need).removeClass("tiffany-blue-btn");
+	if ($(this).hasClass('add-re')){
+		$('#id_'+need).val('True').trigger("change");
+	}else{
+		$('#id_'+need).val('False').trigger("change");
+	}
 	$(this).addClass("tiffany-blue-btn");
+	var tatol = $(".add-hour[value=True]").length;
+	$('#id_hour').val(3+tatol);
 });
 
 $("#id_laundry").click(function(){
 	$(".no-laundry").removeClass("tiffany-blue-btn");
 });
-
+$("#id_message").keyup(function(){
+	var counter = $(this).val().length;
+	$("#message-char var").text(300 - counter);
+});
+$('.add-re').tooltip();
 </script>
 {% endblock extra_js %}

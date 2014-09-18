@@ -29,4 +29,5 @@ HOUR = (
     (4,"4 hours"),
     (5,"5 hours"),
     (6,"6 hours"),
+    (7,"7 hours"),
 )

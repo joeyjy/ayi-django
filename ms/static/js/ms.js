@@ -1,6 +1,12 @@
 /* Project specific Javascript goes here. */
-$('#contact-us').hover(function(){
-	$('#tooltip86303').show();
+$('.h-t').hover(function(){
+	$(this).css('cursor','pointer');
+	$(this).next('.tooltip').show();
 }, function() {
-	$('#tooltip86303').hide();
+	$(this).next('.tooltip').hide();
+});
+
+$('.lm').click(function(){
+	var ups = $(this).attr("id"); 
+	$('#bpop-'+ups).bPopup();
 });

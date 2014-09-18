@@ -22,10 +22,13 @@ from booking.constant import *
 class BookingForm(forms.ModelForm):                                                                                                             
     class Meta:
         model = Booking
-        #widgets = {'appliances': forms.CheckboxSelectMultiple,
+        widgets = {'laundry': forms.HiddenInput(attrs={'class': 'add-hour'}),
+                   'refrigerator': forms.HiddenInput(attrs={'class': 'add-hour'}),
+                   'hand_wash': forms.HiddenInput(attrs={'class': 'add-hour'}),
+                   'iron_clothe': forms.HiddenInput(attrs={'class': 'add-hour'}),
         #           'description': forms.Textarea(attrs={'placeholder': 'Description should be less than 300 words'})
-        #}
-        fields = ('bedroom', 'bathroom', 'laundry', 'hour', 'message',)
+        }
+        fields = ('bedroom', 'bathroom', 'laundry', 'refrigerator', 'hand_wash', 'iron_clothe', 'hour', 'message',)
 #    def __init__(self, *args, **kwargs):
 #        super(RentForm, self).__init__(*args, **kwargs)
 #        self.fields['metro'].widget = \

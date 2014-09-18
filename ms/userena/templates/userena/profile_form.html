@@ -2,23 +2,19 @@
 {% load i18n %}
 {% load url from future %}
 
-{% block title %}{% trans "Account setup" %}{% endblock %}
+{% block title %}{% trans "User Profile" %}{% endblock %}
 
 {% block content_title %}<h2>{% blocktrans with profile.user.username as username %}Account &raquo; {{ username }}{% endblocktrans %}</h2>{% endblock %}
 
 {% block content_extra %}
-
-<ul id="box-nav">
-    <li><a href="{% url 'userena_password_change' user.username %}">{% trans "Change password" %}</a></li>
-    <li class="last"><a href="{% url 'userena_email_change' user.username %}">{% trans "Change email" %}</a></li>
-  </ul>
-<h3>{% trans "CRM Page" %}</h3>
 <div id="r-column">
 	<h5 id="a-active">My Account</h5>
 	<h5><a href="{% url 'booking_history' user.username %}">Cleaning History</a></h5>
+	<h5><a href="{% url 'billing' user.username %}">Billing History</a></h5>
+	<h5><a href="{% url 'userena_password_change' user.username %}">{% trans "Change Password" %}</a></h5>
 	<h5><a href="{% url 'userena_signout'%}">Sign Out</a></h5>
 	<div id="a-box">
-		<div id="a-type">Account B</div>
+		<div id="a-type">Account Balance</div>
 		<div id="a-rest">5,000 RMB</div>
 	</div>
 </div>
@@ -86,20 +82,46 @@
 				</li>
 				<li class="make-line"></li>
 				<li class="form-fields">
-					<font>Bldg #<span class="optional-area">(Optional)</span></font>
+					<font>Building #<span class="optional-area">(Optional)</span></font>
 					{{ form.bldg_num }}
 					{{ form.bldg_num.errors }}
 				</li>
 				<li class="form-fields">
-					<font>Apt #<span class="optional-area">(Optional)</span></font>
+					<font>Apartment #<span class="optional-area">(Optional)</span></font>
 					{{ form.apt_num }}
 					{{ form.apt_num.errors }}
 				</li>
 	</ul>
 	{{ form.privacy }}
-	<input id="s2-sm" type="submit" value="{% trans "Save changes" %}" />
+	<input id="s2-sm" type="submit" value="{% trans "SAVE CHANGES" %}" />
 	</form>
 </div>
 
 
 {% endblock %}
+{% block extra_js %}
+<script type="text/javascript">
+$(document).ready(function(){
+	$.ajaxSetup({
+			  data: {csrfmiddlewaretoken: '{{ csrf_token }}' }
+	});
+	$('#id_compound').change(function(){
+		//alert ($(this).children('option:selected').val()); 
+		var pk = $(this).children('option:selected').val();
+		if (pk){
+		$.get('/accounts/compound/'+pk, function (data) {
+            //$("#id_location").data('position', data);
+            $('#id_area, #id_street_num, #id_street, #id_cross').attr('readonly','readonly');
+            $('#id_area').val(data.area);
+            $('#id_street_num').val(data.address);
+            $('#id_street').val(data.name);
+            $('#id_cross').val(data.cross);
+        });
+		}else{
+			$('#id_area, #id_street_num, #id_street, #id_cross').removeAttr('readonly');
+			$('#id_area, #id_street_num, #id_street, #id_cross').val('');
+		}
+	});
+});
+</script>
+{% endblock extra_js %}

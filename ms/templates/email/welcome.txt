@@ -1,0 +1,5 @@
+Hello {{ username }},
+
+Thanks for signing up on the MerryServices.com!
+
+- Merry Services Team

@@ -14,7 +14,7 @@ a:hover{
 	width: 100px;
 }
 .bdr-blue{
-	background: #56dcce;
+	background: #84d6d2;
 }
 .bdr-default {
 	background: #dce3e5;
@@ -31,7 +31,7 @@ a:hover{
 	padding-bottom:30px;
 }
 #custom-step .active{
-	background: #56dcce;
+	background: #84d6d2;
 	color: #ffffff;
 }
 #custom-step .default {
@@ -42,7 +42,7 @@ a:hover{
 	text-transform: uppercase;
 	font-size: 14px;
 	line-height: 16px;
-	color: #56dcce !important;
+	color: #84d6d2 !important;
 	margin-top: 10px;
 	text-align: center;
 }
@@ -115,7 +115,7 @@ a:hover{
 	float: left;
 	margin-bottom: 10px;
 }
-.form-needs li select, .no-laundry{
+.form-needs li select, .add-require{
 	width: 240px;
 	background-color: #ffffff;
 	border: 1px solid #cccccc;
@@ -174,7 +174,7 @@ a:hover{
 	width:100%;
 }
 #s2-sm{
-	background-color:#55DCCD;
+	background-color:#84d6d2;
 	color:#fff;
 	border-radius: 4px;
 	border:0;
@@ -201,6 +201,17 @@ a:hover{
 .feature-info p a{
 	font-weight:bold;
 	color:#55DCCD;
+	cursor:pointer;
+}
+.tooltip-inner {
+	color: #000;
+	background-color: #84D6D2;
+}
+.tooltip.left .tooltip-arrow {
+	border-left-color: #84D6D2;	
+}
+.tooltip.top .tooltip-arrow {
+	border-top-color: #84D6D2;	
 }
 textarea{
 	width:98%;
@@ -209,10 +220,24 @@ textarea{
 	color: #858585;
 	border-radius: 4px;
 }
+.msg-char{
+	position:relative;
+}
+#message-char{
+	position:absolute;
+	bottom:10px;
+	right:30px;
+	font-style:italic;
+	color:#acacac;
+}
 .tiffany-blue-btn{
-	background-color: #55DCCD;
+	background-color: #84d6d2;
 	color:#fff;
-	border: 1px solid #55DCCD;
+	border: 1px solid #84d6d2;
+}
+.captcha{
+	height:30px;
+	cursor:pointer;
 }
 @media (max-width: 1200px) {
 

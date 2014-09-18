@@ -8,7 +8,7 @@ gettext = lambda s: s
 
 USERENA_SIGNIN_AFTER_SIGNUP = getattr(settings,
                                       'USERENA_SIGNIN_AFTER_SIGNUP',
-                                      False)
+                                      True)
 
 USERENA_REDIRECT_ON_SIGNOUT = getattr(settings,
                                       'USERENA_REDIRECT_ON_SIGNOUT',

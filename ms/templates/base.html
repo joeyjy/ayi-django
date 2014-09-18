@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/static/css/ms.css">
-	
+	<link rel="shortcut icon" href="/static/img/favicon.png">
 	
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -30,26 +30,24 @@
     	<div class="container">
     		<div id="logo-box">
     			<a href="/">
-    				<img src="/static/img/site-logo.jpg" alt="merry logo" />
+    				<img src="/static/img/site-logo.png" alt="merry logo" />
     			</a>
     		</div>
     		<div class="collapse navbar-collapse">
     			<ul class="nav navbar-nav navbar-right">
-    				<li id="wechat-qr">
-    					<img src="/static/img/qr.png" alt="wechat" />
-    				</li>
+    				
     				<li id="social">
-    					<img src="" alt="" />
-    					<img src="" alt="" />
+    					<img class="h-t" src="/static/img/wx.png" data-toggle="tooltip" data-placement="bottom" />
+    					<div class="tooltip fade bottom in" role="tooltip" id="tooltip86302"><div class="tooltip-arrow"></div><div class="tooltip-inner tool-qr"><img src="/static/img/qr.jpg" style="width:200px;height:200px;" /></div></div>
     				</li>
     				<li>
-    					<p class="navbar-text"><a href="/">中文</a>/<font>EN</font></p>
+    					<p class="navbar-text"><font>EN</font></p>
     				</li>
     				<li>
-    					<p class="navbar-text">
-    						<a id="contact-us" data-toggle="tooltip" data-placement="bottom">Contact Us</a>
-    						<div class="tooltip fade bottom in" role="tooltip" id="tooltip86303"><div class="tooltip-arrow"></div><div class="tooltip-inner">support@merryservices.com<br />021-6380 1553</div></div>
-    					</p>
+    					<div class="navbar-text">
+    						<a id="contact-us" class="h-t" data-toggle="tooltip" data-placement="bottom">Contact Us</a>
+    						<div class="tooltip fade bottom in" role="tooltip" id="tooltip86303"><div class="tooltip-arrow"></div><div class="tooltip-inner">support@merryservices.com<br />021-6380-1553</div></div>
+    					</div>
     				</li>
     				<li>
     					<p class="navbar-text">
@@ -72,16 +70,44 @@
 		<section class="footer-line">
 			<div class="container">
 				<ul id="f-ul">
-					<li><a href="/">@2014 Merry Services.com</a></li>
-					<li><a href="/">Icp License</a></li>
-					<li><a href="/">Terms of Service</a></li>
+					<li>
+						<a class="lm" id="faq">FAQ</a>
+						<div class="bpop" id="bpop-faq">
+							<span class="b-close">x</span>
+							<div class="b-content">
+								<h3>Frequently Asked Questions</h3>
+								<p><font>Are Merry Cleaners reliable?</font><br />Merry Cleaners are selected strictly by real-name authentication, background checks, and data recorded. After several rounds of interview selection, we only admit the top 10% cleaners. Our company is equipped with excellent housekeeping training team to ensure merry cleaners in high quality, including service skills, service attitude, and service etiquette. If you join Merry Cleaning Services, you will enjoy exclusive one-to-one service, as well as privileges such as preferential arrangement, replacing cleaner, etc.</p>
+								<p><font>Will Merry Cleaners bring cleaning tools themselves?</font><br />Merry Cleaner will bring a professional toolkit with professional cleaning supplies, including four pieces of dishcloth in different colors for different regions respectively, two pieces of white cloth, scouring pad, a wireless ball, a glass blowing, a bathtub brush, and three bottles of professional cleaner. If you have special needs, please fill out the special instructions during booking or tell our customer services.  We DO NOT provide vacuum, floor mop, toilet brush, and buckets.</p>
+								<p><font>May I have to be at home during the cleaning?</font><br />Yes. If you need to go out during the cleaning, please fill out the special instructions during booking.</p>
+								<p><font>What if Merry Cleaner accidentally gets injured during service?</font><br />We have already purchased accident insurance for Merry Cleaners. If the Merry Cleaner gets injured during service (such as falls, scratches, etc), please inform our customer service manager immediately. Then Merry Cleaning Services will cope with claims work with the insurance company. Otherwise, we are not able to bear the liability for the lack of accident nature, reason, loss process due to late notice.</p>
+								<p><font>How to charge for cleaning services?</font><br />The rate is 35 RMB/ hour for cleaning services. Each scheduled service time is a minimum of 3 hours in order to provide the excellent service as promised.  Payments can be made online or COD(cash on delivery).  The system will estimate length of cleaning time in advance according to the house area.  If the cleaning needs are beyond the initial hours booked, please call our customer service.</p>
+								<p><font>How to change or cancel the booking service?</font><br />You can cancel the booking online.  To make a change, you will have to call our customer services.</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<a class="lm" id="abt">About Us</a>
+						<div class="bpop" id="bpop-abt">
+							<span class="b-close">x</span>
+							<div class="b-content">
+								<h3>ABOUT US</h3>
+								<p>Merry Cleaning Services has been established to serve expatriates in Shanghai and assist them in facing the challenges of life in a foreign country. With a highly trained service team of well-educated professionals, Merry Cleaning Services provides international clients with responsible customer-oriented, cost-effective and value-added services.</p>
+								<p>Since its establishment, Merry Cleaning Services has developed an ability to constantly improve its services in order to meet the cost saving and high quality service requirements of its customers, while positioning Merry Cleaning Services as a high-end market leader. This is why customers trust our expertise and service quality.</p>
+								<p>Benefiting from strong local market knowledge, a large information network, and the flexibility that comes with a deep understanding of the expectations of clients, Merry Cleaning Services is confident of delivering the most suitable and personalized home service solution.</p>
+							</div>
+						</div>
+					</li>
 					<li><a href="/">Privacy Policy</a></li>
+					<li><a href="/">Terms of Service</a></li>
+					<li><a href="/">沪ICP备14023107号</a></li>
 				</ul>
 			</div>
+			<img src="/static/img/ft-pic.png" alt="" />
 		</section>
 	</footer>
 <script src="/static/js/jquery.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/bpopup.min.js"></script>
 <script src="/static/js/headroom.js"></script>
 <script src="/static/js/ms.js"></script>
 {% block extra_js %}{% endblock extra_js %}
