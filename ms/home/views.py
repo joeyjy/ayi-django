@@ -27,5 +27,21 @@ def clean_info(request):
 
     return render_to_response('home/info.html',
                                   RequestContext(request, locals()))
-
                                   
+def privacy_policy(request):
+    pass
+
+    return render_to_response('home/policy.html',
+                                  RequestContext(request, locals()))
+
+def merry_faq(request):
+    pass
+
+    return render_to_response('home/faq.html',
+                                  RequestContext(request, locals()))
+                                  
+def about_us(request):
+    pass
+
+    return render_to_response('home/about.html',
+                                  RequestContext(request, locals()))

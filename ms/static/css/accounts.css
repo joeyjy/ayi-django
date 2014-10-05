@@ -1,5 +1,5 @@
 #si-content{
-	margin: 60px 0 0 120px;
+	margin: 120px 0 160px 120px;
 	overflow:hidden;
 }
 #si-box{
@@ -58,7 +58,7 @@
 	line-height: 19px;
 	font-weight: bold;
 	padding-left: 40px;
-	margin-bottom: 23px;
+	margin-bottom: 15px;
 	background: url(/static/img/checked.png) left center no-repeat;
 }
 h3 {
@@ -215,4 +215,7 @@ h3 {
 }
 .tooltip.top .tooltip-arrow {
 	border-top-color: #84D6D2;	
+}
+#si-qr img{
+	width:150px;
 }

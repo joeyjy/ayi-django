@@ -11,7 +11,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     #url(r'^$', TemplateView.as_view(template_name='base.html')),
     url(r'^$', 'home.views.index', name='home_index'),
-    url(r'^clean-info/$', userena_views.signup, name='clean_info'),
+    url(r'^contact-info/$', userena_views.signup, name='clean_info'),
     url(r'^clean-needs/$', 'booking.views.clean_needs', name='clean_needs'),
     #url(r'^history/(?P<username>[\.\w-]+)$', 'booking.views.history', name='booking_history'),
     # Examples:
@@ -25,6 +25,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^captcha/', include('captcha.urls')),
     url(r'^accounts/', include('userena.urls')),
+    url(r'^privacy-policy/', 'home.views.privacy_policy', name='privacy_policy'),
+    url(r'^faq/', 'home.views.merry_faq', name='merry_faq'),
+    url(r'^about-us/', 'home.views.about_us', name='about_us'),
 )
 
 # Uncomment the next line to serve media files in dev.

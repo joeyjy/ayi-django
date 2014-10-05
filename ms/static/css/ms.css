@@ -16,17 +16,47 @@ header a{
 }
 #logo-box a{
 	float:left;
-	padding: 15px 15px;
+	padding: 10px 15px;
 	font-size: 18px;
 	line-height: 20px;
 }
 header .navbar-text{
-	margin-top:35px;
-	margin-bottom:35px;
+	margin-top:30px;
+	margin-bottom:30px;
+}
+header .navbar-text a{
+	font-size:18px;
+}
+header .navbar-btn{
+	margin-top:30px;
+	margin-bottom:30px;
+}
+header .navbar-btn a{
+	padding:10px 10px;
+	background-color: #84d6d2;
+	border-radius:4px;
+	font-size:18px;
+}
+header .navbar-btn a:hover{
+	text-decoration:none;
+	background-color:#78D3CF;
+	color:#000;
 }
 header .navbar-text font{
 	color:#DA86AA;
 	font-weight:bold;
+	font-size:18px;
+}
+header .navbar-text #sign_btn{
+	padding:10px 10px;
+	background-color: #84d6d2;
+	border-radius:4px;
+	font-size:18px;
+}
+header .navbar-text #sign_btn:hover{
+	text-decoration:none;
+	background-color:#78D3CF;
+	color:#000;
 }
 header ul.navbar-right li.dropdown {
 	margin: 20px auto;
@@ -41,7 +71,7 @@ header ul.navbar-right li.dropdown {
 	height: 70px;
 }
 #social{
-	margin:34px auto;
+	margin:30px auto;
 }
 #social img{
 	float:left;
@@ -51,29 +81,30 @@ header ul.navbar-right li.dropdown {
 }
 .footer-line{
 	margin-top:100px;
-	padding:25px 0 150px 0;
-	background-color:#1B1B1B;
-	position:relative;
+	background-color:#666;
 }
 .footer-line img{
-	position:absolute;
-	left:160px;
-	top: -100px;
+	float: left;
+}
+.f-center{
+	text-align:center;
 }
 #f-ul{
+	float: right;
 	list-style: none;
-	float:left;
-	width:100%;
-	margin:0;
+	margin:0 auto;
 	padding:0;
 }
 #f-ul li{
+	color:#eee;
 	float:right;
-	padding:0 40px;
+	padding:0 20px;
+	margin-top:60px;
 	text-align:center;
+	border-right: 1px solid #eee;
 }
 #f-ul li a{
-	color:#fff;
+	color:#eee;
 }
 #f-ul li a:hover{
 	color:#52CCB7;
@@ -81,6 +112,7 @@ header ul.navbar-right li.dropdown {
 #contact-us{
 	font-weight:bold;
 	text-decoration: none;
+	margin-right: 35px;
 }
 .lm{
 	cursor:pointer;
@@ -113,13 +145,14 @@ header ul.navbar-right li.dropdown {
 	margin: 10px 0 25px 0;
 }
 .b-content p font{
-	color:green;
+	color:#84d6d2;
 	font-weight:bold;
 }
 #tooltip86303{
 	top: 53px;
 	left: -37.5px;
 	display: none;
+	font-size:14px;
 }
 #tooltip86302{
 	top: 22px;
@@ -132,7 +165,7 @@ header ul.navbar-right li.dropdown {
 	overflow: hidden;
 }
 .page-box{
-	margin-top:95px;
+	margin-top:90px;
 	background: #effbfb;
 }
 .tooltip-inner {

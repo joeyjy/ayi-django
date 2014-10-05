@@ -59,22 +59,14 @@
 					<font>ROOMS</font>
 					{{ form.bedroom }}
 					{{ form.bedroom.errors }}
+					<input type="hidden" id="room_hour">
 				</li>
 				<li class="ne-li-2">
 					{{ form.bathroom }}
 					{{ form.bathroom.errors }}
 				</li>
 				<li class="ne-li-1">
-					<font>ADD LAUNDRY<span class="optional-area">(Optional)</span></font>
-					<button class="laundry add-require add-re" type="button" data-toggle="tooltip" data-placement="top" title="+1 Hour">YES</button>
-					{{ form.laundry }}
-					{{ form.laundry.errors }}
-				</li>
-				<li class="ne-li-2">
-					<button class="laundry add-require tiffany-blue-btn" type="button">NO</button>
-				</li>
-				<li class="ne-li-1">
-					<font>REFRIGERATOR<span class="optional-area">(Optional)</span></font>
+					<font>INSIDE FRIDGE<span class="optional-area">(additional task)</span></font>
 					<button class="refrigerator add-require add-re" type="button" data-toggle="tooltip" data-placement="top" title="+1 Hour">YES</button>
 					{{ form.refrigerator }}
 					{{ form.refrigerator.errors }}
@@ -83,7 +75,7 @@
 					<button class="refrigerator add-require tiffany-blue-btn" type="button">NO</button>
 				</li>
 				<li class="ne-li-1">
-					<font>HAND WASH CLOTHES<span class="optional-area">(Optional)</span></font>
+					<font>HAND WASH CLOTHES<span class="optional-area">(additional task)</span></font>
 					<button class="hand_wash add-require add-re" type="button" data-toggle="tooltip" data-placement="top" title="+1 Hour">YES</button>
 					{{ form.hand_wash }}
 					{{ form.hand_wash.errors }}
@@ -92,7 +84,7 @@
 					<button class="hand_wash add-require tiffany-blue-btn" type="button">NO</button>
 				</li>
 				<li class="ne-li-1">
-					<font>IRON CLOTHES<span class="optional-area">(Optional)</span></font>
+					<font>IRON CLOTHES<span class="optional-area">(additional task)</span></font>
 					<button class="iron_clothe add-require add-re" type="button" data-toggle="tooltip" data-placement="top" title="+1 Hour">YES</button>
 					{{ form.iron_clothe }}
 					{{ form.iron_clothe.errors }}
@@ -101,7 +93,7 @@
 					<button class="iron_clothe add-require tiffany-blue-btn" type="button">NO</button>
 				</li>
 				<li class="ne-li-1">
-					<font style="width:380px;">NUMBER OF HOURS<span class="optional-area">We recommend 3 hours based on our experience with places like yours</span></font>
+					<font style="width:380px;">NUMBER OF HOURS RECOMMENDED</font>
 				</li>
 				<li class="ne-li-2">
 					{{ form.hour }}
@@ -121,11 +113,11 @@
 	<div class="col-md-3">
 		<div class="feature-info">
 			<h2>What's Included in the Cleaning</h2>
-			<p></p>
+			<p>Our professional Merry Cleaners are trained to ensure your home will be sparkling clean!</p>
 		</div>
 		<div class="feature-info">
 			<h2>Cleaning Supplies Provided</h2>
-			<p></p>
+			<p>We will bring most supplies necessary to make it hassle-free</p>
 		</div>
 	</div>
 </div>
@@ -135,6 +127,7 @@
 $('#id_bedroom').val('3');
 $('#id_bathroom').val('2');
 $('#id_hour').val('3');
+$('#room_hour').val('3');
 $(".add-require").click(function(){
 	var need = $(this).attr('class').split(' ')[0];
 	$('.'+need).removeClass("tiffany-blue-btn");
@@ -144,8 +137,46 @@ $(".add-require").click(function(){
 		$('#id_'+need).val('False').trigger("change");
 	}
 	$(this).addClass("tiffany-blue-btn");
-	var tatol = $(".add-hour[value=True]").length;
-	$('#id_hour').val(3+tatol);
+	var total = $(".add-hour[value=True]").length;
+	if (Number($("#id_bedroom").val()) > 2){
+		var bed = Number($("#id_bedroom").val())-3;
+	}else{
+		var bed = 0;
+	}
+	if (Number($("#id_bathroom").val()) > 1){
+		var bath = Number($("#id_bathroom").val())-2;
+	}else{
+		var bath = 0;
+	}
+	$('#id_hour').val(3+bed+bath+total);
+});
+$("#id_bedroom, #id_bathroom").change(function(){
+	var hours = Number($(this).children('option:selected').val());
+	var addition = $(".add-hour[value=True]").length;
+	if ($(this).attr('id')=='id_bedroom'){
+		if (hours > 2){
+			var bed = hours-3;
+		}else{
+			var bed = 0;
+		}
+		if (Number($("#id_bathroom").val()) > 1){
+			var bath = Number($("#id_bathroom").val())-2;
+		}else{
+			var bath = 0;
+		}
+	}else{
+		if (hours > 1){
+			var bath = hours-2;
+		}else{
+			var bath = 0;
+		}
+		if (Number($("#id_bedroom").val()) > 2){
+			var bed = Number($("#id_bedroom").val())-3;
+		}else{
+			var bed = 0;
+		}
+	}
+	$('#id_hour').val(3+bed+bath+addition);
 });
 
 $("#id_laundry").click(function(){

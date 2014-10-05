@@ -30,4 +30,8 @@ HOUR = (
     (5,"5 hours"),
     (6,"6 hours"),
     (7,"7 hours"),
+    (8,"8 hours"),
+    (9,"9 hours"),
+    (10,"10 hours"),
+    (11,"11 hours"),
 )

@@ -29,13 +29,13 @@
 		  <input id="si_sub" type="submit" value="{% trans "Sign In" %}" />
 		  {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
 		</form>
-		<p id="si-su">Don't have an account? <a href="{% url 'clean_info' %}" title="Sign Up">Click here</a>.</p>
 	</div>
 	<div id="si-fea">
 		<p>Make a new booking</p>
 		<p>Change/cancel your booking</p>
 		<p>Check your history</p>
 		<p>Rate the service</p>
+		<div id="si-qr"><img src="/static/img/qr.jpg" alt="" /></div>
 	</div>
 </div>
 {% endblock %}

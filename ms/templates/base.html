@@ -41,20 +41,18 @@
     					<div class="tooltip fade bottom in" role="tooltip" id="tooltip86302"><div class="tooltip-arrow"></div><div class="tooltip-inner tool-qr"><img src="/static/img/qr.jpg" style="width:200px;height:200px;" /></div></div>
     				</li>
     				<li>
-    					<p class="navbar-text"><font>EN</font></p>
-    				</li>
-    				<li>
     					<div class="navbar-text">
     						<a id="contact-us" class="h-t" data-toggle="tooltip" data-placement="bottom">Contact Us</a>
     						<div class="tooltip fade bottom in" role="tooltip" id="tooltip86303"><div class="tooltip-arrow"></div><div class="tooltip-inner">support@merryservices.com<br />021-6380-1553</div></div>
     					</div>
     				</li>
     				<li>
-    					<p class="navbar-text">
     					{% if request.user.id %}
-		        			<strong><a href="{% url 'userena_profile_edit' request.user.username %}">{{request.user}}</a></strong>&nbsp;&nbsp;<a href="{% url 'userena_signout' %}" id="sign_btn">Sign out</a>
+    					<p class="navbar-text">
+		        			<a href="{% url 'userena_profile_edit' request.user.username %}">{{request.user}}</a>&nbsp;&nbsp;<a class="navbar-btn" href="{% url 'userena_signout' %}" id="sign_btn">Sign Out</a>
 		        		{%else%}
-		        			<strong><a href="{% url 'userena_signin' %}">Sign In</a></strong>
+		        		<p class="navbar-btn">
+		        			<a href="{% url 'userena_signin' %}">Sign In</a>
 		        		{% endif%}
 		        		</p>
     				</li>
@@ -68,10 +66,13 @@
 	<div style="clear:both;"></div>
 	<footer>
 		<section class="footer-line">
-			<div class="container">
+		<div class="container f-center">
+				
 				<ul id="f-ul">
+					<li style="border:0;"><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
 					<li>
-						<a class="lm" id="faq">FAQ</a>
+						<a href="{% url 'merry_faq' %}">FAQ</a>
+						<!-- <a class="lm" id="faq">FAQ</a>
 						<div class="bpop" id="bpop-faq">
 							<span class="b-close">x</span>
 							<div class="b-content">
@@ -84,25 +85,13 @@
 								<p><font>How to change or cancel the booking service?</font><br />You can cancel the booking online.  To make a change, you will have to call our customer services.</p>
 							</div>
 						</div>
+						 -->
 					</li>
-					<li>
-						<a class="lm" id="abt">About Us</a>
-						<div class="bpop" id="bpop-abt">
-							<span class="b-close">x</span>
-							<div class="b-content">
-								<h3>ABOUT US</h3>
-								<p>Merry Cleaning Services has been established to serve expatriates in Shanghai and assist them in facing the challenges of life in a foreign country. With a highly trained service team of well-educated professionals, Merry Cleaning Services provides international clients with responsible customer-oriented, cost-effective and value-added services.</p>
-								<p>Since its establishment, Merry Cleaning Services has developed an ability to constantly improve its services in order to meet the cost saving and high quality service requirements of its customers, while positioning Merry Cleaning Services as a high-end market leader. This is why customers trust our expertise and service quality.</p>
-								<p>Benefiting from strong local market knowledge, a large information network, and the flexibility that comes with a deep understanding of the expectations of clients, Merry Cleaning Services is confident of delivering the most suitable and personalized home service solution.</p>
-							</div>
-						</div>
-					</li>
-					<li><a href="/">Privacy Policy</a></li>
-					<li><a href="/">Terms of Service</a></li>
-					<li><a href="/">沪ICP备14023107号</a></li>
+					<li><a href="{% url 'about_us' %}">About Us</a></li>
+					<li>沪ICP备14023107号</li>
 				</ul>
+				<img src="/static/img/ft-pic.png" alt="" />
 			</div>
-			<img src="/static/img/ft-pic.png" alt="" />
 		</section>
 	</footer>
 <script src="/static/js/jquery.min.js"></script>
