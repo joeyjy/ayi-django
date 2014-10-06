@@ -139,14 +139,28 @@ header ul.navbar-right li.dropdown {
 	text-decoration: none;
 }
 .b-content{
-	width:600px;
+	width: 620px;
+	height:650px;
+	overflow:scroll;
 }
-.b-content h3{
-	margin: 10px 0 25px 0;
+.b-content .space-border{
+	padding:15px 0;
+	border-bottom:1px solid silver;
 }
-.b-content p font{
-	color:#84d6d2;
+.b-content .big-font{
 	font-weight:bold;
+	font-size:16px;
+}
+.b-content table tr td img{
+	
+}
+.b-content table{
+	width:100%;
+	border:0;
+}
+.b-content table tr td{
+	width:50%;
+	border:0;
 }
 #tooltip86303{
 	top: 53px;

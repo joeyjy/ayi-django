@@ -240,6 +240,19 @@ textarea{
 	height:30px;
 	cursor:pointer;
 }
+.supply-content{
+	width:600px;
+	padding:0 70px;
+}
+.supply-content ul{
+	padding-left: 20px;
+}
+.supply-title{
+	font-size:22px;
+	text-align:center;
+	padding:15px 0;
+	border-bottom:1px dashed silver; 
+}
 @media (max-width: 1200px) {
 
 .service_border{

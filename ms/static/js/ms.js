@@ -6,7 +6,11 @@ $('.h-t').hover(function(){
 	$(this).next('.tooltip').hide();
 });
 
-$('.lm').click(function(){
+$('.popdown').click(function(){
 	var ups = $(this).attr("id"); 
-	$('#bpop-'+ups).bPopup();
+	$('#bpop-'+ups).bPopup({
+	    easing: 'easeOutBack', //uses jQuery easing plugin
+        speed: 450,
+        transition: 'slideDown'
+    });
 });
