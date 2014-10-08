@@ -1,0 +1,26 @@
+Dear {{ firstname }},
+
+Thank you for making a cleaning appointment with Merry Services Cleaning!  Your booking details are below:
+
+Booking Details
+First Name: {{ firstname }}
+Last Name: {{ lastname }}
+Day:
+Date:
+Time: 
+Total hours: {{ hours }}
+
+Your address (please sign in to change, if this is NOT correct)
+Street #: {{ street_num }}
+Street Name: {{ street }}
+Building #: {{ bldg_num }}
+Apartment #: {{ apt_num }}
+Cross Street: {{ cross }}
+Area: {{ area }}
+Compound Name: {{ compound }}
+
+We look forward to cleaning your home!
+
+Kind Regards,
+
+Merry Services Cleaning Team

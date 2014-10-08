@@ -5,6 +5,7 @@
 {% block title %}{% trans "Billing History" %}{% endblock %}
 
 {% block content_extra %}
+{% include 'book_line.html' %}
 <div id="r-column">
 	<h5><a href="{% url 'userena_profile_edit' user.username %}">My Account</a></h5>
 	<h5><a href="{% url 'booking_history' user.username %}">Cleaning History</a></h5>

@@ -1,11 +1,12 @@
 #si-content{
-	margin: 120px 0 160px 120px;
+	margin: 120px 0 160px 80px;
 	overflow:hidden;
 }
 #si-box{
 	border:1px solid silver;
 	padding:35px;
 	float:left;
+	width:422px;
 }
 .si-field label{
 	display:block;
@@ -218,4 +219,60 @@ h3 {
 }
 #si-qr img{
 	width:150px;
+}
+#top-column{
+	padding: 35px;
+	text-align: center;
+}
+.choose-box{
+	font-weight: bold;
+	padding:5px;
+	background-color: #fff;
+	opacity: 1;
+	margin:auto;
+	border-radius:2px;
+	display: inline-block;
+}
+.choose-box input{
+	padding:6px;
+}
+.choose-box select{
+	padding:8px;
+	margin-right:10px;
+	padding-top:8px\9;
+	padding-right:6px\9;
+	padding-bottom:4px\9;
+	padding-left:6px\9;
+}
+.choose-box button{
+	padding:7px 40px;
+	padding-bottom:3px\9;
+	font-weight:bold;
+	background-color:#84d6d2;
+	border:1px solid #84d6d2;
+	line-height: 20px;
+}
+.input-group {
+	position: relative;
+	display: inline-table;
+	border-collapse: separate;
+	cursor:pointer;
+}
+.date-box{
+	cursor:pointer;
+	width:240px;
+}
+.time-box{
+	cursor:pointer;
+	width:140px;
+}
+.input-group-addon {
+	top: 1px;
+	right: 16px;
+	position: absolute;
+	padding: 10px 12px;
+	border: 0;
+	background-color: #FFF;
+	display: inline-table;
+	z-index: 99;
 }

@@ -58,7 +58,7 @@ DATABASES = {
 
 ########## GENERAL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#time-zone
-TIME_ZONE = 'America/Los_Angeles'
+TIME_ZONE = 'Asia/Shanghai'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = 'en-us'
@@ -287,6 +287,8 @@ TENCENT_EMAIL_PORT = 25
 TENCENT_EMAIL_USER = "info@merryservices.com"
 TENCENT_FROM_EMAIL = "Merry Services <info@merryservices.com>"
 TENCENT_EMAIL_PASSWORD = "1qaz,2wsx"
+
+INTERNAL_BOOKINGS_EMAIL = "bookings@merryservices.com"
 
 CAPTCHA_NOISE_FUNCTIONS = ()
 CAPTCHA_OUTPUT_FORMAT = u'<font>%(image)s</font> %(hidden_field)s %(text_field)s'

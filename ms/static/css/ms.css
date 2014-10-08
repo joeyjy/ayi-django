@@ -1,5 +1,6 @@
 /*! project specific CSS goes here. */
 header{
+	width:100%;
 	background: #fff;
 	border-bottom: 5px solid #84d6d2;
 	position: fixed;
@@ -11,6 +12,9 @@ header{
 header a{
 	color:#000;
 }
+.container {
+	width: 1030px;
+}
 #logo-box{
 	float:left;
 }
@@ -19,6 +23,13 @@ header a{
 	padding: 10px 15px;
 	font-size: 18px;
 	line-height: 20px;
+}
+header .navbar-nav {
+	float: right;
+	margin: 0;
+}
+header .navbar-nav>li {
+	float: left;
 }
 header .navbar-text{
 	margin-top:30px;
@@ -80,6 +91,7 @@ header ul.navbar-right li.dropdown {
 	height: 22px;
 }
 .footer-line{
+	width:100%;
 	margin-top:100px;
 	background-color:#666;
 }
@@ -87,6 +99,7 @@ header ul.navbar-right li.dropdown {
 	float: left;
 }
 .f-center{
+	background-color:#666;
 	text-align:center;
 }
 #f-ul{

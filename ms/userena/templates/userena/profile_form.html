@@ -7,6 +7,7 @@
 {% block content_title %}<h2>{% blocktrans with profile.user.username as username %}Account &raquo; {{ username }}{% endblocktrans %}</h2>{% endblock %}
 
 {% block content_extra %}
+{% include 'book_line.html' %}
 <div id="r-column">
 	<h5 id="a-active">My Account</h5>
 	<h5><a href="{% url 'booking_history' user.username %}">Cleaning History</a></h5>
@@ -19,7 +20,6 @@
 	</div>
 </div>
 <div id="l-column">
-	
 	<ul class="form-inner">
 				<li class="form-fields input-group">
 					<font>User Name</font>

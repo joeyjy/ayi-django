@@ -5,6 +5,7 @@
 {% block title %}{% trans "Clean History" %}{% endblock %}
 
 {% block content_extra %}
+{% include 'book_line.html' %}
 <div id="r-column">
 	<h5><a href="{% url 'userena_profile_edit' user.username %}">My Account</a></h5>
 	<h5 id="a-active">Cleaning History</h5>
@@ -33,7 +34,13 @@
 			<td width="15%">{{ one.hour }}</td>
 			<td width="15%">{{ one.clean_ayi }}</td>
 			<td width="15%">{{ one.get_status_display }}</td>
-			<td width="10%"><a href="{% url 'booking_cancel' user.username one.id %}">Cancel</a></td>
+			<td width="10%">
+			{% ifequal one.status 3 %}
+			Cancel
+			{% else %}
+			<a href="{% url 'booking_cancel' user.username one.id %}">Cancel</a>
+			{% endifequal %}
+			</td>
 			<td width="10%"><a class="poptip" data-toggle="tooltip" data-placement="top" title="Change the booking? Call 021-6380-1553">Change</a></td>
 			<td width="20%"><a class="poptip" data-toggle="tooltip" data-placement="top" title="Not available yet">1 to 10</a></td>
 		</tr>

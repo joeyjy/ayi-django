@@ -32,6 +32,7 @@ class Booking(CommonMixin, models.Model):
     class Meta:
         app_label='booking'
         verbose_name = 'All Booking'
+        ordering = ['-id']
 
     def __unicode__(self):
         return self.booker.username

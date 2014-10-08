@@ -1,0 +1,20 @@
+<div id="top-column">
+	<div class="choose-box">
+      		<form action="{% url 'home_index' %}" method="post" id="clean-time-form">
+      			{% csrf_token %}
+      			<div class="input-group date-div">
+	      			<input type="text" class="date-box" readonly="readonly" name="clean_date">
+	      			<span class="input-group-addon glyphicon glyphicon-calendar"></span>
+      			</div>
+      			<div class="input-group time-div">
+	      			<input type="text" class="time-box" readonly="readonly" name="clean_time">
+	      			<span class="input-group-addon glyphicon glyphicon-time"></span>
+      			</div>
+      			<select id="type-box" name="clean_type">
+      				<option value="1">One Time</option>
+      				<option value="2">Weekly</option>
+            	</select>
+            	<button id="clean-book" type="submit">BOOK NOW</button>
+            </form>
+      		</div>
+</div>

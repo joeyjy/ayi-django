@@ -1,0 +1,19 @@
+Customer
+First Name: {{ firstname }}
+Last Name: {{ lastname }}
+Phone: {{ phone }}
+
+Booking Details
+Day:
+Date:
+Time: 
+Total hours: {{ hours }}
+
+Address:
+Street #: {{ street_num }}
+Street Name: {{ street }}
+Building #: {{ bldg_num }}
+Apartment #: {{ apt_num }}
+Cross Street: {{ cross }}
+Area: {{ area }}
+Compound Name: {{ compound }}

@@ -201,29 +201,74 @@
 {% block extra_js %}
 <script src="/static/js/jquery.datetimepicker.js"></script>
 <script>
-$('.date-box').datetimepicker({
-	startDate:new Date(),
-	closeOnDateSelect:true,
-	timepicker:false,
-	format:'d M 2014'
-	});
+$('.date-box').val('{{ default_date }}');
+var timeNow = new Date();
+var hourAllow = timeNow.getHours()+4;
+var changeDay = timeNow.toDateString().split(' ')[2];
+var dayNow = $('.date-box').val().split(' ')[0];
+
+if( hourAllow>20 || hourAllow<8 ){
+	var timeAllow = '08:00';
+}else{
+	var timeAllow = hourAllow.toString()+':00';
+};
+
 $('.time-box').datetimepicker({
 	datepicker:false,
 	format:'H:i',
+	minTime: timeAllow,
+	maxTime:'21:00',
 	step:60
 	});
+$('.time-box').val(timeAllow);
+
+var logic = function( currentDateTime ){
+	  // 'this' is jquery object datetimepicker
+	if( currentDateTime.toDateString().split(' ')[2]==dayNow ){
+		$('.time-box').val(timeAllow);
+		$('.time-box').datetimepicker({
+			datepicker:false,
+			format:'H:i',
+			minTime: timeAllow,
+			maxTime:'21:00',
+			step:60
+			});
+	}else{
+		$('.time-box').val('08:00');
+		$('.time-box').datetimepicker({
+			datepicker:false,
+			format:'H:i',
+			minTime: '08:00',
+			maxTime:'21:00',
+			step:60
+			});
+	}
+};
+if(changeDay == dayNow){
+	initialDate = '+1970/01/02';
+}else{
+	initialDate = '-1969/12/31';
+}
+$('.date-box').datetimepicker({
+	startDate:new Date(),
+	onChangeDateTime:logic,
+	onShow:logic,
+	closeOnDateSelect:true,
+	timepicker:false,
+	format:'d M Y',
+	minDate: initialDate
+});
+
 $('.input-group').click(function(){
 	$(this).children('input').focus();
 });
+</script>
+<script type="text/javascript">
 $('.carousel').carousel({
 	interval: 5500,
 	pause: false
 	});
 $('.poptip').tooltip();
-</script>
-<script type="text/javascript">
-$('.date-box').val('{{ default_date }}');
-$('.time-box').val('08:00');
 $("#clean-book").click(function(){
 	if ($('.date-box').val()=="" || $('.time-box').val()==""){
 		alert ("please choose the time");
