@@ -1,11 +1,10 @@
 import os
-import datetime
-import time
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
+from accounts.utils import DefaultDate
 
 def index(request):
     if request.method == 'POST':
@@ -16,15 +15,7 @@ def index(request):
                 return HttpResponseRedirect(reverse('clean_needs'))
             else:
                 return HttpResponseRedirect(reverse('clean_info'))
-    #os.environ['TZ'] = 'Asia/Shanghai'
-    #time.tzset()
-    default_time = int(time.strftime('%H'))+4
-    if default_time > 20:
-        tomorrow = datetime.date.today() + datetime.timedelta(days=1)
-        default_date = tomorrow.strftime('%d %b %Y')
-    else:
-        default_date = datetime.date.today().strftime('%d %b %Y')
-    #default_time = time.strftime('%H:00')
+    default_date = DefaultDate()
     return render_to_response('home/index.html',
                                   RequestContext(request, locals()))
 

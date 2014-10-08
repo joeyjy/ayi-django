@@ -27,6 +27,7 @@ from userena import signals as userena_signals
 from userena import settings as userena_settings
 
 from guardian.decorators import permission_required_or_403
+from accounts.utils import DefaultDate
 
 import warnings
 
@@ -689,15 +690,6 @@ def profile_edit(request, username, edit_profile_form=EditProfileForm,
         Instance of the ``Profile`` that is edited.
 
     """
-    #os.environ['TZ'] = 'Asia/Shanghai'
-    #time.tzset()
-    default_time = int(time.strftime('%H'))+4
-    if default_time > 20:
-        tomorrow = datetime.date.today() + datetime.timedelta(days=1)
-        default_date = tomorrow.strftime('%d %b %Y')
-    else:
-        default_date = datetime.date.today().strftime('%d %b %Y')
-    
     user = get_object_or_404(get_user_model(),
                              username__iexact=username)
 
@@ -731,7 +723,7 @@ def profile_edit(request, username, edit_profile_form=EditProfileForm,
     if not extra_context: extra_context = dict()
     extra_context['form'] = form
     extra_context['profile'] = profile
-    extra_context['default_date'] = default_date
+    extra_context['default_date'] = DefaultDate()
     return ExtraContextTemplateView.as_view(template_name=template_name,
                                             extra_context=extra_context)(request)
 def profile_detail(request, username,

@@ -1,3 +1,5 @@
+import time
+import datetime
 import json
 from django.http import HttpResponse
 from django.conf import settings
@@ -26,3 +28,12 @@ def JSONResponse(json_data, charset='utf-8', ensure_ascii=False, plain=False):
         mimetype = 'text/plain'
     json_data = json.dumps((json_data), ensure_ascii=ensure_ascii)
     return HttpResponse(json_data, mimetype='%s; charset=%s' %(mimetype, charset))
+
+def DefaultDate():
+    default_time = int(time.strftime('%H'))+4
+    if default_time > 20:
+        tomorrow = datetime.date.today() + datetime.timedelta(days=1)
+        default_date = tomorrow.strftime('%d %b %Y')
+    else:
+        default_date = datetime.date.today().strftime('%d %b %Y')
+    return default_date

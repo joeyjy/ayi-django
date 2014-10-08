@@ -15,7 +15,7 @@ from django.template.context import RequestContext
 
 from accounts.email import create_mail_book_confirm, create_mail_book_cancel, internal_book_confirm, internal_book_cancel
 from accounts.models import Compound
-from accounts.utils import JSONResponse
+from accounts.utils import JSONResponse, DefaultDate
 from .forms import BookingForm
 from .models import Booking
 
@@ -49,15 +49,7 @@ def history(request, username):
     if request.user.username != username and not request.user.has_perm('auth.change_booking'):
         raise PermissionDenied
     booking_list = Booking.objects.filter(booker__username=username)
-    #os.environ['TZ'] = 'Asia/Shanghai'
-    #time.tzset()
-    default_time = int(time.strftime('%H'))+4
-    if default_time > 20:
-        tomorrow = datetime.date.today() + datetime.timedelta(days=1)
-        default_date = tomorrow.strftime('%d %b %Y')
-    else:
-        default_date = datetime.date.today().strftime('%d %b %Y')
-
+    default_date = DefaultDate()
     return render_to_response('booking/history.html',
                                   RequestContext(request, locals()))
                                   
@@ -67,16 +59,7 @@ def billing(request, username):
     if request.user.username != username and not request.user.has_perm('auth.change_booking'):
         raise PermissionDenied
     booking_list = Booking.objects.filter(booker__username=username)
-    
-    #os.environ['TZ'] = 'Asia/Shanghai'
-    #time.tzset()
-    default_time = int(time.strftime('%H'))+4
-    if default_time > 20:
-        tomorrow = datetime.date.today() + datetime.timedelta(days=1)
-        default_date = tomorrow.strftime('%d %b %Y')
-    else:
-        default_date = datetime.date.today().strftime('%d %b %Y')
-
+    default_date = DefaultDate()
     return render_to_response('booking/billing.html',
                                   RequestContext(request, locals()))
 
