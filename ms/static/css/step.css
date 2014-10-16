@@ -9,7 +9,7 @@ a:hover{
 	position: absolute;
 	display: block;
 	top: 30px;
-	left: 145px;
+	left: 120px;
 	height: 4px;
 	width: 100px;
 }
@@ -29,6 +29,9 @@ a:hover{
 #custom-step {
 	padding-top:30px;
 	padding-bottom:30px;
+}
+#custom-step .col-md-2{
+	width:170px;
 }
 #custom-step .active{
 	background: #84d6d2;
@@ -60,6 +63,23 @@ a:hover{
 	line-height: 30px;
 	float:left;
 }
+.step4-line{
+	color: gray;
+}
+.step4-line h3{
+	background: url("/static/img/top-border.png") no-repeat scroll left bottom rgba(0, 0, 0, 0);
+	color: #5D5C5D;
+	font-size: 16px;
+	margin-top:30px;
+	margin-bottom: 15px;
+	padding-bottom: 0px;
+	font-weight: bold;
+	line-height: 30px;
+}
+.step4-line #divide{
+	border-top:1px solid silver;
+	margin:40px 0;
+}
 .top-line a{
 	background-color:#eb6876;
 	color:#fff;
@@ -69,6 +89,21 @@ a:hover{
 	margin-right:2%;
 	float:right;
 	border-radius:4px;
+}
+#pay_method{
+	padding:0 0 50px 50px;
+	overflow:hidden;
+}
+.opt-box{
+	width:32%;
+	float:left;
+}
+.opt-box input, .opt-box label{
+	cursor:pointer;
+}
+.opt-box table{
+	width:100%;
+	font-weight:bold;
 }
 .col-md-8, .col-md-3{
 	padding:0;
@@ -252,6 +287,13 @@ textarea{
 	text-align:center;
 	padding:15px 0;
 	border-bottom:1px dashed silver; 
+}
+.co-sc{
+	float:left;
+	width:50%;
+}
+.co-sc h3{
+	margin-top:0;
 }
 @media (max-width: 1200px) {
 

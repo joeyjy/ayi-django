@@ -1,4 +1,5 @@
 import os
+import time
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
@@ -10,7 +11,12 @@ def index(request):
     if request.method == 'POST':
         post_data = request.POST.copy()
         print post_data
-        if post_data['clean_date'] and post_data['clean_time'] and post_data['clean_type']:
+        if post_data['clean_date'] and post_data['clean_time']:
+            book_time = post_data['clean_date'] + ' ' + post_data['clean_time']
+            conv = time.strptime(book_time,"%d %b %Y %H:%M")
+            request.session['booking_time'] = time.strftime('%Y-%m-%d %H:%M',conv)
+            print request.session['booking_time']
+            print book_time
             if request.user.id:
                 return HttpResponseRedirect(reverse('clean_needs'))
             else:

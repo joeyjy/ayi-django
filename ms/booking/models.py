@@ -23,7 +23,7 @@ class Booking(CommonMixin, models.Model):
     refrigerator = models.BooleanField(default=False, verbose_name=u'clean inside refrigerator')
     hand_wash = models.BooleanField(default=False, verbose_name=u'hand wash clothes')
     iron_clothe = models.BooleanField(default=False, verbose_name=u'iron clothes')
-    hour = models.IntegerField(choices=HOUR, null=True, blank=True)
+    hour = models.FloatField(choices=HOUR, null=True, blank=True)
     message = models.TextField(validators=[MaxLengthValidator(300)], null=True, blank=True, verbose_name=u'SPECIAL INSTRUCTIONS')
     fee = models.IntegerField(null=True, blank=True)
     date_created = models.DateTimeField(null=True, blank=True)
@@ -36,3 +36,6 @@ class Booking(CommonMixin, models.Model):
 
     def __unicode__(self):
         return self.booker.username
+
+    def model_callable(self):
+        return self.booker.compound.name

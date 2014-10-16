@@ -3,8 +3,11 @@ from django.utils.translation import ugettext_lazy as _
  
 from .models import *
 
+class AyiAdmin(admin.ModelAdmin):
+    list_display = ('name', 'street_num', 'street', 'area', 'mobile',)
+
 class MyProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'get_email', 'mobile', 'compound', 'get_join')
+    list_display = ('user', 'get_join', 'compound', 'area', 'get_email', 'mobile')
     search_fields = ('user__username', 'user__email', )
     ordering = ('user__username', )
     #list_filter = ['date_created']
@@ -19,6 +22,7 @@ class MyProfileAdmin(admin.ModelAdmin):
 
 admin.site.unregister(MyProfile)
 admin.site.register(MyProfile, MyProfileAdmin)
+admin.site.register(Ayi, AyiAdmin)
 
-for cls in [Compound, Ayi]:
+for cls in [Compound,]:
     admin.site.register(cls)

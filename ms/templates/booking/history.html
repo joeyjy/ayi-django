@@ -14,44 +14,88 @@
 	<h5><a href="{% url 'userena_signout'%}">Sign Out</a></h5>
 	<div id="a-box">
 		<div id="a-type">Account Balance</div>
-		<div id="a-rest">5,000 RMB</div>
+		<div id="a-rest">0 RMB</div>
 	</div>
 </div>
 <div id="l-column">
+	<h4>Upcoming Bookings</h4>
 	<table cellspacing="0" cellpadding="0">
 		<tr>
 			<th width="15%">Date</th>
-			<th width="15%">Hours</th>
+			<th width="10%">Time</th>
+			<th width="10%">Hours</th>
 			<th width="15%">Ayi</th>
 			<th width="15%">Status</th>
 			<th width="10%">Cancel</th>
 			<th width="10%">Change</th>
-			<th width="20%">Rating</th>
+			<th width="15%">Rating</th>
 		</tr>
 		{% for one in booking_list %}
 		<tr>
-			<td width="15%">{{ one.clean_time|date:"Y.m.d" }}</td>
-			<td width="15%">{{ one.hour }}</td>
-			<td width="15%">{{ one.clean_ayi }}</td>
+			<td width="15%">{{ one.clean_time|date:"M d, Y" }}</td>
+			<td width="10%">{{ one.clean_time|date:"h:i A" }}</td>
+			<td width="10%">{{ one.hour }}</td>
+			<td width="15%">
+			{% if one.clean_ayi %}
+			{{ one.clean_ayi }}
+			{% else %}
+			waiting
+			{% endif %}
+			</td>
 			<td width="15%">{{ one.get_status_display }}</td>
 			<td width="10%">
 			{% ifequal one.status 3 %}
 			Cancel
 			{% else %}
-			<a href="{% url 'booking_cancel' user.username one.id %}">Cancel</a>
+			<a class="book-cancel" href="{% url 'booking_cancel' user.username one.id %}">Cancel</a>
 			{% endifequal %}
 			</td>
 			<td width="10%"><a class="poptip" data-toggle="tooltip" data-placement="top" title="Change the booking? Call 021-6380-1553">Change</a></td>
-			<td width="20%"><a class="poptip" data-toggle="tooltip" data-placement="top" title="Not available yet">1 to 10</a></td>
+			<td width="15%"><a class="poptip" data-toggle="tooltip" data-placement="top" title="Not available yet">1 to 10</a></td>
 		</tr>
 		{% endfor %}
 	</table>
-
+	<h4>Past Bookings</h4>
+	<table cellspacing="0" cellpadding="0">
+		<tr>
+			<th width="15%">Date</th>
+			<th width="10%">Time</th>
+			<th width="10%">Hours</th>
+			<th width="15%">Ayi</th>
+			<th width="15%">Status</th>
+			<th width="10%">Cancel</th>
+			<th width="10%">Change</th>
+			<th width="15%">Rating</th>
+		</tr>
+		{% for one in booking_pass %}
+		<tr>
+			<td width="15%">{{ one.clean_time|date:"M d, Y" }}</td>
+			<td width="10%">{{ one.clean_time|date:"h:i A" }}</td>
+			<td width="10%">{{ one.hour }}</td>
+			<td width="15%">
+			{% if one.clean_ayi %}
+			{{ one.clean_ayi }}
+			{% else %}
+			waiting
+			{% endif %}
+			</td>
+			<td width="15%">{{ one.get_status_display }}</td>
+			<td width="10%">
+			Cancel
+			</td>
+			<td width="10%">Change</td>
+			<td width="15%"><a class="poptip" data-toggle="tooltip" data-placement="top" title="Not available yet">1 to 10</a></td>
+		</tr>
+		{% endfor %}
+	</table>
 </div>
 
 {% endblock %}
 {% block extra_js %}
 <script type="text/javascript">
 $('.poptip').tooltip();
+$('.book-cancel').on('click', function () {
+    return confirm('Sure you want to cancel?');
+});;
 </script>
 {% endblock extra_js %}

@@ -14,11 +14,11 @@
 <script>
 $('.date-box').val('{{ default_date }}');
 var timeNow = new Date();
-var hourAllow = timeNow.getHours()+4;
+var hourAllow = timeNow.getHours()+5;
 var changeDay = timeNow.toDateString().split(' ')[2];
 var dayNow = $('.date-box').val().split(' ')[0];
 
-if( hourAllow>20 || hourAllow<8 ){
+if( hourAllow>19 || hourAllow<8 ){
 	var timeAllow = '08:00';
 }else{
 	var timeAllow = hourAllow.toString()+':00';
@@ -28,7 +28,7 @@ $('.time-box').datetimepicker({
 	datepicker:false,
 	format:'H:i',
 	minTime: timeAllow,
-	maxTime:'21:00',
+	maxTime:'20:00',
 	step:60
 	});
 $('.time-box').val(timeAllow);
@@ -41,7 +41,7 @@ var logic = function( currentDateTime ){
 			datepicker:false,
 			format:'H:i',
 			minTime: timeAllow,
-			maxTime:'21:00',
+			maxTime:'20:00',
 			step:60
 			});
 	}else{
@@ -50,7 +50,7 @@ var logic = function( currentDateTime ){
 			datepicker:false,
 			format:'H:i',
 			minTime: '08:00',
-			maxTime:'21:00',
+			maxTime:'20:00',
 			step:60
 			});
 	}

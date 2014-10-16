@@ -13,14 +13,14 @@ header a{
 	color:#000;
 }
 .container {
-	width: 1030px;
+	width: 1050px;
 }
 #logo-box{
 	float:left;
 }
 #logo-box a{
 	float:left;
-	padding: 10px 15px;
+	padding: 10px 0;
 	font-size: 18px;
 	line-height: 20px;
 }
@@ -74,6 +74,9 @@ header ul.navbar-right li.dropdown {
 	font-size:16px;
 	font-weight:bold;
 }
+.navbar-nav.navbar-right:last-child {
+	margin-right: 0;
+}
 #wechat-qr{
 	margin:10px 30px 10px 0;
 }
@@ -92,7 +95,7 @@ header ul.navbar-right li.dropdown {
 }
 .footer-line{
 	width:100%;
-	margin-top:100px;
+	margin-top:40px;
 	background-color:#666;
 }
 .footer-line img{
@@ -101,6 +104,7 @@ header ul.navbar-right li.dropdown {
 .f-center{
 	background-color:#666;
 	text-align:center;
+	padding:0;
 }
 #f-ul{
 	float: right;
@@ -111,7 +115,7 @@ header ul.navbar-right li.dropdown {
 #f-ul li{
 	color:#eee;
 	float:right;
-	padding:0 20px;
+	padding:0 18px;
 	margin-top:60px;
 	text-align:center;
 	border-right: 1px solid #eee;
@@ -161,8 +165,9 @@ header ul.navbar-right li.dropdown {
 	border-bottom:1px solid silver;
 }
 .b-content .big-font{
-	font-weight:bold;
-	font-size:16px;
+	margin: 15px 0;
+	padding-left:20px;
+	font-size:24px;
 }
 .b-content table tr td img{
 	

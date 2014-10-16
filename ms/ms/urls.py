@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^$', 'home.views.index', name='home_index'),
     url(r'^contact-info/$', userena_views.signup, name='clean_info'),
     url(r'^clean-needs/$', 'booking.views.clean_needs', name='clean_needs'),
+    url(r'^pay/$', 'booking.views.pay', name='pay'),
     #url(r'^history/(?P<username>[\.\w-]+)$', 'booking.views.history', name='booking_history'),
     # Examples:
     # url(r'^$', 'ms.views.home', name='home'),

@@ -16,13 +16,13 @@
 	top: 90px;
 	height: 400px;
 	overflow: hidden;
-	min-width: 1045px;
+	min-width: 1050px;
 }
 .book-area{
 	position: relative;
 	height: 400px;
 	width: 100%;
-	min-width: 1045px;
+	min-width: 1050px;
 	top: 90px;
 }
 .book-container{
@@ -31,7 +31,7 @@
 	margin-right: auto;
 	padding-left: 25px;
 	padding-right: 25px;
-	width: 1045px;
+	width: 1050px;
 }
 .welcome-area{
 	display: table;
@@ -147,8 +147,9 @@
 	cursor:pointer;
 }
 .info-area{
-	padding:25px 150px;
-	background-color:#84d6d2;
+	padding: 25px 130px;
+	background-color: #84D6D2;
+	width: 1020px;
 }
 .info-area ul{
 	padding: 10px 0;
@@ -187,6 +188,9 @@
 .time-box{
 	cursor:pointer;
 	width:140px;
+}
+.type-box{
+	width:85px;
 }
 .input-group-addon {
 	top: 1px;

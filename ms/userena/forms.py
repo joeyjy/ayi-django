@@ -158,7 +158,7 @@ class SignupForm(forms.ModelForm):
         new_user.first_name = first_name
         new_user.last_name = last_name
         new_user.save()
-        create_mail_welcome(new_user)
+        #create_mail_welcome(new_user)
         return new_user
 
 class SignupFormOnlyEmail(SignupForm):

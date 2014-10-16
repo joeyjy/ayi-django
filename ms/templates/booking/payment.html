@@ -27,7 +27,7 @@
 	                 </div>
 				</div>
 				<div class="col-md-2">
-					 <div class="service_border bdr-default"></div>
+					 <div class="service_border bdr-blue"></div>
 	                 <div class="service_icon active">
 	                        3
 	                 </div>
@@ -36,76 +36,82 @@
 	                 </div>
 				</div>
 				<div class="col-md-2">
-	                 <div class="service_icon default">
+	                 <div class="service_icon active">
 	                        4
 	                 </div>
-	                 <div class="service_content text-default">
+	                 <div class="service_content">
 	                     <h3>CONFIRM<br> AND PAY</h3>
 	                 </div>
 				</div>
+				<div class="col-md-2"></div>
 			</div>
 		</div>
 	</div>
 </div>
 <div class="container" style="width: 1050px;">
 	<div class="top-line col-md-9">
-		<h3>Cleaning Needs</h3>
+		&nbsp;
 	</div>
-	<div class="col-md-9">
-		<form action="" method="post" enctype="multipart/form-data">
-			<ul class="form-needs">
-				<li class="ne-li-1">
-					<font>ROOMS</font>
-					{{ form.bedroom }}
-					{{ form.bedroom.errors }}
-				</li>
-				<li class="ne-li-2">
-					{{ form.bathroom }}
-					{{ form.bathroom.errors }}
-				</li>
-				<li class="ne-li-1">
-					<font>INSIDE FRIDGE<span class="optional-area">(additional task)</span></font>
-					<button class="refrigerator add-require add-re" type="button" data-toggle="tooltip" data-placement="top" title="+1 Hour">YES</button>
-					{{ form.refrigerator }}
-					{{ form.refrigerator.errors }}
-				</li>
-				<li class="ne-li-2">
-					<button class="refrigerator add-require tiffany-blue-btn" type="button">NO</button>
-				</li>
-				<li class="ne-li-1">
-					<font>HAND WASH CLOTHES<span class="optional-area">(additional task)</span></font>
-					<button class="hand_wash add-require add-re" type="button" data-toggle="tooltip" data-placement="top" title="+1 Hour">YES</button>
-					{{ form.hand_wash }}
-					{{ form.hand_wash.errors }}
-				</li>
-				<li class="ne-li-2">
-					<button class="hand_wash add-require tiffany-blue-btn" type="button">NO</button>
-				</li>
-				<li class="ne-li-1">
-					<font>IRON CLOTHES<span class="optional-area">(additional task)</span></font>
-					<button class="iron_clothe add-require add-re" type="button" data-toggle="tooltip" data-placement="top" title="+1 Hour">YES</button>
-					{{ form.iron_clothe }}
-					{{ form.iron_clothe.errors }}
-				</li>
-				<li class="ne-li-2">
-					<button class="iron_clothe add-require tiffany-blue-btn" type="button">NO</button>
-				</li>
-				<li class="ne-li-1">
-					<font style="width:380px;">NUMBER OF HOURS RECOMMENDED</font>
-				</li>
-				<li class="ne-li-2">
-					{{ form.hour }}
-					{{ form.hour.errors }}
-				</li>
-				<li class="ne-li-3"><h3>SPECIAL INSTRUCTIONS</h3></li>
-				<li class="ne-li-3 msg-char">
-					{{ form.message }}
-					{{ form.message.errors }}
-					<span id="message-char">maximum of 300 characters, <var>300</var> left.</span>
-				</li>
-			</ul>
-			<button id="s2-sm" type="submit">NEXT</button>
-		</form>
+	<div class="col-md-9 step4-line">
+		<div class="co-sc">
+			<h3>SCHEDULE</h3>
+			<p><strong>Day:</strong> {{ item.clean_time|date:"l" }}</p>
+			<p><strong>Date:</strong> {{ item.clean_time|date:"M d, Y" }}</p>
+			<p><strong>Time:</strong> {{ item.clean_time|date:"h:i A" }}</p>
+		</div>
+		<div class="co-sc">
+			<h3>COST</h3>
+			<p>{{ item.hour }} hours @ 35rmb/hr</p>
+			<p><strong>Total Cost:</strong> {{ fee }}rmb</p>
+		</div>
+		<div style="clear:both;"></div>
+		<h3>ADDRESS</h3>
+		<p><strong>Street #:</strong> {{ item.booker.my_profile.street_num }}</p>
+		<p><strong>Building #:</strong> {{ item.booker.my_profile.bldg_num }}</p>
+		<p><strong>Apartment #:</strong> {{ item.booker.my_profile.apt_num }}</p>
+		<p><strong>Cross Street:</strong> {{ item.booker.my_profile.cross }}</p>
+		<p><strong>Area:</strong> {{ item.booker.my_profile.get_area_display }}</p>
+		<p><strong>Compound Name:</strong> {{ item.booker.my_profile.compound }}</p>
+		<div id="divide"></div>
+		<div id="pay_method">
+			<div class="opt-box">
+				<table>
+					<tr>
+						<td width="10%"><input type="radio" name="pay_method" value="1" id="cod" checked="checked"></td>
+						<td width="90%"><label for="cod">Cash Upon Service</label></td>
+					</tr>
+					<tr>
+						<td width="10%">&nbsp;</td>
+						<td width="90%">&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+			<div class="opt-box">
+				<table>
+					<tr>
+						<td width="10%"><input type="radio" name="pay_method" value="2" id="credit" disabled="disabled"></td>
+						<td width="90%"><label for="credit" class="poptip" data-toggle="tooltip" data-placement="top" title="Not available yet">Credit Card</label></td>
+					</tr>
+					<tr>
+						<td width="10%">&nbsp;</td>
+						<td width="90%"><img src="/static/img/cc.png"></td>
+					</tr>
+				</table>
+			</div>
+			<div class="opt-box">
+				<table>
+					<tr>
+						<td width="10%"><input type="radio" name="pay_method" value="2"  id="union" disabled="disabled"></td>
+						<td width="90%"><label for="union" class="poptip" data-toggle="tooltip" data-placement="top" title="Not available yet">Union Pay</label></td>
+					</tr>
+					<tr>
+						<td width="10%">&nbsp;</td>
+						<td width="90%"><img src="/static/img/unp.png"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<button id="s2-sm" type="submit">CONFIRM BOOKING</button>
 	</div>
 	<div class="col-md-3">
 		<div class="feature-info">
@@ -273,45 +279,6 @@
 {% endblock content %}
 {% block extra_js %}
 <script type="text/javascript">
-$('#id_bedroom').val('1');
-$('#id_bathroom').val('1');
-$('#id_hour').val('3');
-$(".add-require").click(function(){
-	var need = $(this).attr('class').split(' ')[0];
-	$('.'+need).removeClass("tiffany-blue-btn");
-	if ($(this).hasClass('add-re')){
-		$('#id_'+need).val('True').trigger("change");
-	}else{
-		$('#id_'+need).val('False').trigger("change");
-	}
-	$(this).addClass("tiffany-blue-btn");
-	var total = $(".add-hour[value=True]").length;
-	var bed = Number($("#id_bedroom").val())*0.5;
-	var bath = Number($("#id_bathroom").val())*0.5;
-	var total_hours = 2+bed+bath+total;
-	if (total_hours < 3){
-		var total_hours = 3;
-	}
-	$('#id_hour').val(total_hours);
-});
-$("#id_bedroom, #id_bathroom").change(function(){
-	var bed = Number($("#id_bedroom").val())*0.5;
-	var bath = Number($("#id_bathroom").val())*0.5;
-	var addition = $(".add-hour[value=True]").length;
-	var total_hours = 2+bed+bath+addition;
-	if (total_hours < 3){
-		var total_hours = 3;
-	}
-	$('#id_hour').val(total_hours);
-});
-
-$("#id_laundry").click(function(){
-	$(".no-laundry").removeClass("tiffany-blue-btn");
-});
-$("#id_message").keyup(function(){
-	var counter = $(this).val().length;
-	$("#message-char var").text(300 - counter);
-});
-$('.add-re').tooltip();
+$('.poptip').tooltip();
 </script>
 {% endblock extra_js %}

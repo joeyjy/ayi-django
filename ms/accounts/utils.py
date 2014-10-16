@@ -31,7 +31,7 @@ def JSONResponse(json_data, charset='utf-8', ensure_ascii=False, plain=False):
 
 def DefaultDate():
     default_time = int(time.strftime('%H'))+4
-    if default_time > 20:
+    if default_time > 19:
         tomorrow = datetime.date.today() + datetime.timedelta(days=1)
         default_date = tomorrow.strftime('%d %b %Y')
     else:

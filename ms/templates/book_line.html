@@ -1,4 +1,5 @@
 <div id="top-column">
+	<p id="make_new">MAKE A NEW BOOKING</p>
 	<div class="choose-box">
       		<form action="{% url 'home_index' %}" method="post" id="clean-time-form">
       			{% csrf_token %}
@@ -10,10 +11,9 @@
 	      			<input type="text" class="time-box" readonly="readonly" name="clean_time">
 	      			<span class="input-group-addon glyphicon glyphicon-time"></span>
       			</div>
-      			<select id="type-box" name="clean_type">
-      				<option value="1">One Time</option>
-      				<option value="2">Weekly</option>
-            	</select>
+      			<div class="input-group time-div">
+	      			<input type="text" class="type-box" readonly="readonly" value="One Time">
+      			</div>
             	<button id="clean-book" type="submit">BOOK NOW</button>
             </form>
       		</div>

@@ -3,6 +3,7 @@ STATUS = (
     (1,"Open"),
     (2,"Completed"),
     (3,"Canceled"),
+    (4,"Not Completed"),
 )
 BEDROOM_NUM = (
     (1,"1 Bedroom"),
@@ -26,12 +27,18 @@ LAUNDRY = (
 )
 HOUR = (
     (3,"3 hours"),
+    (3.5,"3.5 hours"),
     (4,"4 hours"),
+    (4.5,"4.5 hours"),
     (5,"5 hours"),
+    (5.5,"5.5 hours"),
     (6,"6 hours"),
+    (6.5,"6.5 hours"),
     (7,"7 hours"),
+    (7.5,"7.5 hours"),
     (8,"8 hours"),
+    (8.5,"8.5 hours"),
     (9,"9 hours"),
+    (9.5,"9.5 hours"),
     (10,"10 hours"),
-    (11,"11 hours"),
 )
