@@ -1,5 +1,13 @@
-Hello {{ username }},
+Dear {{ username }},
 
-Thanks for signing up on the MerryServices.com!
+Your Merry Cleaning Services account has been created.
 
-- Merry Services Team
+You can sign in at http://www.merryservices.com/accounts/signin/ with your email address, {{ email }}
+
+If you have any questions, please email us at support@merryservices.com or call 021-6380 1553.
+
+We look forward to clean your home!
+
+Kind Regards,
+
+Merry Cleaning Services Team

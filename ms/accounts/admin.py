@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from .models import *
 
 class AyiAdmin(admin.ModelAdmin):
-    list_display = ('name', 'street_num', 'street', 'area', 'mobile',)
+    list_display = ('name', 'area', 'mobile', 'rate', 'home', 'work_place',)
 
 class MyProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'get_join', 'compound', 'area', 'get_email', 'mobile')

@@ -28,6 +28,10 @@ class Ayi(models.Model):
     street = models.CharField(max_length=300, null=True, blank=True)
     area = models.IntegerField(choices=AREA, null=True, blank=True)
     mobile = models.BigIntegerField(validators=[MinValueValidator(10000000000)], verbose_name='Phone', null=True, blank=True)
+    home = models.CharField(max_length=300, null=True, blank=True, verbose_name='Home Town')
+    work_place = models.CharField(max_length=300, null=True, blank=True, verbose_name='Work Place')
+    rate = models.IntegerField(null=True, blank=True, verbose_name='Rate')
+    notes = models.TextField(null=True, blank=True, verbose_name=u'Notes')
 
     class Meta:
         ordering = ['name']
@@ -38,7 +42,7 @@ class Ayi(models.Model):
 class MyProfile(UserenaBaseProfile):
     user = models.OneToOneField(User,
                                 unique=True,
-                                verbose_name=_('user'),
+                                verbose_name=_('Customer'),
                                 related_name='my_profile')
     mobile = models.BigIntegerField(validators=[MinValueValidator(10000000000)])
     street = models.CharField(max_length=300)

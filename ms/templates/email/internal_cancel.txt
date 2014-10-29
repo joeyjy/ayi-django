@@ -3,11 +3,15 @@ First Name: {{ firstname }}
 Last Name: {{ lastname }}
 Phone: {{ phone }}
 
-Booking Details
-Day:
-Date:
-Time: 
+Canceled Booking:
+Day: {{ day }}
+Date: {{ date }}
+Time: {{ time }}
 Total hours: {{ hours }}
+Clean inside refrigerator: {{ refrigerator|yesno:"Yes,No" }}
+Hand wash clothes: {{ hand_wash|yesno:"Yes,No" }}
+Iron clothes : {{ iron_clothe|yesno:"Yes,No" }}
+Special instructions: {{ message }}
 
 Address:
 Street #: {{ street_num }}

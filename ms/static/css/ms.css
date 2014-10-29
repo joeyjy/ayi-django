@@ -38,6 +38,9 @@ header .navbar-text{
 header .navbar-text a{
 	font-size:18px;
 }
+header .lang-margin{
+	margin-right:25px;
+}
 header .navbar-btn{
 	margin-top:30px;
 	margin-bottom:30px;

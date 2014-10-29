@@ -1,9 +1,8 @@
 STATUS = (
-    (0,"Disabled"),
     (1,"Open"),
     (2,"Completed"),
     (3,"Canceled"),
-    (4,"Not Completed"),
+    (4,"Not Confirm??"),
 )
 BEDROOM_NUM = (
     (1,"1 Bedroom"),

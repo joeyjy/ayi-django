@@ -7,6 +7,11 @@ from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from accounts.utils import DefaultDate
 
+def switch_to_cn(request, lang):
+	request.session['lang'] = lang
+	
+	return HttpResponseRedirect(reverse('home_index'))
+
 def index(request):
     if request.method == 'POST':
         post_data = request.POST.copy()

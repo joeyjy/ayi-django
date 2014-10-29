@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'^contact-info/$', userena_views.signup, name='clean_info'),
     url(r'^clean-needs/$', 'booking.views.clean_needs', name='clean_needs'),
     url(r'^pay/$', 'booking.views.pay', name='pay'),
+    url(r'^make-confirm/$', 'booking.views.handle_confirm', name='handle_confirm'),
     #url(r'^history/(?P<username>[\.\w-]+)$', 'booking.views.history', name='booking_history'),
     # Examples:
     # url(r'^$', 'ms.views.home', name='home'),
@@ -29,6 +30,7 @@ urlpatterns = patterns('',
     url(r'^privacy-policy/', 'home.views.privacy_policy', name='privacy_policy'),
     url(r'^faq/', 'home.views.merry_faq', name='merry_faq'),
     url(r'^about-us/', 'home.views.about_us', name='about_us'),
+    url(r'^lang/(?P<lang>\w+)/', 'home.views.switch_to_cn', name='switch_to_cn'),
 )
 
 # Uncomment the next line to serve media files in dev.

@@ -5,12 +5,16 @@ You have CANCELED the booking below:
 Booking CANCELED
 First Name: {{ firstname }}
 Last Name: {{ lastname }}
-Day:
-Date:
-Time: 
+Day: {{ day }}
+Date: {{ date }}
+Time: {{ time }}
 Total hours: {{ hours }}
+Clean inside refrigerator: {{ refrigerator|yesno:"Yes,No" }}
+Hand wash clothes: {{ hand_wash|yesno:"Yes,No" }}
+Iron clothes : {{ iron_clothe|yesno:"Yes,No" }}
+Special instructions: {{ message }}
 
-Your address (please sign in to change, if this is NOT correct)
+Your address (please sign in at http://www.merryservices.com/accounts/signin/ to change, if this is NOT correct)
 Street #: {{ street_num }}
 Street Name: {{ street }}
 Building #: {{ bldg_num }}
@@ -23,4 +27,4 @@ We look forward to cleaning your home!
 
 Kind Regards,
 
-Merry Services Cleaning Team
+Merry Cleaning Services Team

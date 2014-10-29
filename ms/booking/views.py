@@ -35,6 +35,8 @@ def pay(request):
 @login_required(login_url='/accounts/signin/')
 @csrf_exempt
 def clean_needs(request):
+    if not request.session.get('booking_time'):
+        return HttpResponseRedirect(reverse('home_index'))
     if request.method == 'POST':
         post_data = request.POST.copy()
         form = BookingForm(post_data)
@@ -46,8 +48,6 @@ def clean_needs(request):
             obj.clean_time = request.session.get('booking_time', '')
             obj.save()
             request.session['pay_booking_id'] = obj.id
-            create_mail_book_confirm(obj.booker, obj)
-            internal_book_confirm(obj.booker, obj)
             return HttpResponseRedirect(reverse('pay'))
         else:
             print form.errors
@@ -85,14 +85,12 @@ def booking_cancel(request, username, pk):
     if request.user.username != username and not request.user.has_perm('auth.change_booking'):
         raise PermissionDenied
 
-    try:
-        item = Booking.objects.get(id=pk)
-        item.status = 3
-        create_mail_book_cancel(request.user, item)
-        internal_book_cancel(request.user, item)
-        item.save()
-    except:
-        HttpResponse('Error! Please contact administrator')
+    item = Booking.objects.get(id=pk)
+    item.status = 3
+    create_mail_book_cancel(item.booker, item)
+    internal_book_cancel(item.booker, item)
+    item.save()
+
     return HttpResponseRedirect(reverse('booking_history',args=[username]))
 
 def compound_info(request, pk):
@@ -102,3 +100,18 @@ def compound_info(request, pk):
               'cross':compound.cross_street,
               'area':compound.district,}
     return JSONResponse(result)
+
+@login_required(login_url='/accounts/signin/')
+@csrf_exempt
+def handle_confirm(request):
+    if request.method == 'POST' and request.is_ajax():
+        post_data = request.POST.copy()
+        print post_data
+        if request.session.get('pay_booking_id', False):
+            item = Booking.objects.get(id=request.session['pay_booking_id'])
+            item.status = 1
+            item.save()
+            create_mail_book_confirm(item.booker, item)
+            internal_book_confirm(item.booker, item)
+            return HttpResponse("Y")
+    raise PermissionDenied

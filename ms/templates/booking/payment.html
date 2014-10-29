@@ -61,12 +61,13 @@
 		</div>
 		<div class="co-sc">
 			<h3>COST</h3>
-			<p>{{ item.hour }} hours @ 35rmb/hr</p>
-			<p><strong>Total Cost:</strong> {{ fee }}rmb</p>
+			<p>{{ item.hour }} hours @ 35 rmb/hr</p>
+			<p><strong>Total Cost:</strong> {{ fee }} rmb</p>
 		</div>
 		<div style="clear:both;"></div>
 		<h3>ADDRESS</h3>
 		<p><strong>Street #:</strong> {{ item.booker.my_profile.street_num }}</p>
+		<p><strong>Street Name:</strong> {{ item.booker.my_profile.street }}</p>
 		<p><strong>Building #:</strong> {{ item.booker.my_profile.bldg_num }}</p>
 		<p><strong>Apartment #:</strong> {{ item.booker.my_profile.apt_num }}</p>
 		<p><strong>Cross Street:</strong> {{ item.booker.my_profile.cross }}</p>
@@ -112,6 +113,18 @@
 			</div>
 		</div>
 		<button id="s2-sm" type="submit">CONFIRM BOOKING</button>
+		<div class="confirm-pop">
+				<span class="b-close confirm-close">x</span>
+				<div class="confirm-content">
+					<h3 id="confirm-top">YOUR BOOKING IS NOW CONFIRMED</h3>
+					<h4>Here's what to expect next:</h4>
+					<ol>
+						<li>You will receive a confirmation email. Please check your spam box if not received</li>
+						<li>You will make the payment before the start of your cleaning to the Merry Cleaner</li>
+						<li>Sign in your account to see schedule details or make a cancellation. For changes, please call us at 021-6380 1553</li>
+					</ol>
+				</div>
+		</div>
 	</div>
 	<div class="col-md-3">
 		<div class="feature-info">
@@ -279,6 +292,31 @@
 {% endblock content %}
 {% block extra_js %}
 <script type="text/javascript">
+$(document).ready(function(){
+$.ajaxSetup({
+	  data: {csrfmiddlewaretoken: '{{ csrf_token }}' }
+});
+$('#s2-sm').click(function(){
+	$(this).html('PROCESSING...');
+	$(this).attr('disabled','disabled');
+	$.post(
+			"{% url 'handle_confirm' %}",
+			function(data){
+				if (data =='Y'){
+					$('.confirm-pop').bPopup({
+						modalClose: false,
+					    easing: 'easeOutBack', //uses jQuery easing plugin
+				        speed: 450,
+				        transition: 'slideDown'
+				    });
+				}
+			});
+});
+});
+$('.confirm-close').click(function(){
+	location.href = "{% url 'userena_profile_edit' item.booker.username %}"
+});
+
 $('.poptip').tooltip();
 </script>
 {% endblock extra_js %}
