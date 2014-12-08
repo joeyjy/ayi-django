@@ -1,6 +1,12 @@
 Dear {{ firstname }},
 
-Thank you for making a cleaning appointment with Merry Cleaning Services!  Your booking details are below:
+Thank you for making a cleaning appointment with Merry Cleaning Services!
+
+Please put the appointment in your calendar. We will wait a maximum of 15 minutes. If no one is home, you will still be responsible for the payment.
+{% ifequal status 5 %}
+Your Alipay payment is completed.
+{% endifequal %}
+Your booking details are below:
 
 Booking Details
 First Name: {{ firstname }}
@@ -11,7 +17,7 @@ Time: {{ time }}
 Total hours: {{ hours }}
 Clean inside refrigerator: {{ refrigerator|yesno:"Yes,No" }}
 Hand wash clothes: {{ hand_wash|yesno:"Yes,No" }}
-Iron clothes : {{ iron_clothe|yesno:"Yes,No" }}
+Iron clothes: {{ iron_clothe|yesno:"Yes,No" }}
 Special instructions: {{ message }}
 
 Your address (please sign in at http://www.merryservices.com/accounts/signin/ to change, if this is NOT correct)

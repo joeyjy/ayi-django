@@ -288,6 +288,13 @@ TENCENT_EMAIL_USER = "info@merryservices.com"
 TENCENT_FROM_EMAIL = "Merry Services <info@merryservices.com>"
 TENCENT_EMAIL_PASSWORD = "1qaz,2wsx"
 
+SITE_HOST = 'www.merryservices.com'
+EMAIL_HOST = 'smtp.exmail.qq.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = "info@merryservices.com"
+EMAIL_HOST_PASSWORD = "1qaz,2wsx"
+DEFAULT_FROM_EMAIL = "Merry Services <info@merryservices.com>"
+
 INTERNAL_BOOKINGS_EMAIL = "bookings@merryservices.com"
 
 CAPTCHA_NOISE_FUNCTIONS = ()
@@ -297,3 +304,8 @@ CAPTCHA_LENGTH = 5
 
 SMS_USER = "56293"
 SMS_PWD= "57bb88e2680b89a2046383a815ede6b5"
+
+#### alipay ####
+ALIPAY_PID = "2088511010209762"
+ALIPAY_KEY = "293inmjpu54yik731sbgo2gmjwlmvgu4"
+ALIPAY_SELLER_EMAIL = "services@merryservices.com"

@@ -3,6 +3,7 @@
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 from userena.models import UserenaBaseProfile
 from .constant import COMPOUND, AREA
@@ -49,12 +50,18 @@ class MyProfile(UserenaBaseProfile):
     compound = models.ForeignKey(Compound, null=True, blank=True)
     area = models.IntegerField(choices=AREA, null=True, blank=True)
     cross = models.CharField(max_length=300)
-    street_num = models.IntegerField()
-    bldg_num = models.IntegerField(null=True, blank=True)
-    apt_num = models.IntegerField(null=True, blank=True)
+    street_num = models.CharField(max_length=100)
+    bldg_num = models.CharField(max_length=100, null=True, blank=True)
+    apt_num = models.CharField(max_length=100, null=True, blank=True)
+    revenue = models.IntegerField(null=True, blank=True, verbose_name='Total Revenue')
+    balance = models.IntegerField(null=True, blank=True, verbose_name='Balance')
+    
     
     class Meta:
         verbose_name = 'All Customer'
 
     def __unicode__(self):
         return self.user.username
+        
+    def get_absolute_url(self):
+        return reverse('userena_profile_edit', args=[str(self.user.username)])

@@ -48,6 +48,7 @@ def create_mail_book_confirm(user, obj):
         'cross': user.my_profile.cross,
         'area': user.my_profile.get_area_display(),
         'compound': user.my_profile.compound,
+        'status': obj.status,
     })
     template = 'email/book_confirm.txt'
     message = get_template(template).render(context)
@@ -86,6 +87,7 @@ def internal_book_confirm(user, obj):
         'cross': user.my_profile.cross,
         'area': user.my_profile.get_area_display(),
         'compound': user.my_profile.compound,
+        'status': obj.status,
     })
     template = 'email/internal_confirm.txt'
     message = get_template(template).render(context)

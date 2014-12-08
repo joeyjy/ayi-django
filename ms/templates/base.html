@@ -34,15 +34,38 @@
     			</a>
     		</div>
     		<ul class="nav navbar-nav navbar-right">
+    				{% if request.session.lang == "cn" %}
     				<li>
     					<div class="navbar-text lang-margin">
-    					{% if request.session.lang == "cn" %}
     						<a href="/lang/en/">En</a> / 
     						<font>中文</font>
-    					{% else %}
+    					</div>
+    				</li>
+    				<li id="social">
+    					<img class="h-t" src="/static/img/wx.png" data-toggle="tooltip" data-placement="bottom" />
+    					<div class="tooltip fade bottom in" role="tooltip" id="tooltip86302"><div class="tooltip-arrow"></div><div class="tooltip-inner tool-qr"><img src="/static/img/qr.jpg" style="width:200px;height:200px;" /></div></div>
+    				</li>
+    				<li>
+    					<div class="navbar-text">
+    						<a id="contact-us" class="h-t" data-toggle="tooltip" data-placement="bottom">联系我们</a>
+    						<div class="tooltip fade bottom in" role="tooltip" id="tooltip86303"><div class="tooltip-arrow"></div><div class="tooltip-inner">support@merryservices.com<br />服务热线: 9AM 至 6PM<br />021-6380-1553</div></div>
+    					</div>
+    				</li>
+    				<li>
+    					{% if request.user.id %}
+    					<p class="navbar-text">
+		        			<a href="{% url 'userena_profile_edit' request.user.username %}">{{request.user}}</a>&nbsp;&nbsp;<a class="navbar-btn" href="{% url 'userena_signout' %}" id="sign_btn">登出</a>
+		        		{%else%}
+		        		<p class="navbar-btn">
+		        			<a href="{% url 'userena_signin' %}">登录</a>
+		        		{% endif%}
+		        		</p>
+    				</li>
+    				{% else %}
+    				<li>
+    					<div class="navbar-text lang-margin">
     						<font>En</font> / 
     						<a href="/lang/cn/">中文</a>
-    					{% endif %}
     					</div>
     				</li>
     				<li id="social">
@@ -52,7 +75,7 @@
     				<li>
     					<div class="navbar-text">
     						<a id="contact-us" class="h-t" data-toggle="tooltip" data-placement="bottom">Contact Us</a>
-    						<div class="tooltip fade bottom in" role="tooltip" id="tooltip86303"><div class="tooltip-arrow"></div><div class="tooltip-inner">support@merryservices.com<br />021-6380-1553</div></div>
+    						<div class="tooltip fade bottom in" role="tooltip" id="tooltip86303"><div class="tooltip-arrow"></div><div class="tooltip-inner">support@merryservices.com<br />Office Hours: 9AM to 6PM<br />021-6380-1553</div></div>
     					</div>
     				</li>
     				<li>
@@ -65,6 +88,7 @@
 		        		{% endif%}
 		        		</p>
     				</li>
+    				{% endif %}
     			</ul>
     		
     	</div>
@@ -76,25 +100,19 @@
 	<div class="footer-line">
 		<div class="container f-center">
 				<ul id="f-ul">
+					{% if request.session.lang == "cn" %}
+					<li style="border:0;"><a href="{% url 'privacy_policy' %}">隐私条例</a></li>
+					<li>
+						<a href="{% url 'merry_faq' %}">常见问题</a>
+					</li>
+					<li><a href="{% url 'about_us' %}">关于我们</a></li>
+					{%else%}
 					<li style="border:0;"><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
 					<li>
 						<a href="{% url 'merry_faq' %}">FAQ</a>
-						<!-- <a class="lm" id="faq">FAQ</a>
-						<div class="bpop" id="bpop-faq">
-							<span class="b-close">x</span>
-							<div class="b-content">
-								<h3>Frequently Asked Questions</h3>
-								<p><font>Are Merry Cleaners reliable?</font><br />Merry Cleaners are selected strictly by real-name authentication, background checks, and data recorded. After several rounds of interview selection, we only admit the top 10% cleaners. Our company is equipped with excellent housekeeping training team to ensure merry cleaners in high quality, including service skills, service attitude, and service etiquette. If you join Merry Cleaning Services, you will enjoy exclusive one-to-one service, as well as privileges such as preferential arrangement, replacing cleaner, etc.</p>
-								<p><font>Will Merry Cleaners bring cleaning tools themselves?</font><br />Merry Cleaner will bring a professional toolkit with professional cleaning supplies, including four pieces of dishcloth in different colors for different regions respectively, two pieces of white cloth, scouring pad, a wireless ball, a glass blowing, a bathtub brush, and three bottles of professional cleaner. If you have special needs, please fill out the special instructions during booking or tell our customer services.  We DO NOT provide vacuum, floor mop, toilet brush, and buckets.</p>
-								<p><font>May I have to be at home during the cleaning?</font><br />Yes. If you need to go out during the cleaning, please fill out the special instructions during booking.</p>
-								<p><font>What if Merry Cleaner accidentally gets injured during service?</font><br />We have already purchased accident insurance for Merry Cleaners. If the Merry Cleaner gets injured during service (such as falls, scratches, etc), please inform our customer service manager immediately. Then Merry Cleaning Services will cope with claims work with the insurance company. Otherwise, we are not able to bear the liability for the lack of accident nature, reason, loss process due to late notice.</p>
-								<p><font>How to charge for cleaning services?</font><br />The rate is 35 RMB/ hour for cleaning services. Each scheduled service time is a minimum of 3 hours in order to provide the excellent service as promised.  Payments can be made online or COD(cash on delivery).  The system will estimate length of cleaning time in advance according to the house area.  If the cleaning needs are beyond the initial hours booked, please call our customer service.</p>
-								<p><font>How to change or cancel the booking service?</font><br />You can cancel the booking online.  To make a change, you will have to call our customer services.</p>
-							</div>
-						</div>
-						 -->
 					</li>
 					<li><a href="{% url 'about_us' %}">About Us</a></li>
+					{% endif %}
 					<li>沪ICP备14023107号</li>
 				</ul>
 				<img src="/static/img/ft-pic.png" alt="" />

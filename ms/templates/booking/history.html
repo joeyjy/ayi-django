@@ -5,13 +5,19 @@
 {% block title %}{% trans "Clean History" %}{% endblock %}
 
 {% block content_extra %}
+{% if request.user.is_staff %}
+<p>&nbsp;</p>
+{% else %}
 {% include 'book_line.html' %}
+{% endif %}
 <div id="r-column">
-	<h5><a href="{% url 'userena_profile_edit' user.username %}">My Account</a></h5>
+	<h5><a href="{% url 'userena_profile_edit' user.username %}" id="accounts_tab">My Account</a></h5>
 	<h5 id="a-active">Cleaning History</h5>
-	<h5><a href="{% url 'billing' user.username %}">Billing History</a></h5>
+	<h5><a href="{% url 'billing' user.username %}" id="bill_tab">Billing History</a></h5>
+	{% if not request.user.is_staff %}
 	<h5><a href="{% url 'userena_password_change' user.username %}">{% trans "Change Password" %}</a></h5>
 	<h5><a href="{% url 'userena_signout'%}">Sign Out</a></h5>
+	{% endif %}
 	<div id="a-box">
 		<div id="a-type">Account Balance</div>
 		<div id="a-rest">0 RMB</div>
@@ -92,6 +98,14 @@
 
 {% endblock %}
 {% block extra_js %}
+{% if request.user.is_staff %}
+<script type="text/javascript">
+var profile_url = '/accounts/'+'{{customer}}'+'/edit';
+var bill_url = '/accounts/billing/'+'{{customer}}';
+$('#accounts_tab').attr('href',profile_url);
+$('#bill_tab').attr('href',bill_url);
+</script>
+{% endif %}
 <script type="text/javascript">
 $('.poptip').tooltip();
 $('.book-cancel').on('click', function () {

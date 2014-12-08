@@ -1,0 +1,346 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/step.css">
+{% endblock extra_css %}
+{% block content %}
+<div class="page-box">
+	<div class="container" style="width: 1050px;">
+		<div id="custom-step">
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-2">
+					 <div class="service_border bdr-blue"></div>
+	                 <div class="service_icon active">
+	                        1
+	                 </div>
+	                 <div class="service_content">
+	                     <h3>日期时间</h3>
+	                 </div>
+				</div>
+				<div class="col-md-2">
+					 <div class="service_border bdr-blue"></div>
+	                 <div class="service_icon active">
+	                        2
+	                 </div>
+	                 <div class="service_content">
+	                     <h3>联系信息</h3>
+	                 </div>
+				</div>
+				<div class="col-md-2">
+					 <div class="service_border bdr-default"></div>
+	                 <div class="service_icon active">
+	                        3
+	                 </div>
+	                 <div class="service_content">
+	                     <h3>清洁要求</h3>
+	                 </div>
+				</div>
+				<div class="col-md-2">
+	                 <div class="service_icon default">
+	                        4
+	                 </div>
+	                 <div class="service_content text-default">
+	                     <h3>确认付款</h3>
+	                 </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container" style="width: 1050px;">
+	<div class="top-line col-md-9">
+		<h3>清洁需求</h3>
+	</div>
+	<div class="col-md-9">
+		<form action="" method="post" enctype="multipart/form-data">
+			<ul class="form-needs">
+				<li class="ne-li-1">
+					<font>房间</font>
+					<select id="id_bedroom" name="bedroom">
+						<option value="" selected="selected">---------</option>
+						<option value="1">1 卧室</option>
+						<option value="2">2 卧室</option>
+						<option value="3">3 卧室</option>
+						<option value="4">4 卧室</option>
+						<option value="5">5+ 卧室</option>
+					</select>
+					{{ form.bedroom.errors }}
+				</li>
+				<li class="ne-li-2">
+					<select id="id_bathroom" name="bathroom">
+						<option value="" selected="selected">---------</option>
+						<option value="1">1 浴室</option>
+						<option value="2">2 浴室</option>
+						<option value="3">3 浴室</option>
+						<option value="4">4 浴室</option>
+						<option value="5">5+ 浴室</option>
+					</select>
+					{{ form.bathroom.errors }}
+				</li>
+				<li class="ne-li-1">
+					<font style="width: 85px;">冰箱内部<span class="optional-area">（特别要求）</span></font>
+					<button class="refrigerator add-require add-re" type="button" data-toggle="tooltip" data-placement="top" title="+1 Hour">是</button>
+					{{ form.refrigerator }}
+					{{ form.refrigerator.errors }}
+				</li>
+				<li class="ne-li-2">
+					<button class="refrigerator add-require tiffany-blue-btn" type="button">否</button>
+				</li>
+				<li class="ne-li-1">
+					<font style="width: 85px;">手洗衣物<span class="optional-area">（特别要求）</span></font>
+					<button class="hand_wash add-require add-re" type="button" data-toggle="tooltip" data-placement="top" title="+1 Hour">是</button>
+					{{ form.hand_wash }}
+					{{ form.hand_wash.errors }}
+				</li>
+				<li class="ne-li-2">
+					<button class="hand_wash add-require tiffany-blue-btn" type="button">否</button>
+				</li>
+				<li class="ne-li-1">
+					<font style="width: 85px;">熨烫衣物<span class="optional-area">（特别要求）</span></font>
+					<button class="iron_clothe add-require add-re" type="button" data-toggle="tooltip" data-placement="top" title="+1 Hour">是</button>
+					{{ form.iron_clothe }}
+					{{ form.iron_clothe.errors }}
+				</li>
+				<li class="ne-li-2">
+					<button class="iron_clothe add-require tiffany-blue-btn" type="button">否</button>
+				</li>
+				<li class="ne-li-1">
+					<font style="width:380px;">打扫时间建议</font>
+				</li>
+				<li class="ne-li-2">
+					<select id="id_hour" name="hour">
+						<option value="3" selected="selected">3 小时</option>
+						<option value="3.5">3.5 小时</option>
+						<option value="4">4 小时</option>
+						<option value="4.5">4.5 小时</option>
+						<option value="5">5 小时</option>
+						<option value="5.5">5.5 小时</option>
+						<option value="6">6 小时</option>
+						<option value="6.5">6.5 小时</option>
+						<option value="7">7 小时</option>
+						<option value="7.5">7.5 小时</option>
+						<option value="8">8 小时</option>
+						<option value="8.5">8.5 小时</option>
+						<option value="9">9 小时</option>
+						<option value="9.5">9.5 小时</option>
+						<option value="10">10 小时</option>
+					</select>
+				</li>
+				<li class="ne-li-3"><h3>备注</h3></li>
+				<li class="ne-li-3 msg-char">
+					{{ form.message }}
+					{{ form.message.errors }}
+					<span id="message-char">最多300个字符，剩余<var>300</var></span>
+				</li>
+			</ul>
+			<button id="s2-sm" type="submit">下一步</button>
+		</form>
+	</div>
+	<div class="col-md-3">
+		<div class="feature-info">
+			<h2>清洁服务里包含什么？</h2>
+			<p>我们专业的清洁超人是经过培训，会确保您的家打扫得闪闪发光。<br /><a class="popdown" id='include'>了解更多</a></p>
+			<div class="bpop" id="bpop-include">
+				<span class="b-close">x</span>
+				<div class="b-content">
+					<h4 class="space-border">清洁服务里包含什么？</h4>
+					<table>
+						<tr>
+							<td valign="top">
+								<p class="big-font">卧室</p>
+								<ol>
+									<li>整理床铺</li>
+									<li>折叠衣物</li>
+									<li>家具电器除尘</li>
+									<li>物品整理归纳</li>
+									<li>地面除尘拖洗</li>
+									<li>玻璃除尘（内部可触及）</li>
+									<li>垃圾清理</li>
+								</ol>
+							</td>
+							<td>
+								<img src="/static/img/in1.png">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img src="/static/img/in2.png">
+							</td>
+							<td valign="top">
+								<p class="big-font">浴室</p>
+								<ol>
+									<li>花洒、浴缸擦洗</li>
+									<li>洗手台擦洗</li>
+									<li>马桶清洗</li>
+									<li>水槽、水龙头擦洗</li>
+									<li>镜子擦拭</li>
+									<li>物品整理归纳</li>
+									<li>地面除尘拖洗</li>
+									<li>玻璃除尘（内部可触及）</li>
+									<li>垃圾清理</li>
+								</ol>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<p class="big-font">厨房</p>
+								<ol>
+									<li>餐具厨具清洗</li>
+									<li>橱柜表面除尘</li>
+									<li>台面炉灶清洗</li>
+									<li>水槽、水龙头擦洗</li>
+									<li>物品归纳整理</li>
+									<li>地面除尘拖洗</li>
+									<li>玻璃除尘（内部可触及）</li>
+									<li>垃圾清理</li>
+								</ol>
+							</td>
+							<td>
+								<img src="/static/img/in3.png">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img src="/static/img/in4.png">
+							</td>
+							<td valign="top">
+								<p class="big-font">其他区域</p>
+								<ol>
+									<li>家具电器除尘</li>
+									<li>物品归纳整理</li>
+									<li>地面除尘拖洗</li>
+									<li>玻璃除尘（内部可触及）</li>
+									<li>垃圾清理</li>
+								</ol>
+							</td>
+						</tr>
+					</table>
+					<center><h4>特别要求</h4></center>
+					<ol>
+						<li>冰箱内部擦洗</li>
+						<li>手洗衣物</li>
+						<li>熨烫衣物</li>
+					</ol>
+					<h4 class="space-border"></h4>
+					<center><h4>不包含服务</h4></center>
+					<em>出于责任保险，安全约束和其他因素，我们不提供以下服务：</em>
+					<ul>
+						<li>深入污垢的清洗</li>
+						<li>即便能正常触及，但是天花板和天窗不负责清洗</li>
+						<li>外玻璃清洗</li>
+						<li>清洁宠物粪便</li>
+						<li>地毯清洁</li>
+						<li>蒸汽清洁</li>
+						<li>消灭昆虫等（如蟑螂）</li>
+						<li>清洁有危害和发霉的物质</li>
+						<li>景观物品</li>
+						<li>庭院</li>
+						<li>车库</li>
+						<li>露台</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="feature-info">
+			<h2>清洁用品</h2>
+			<p>我们将免费提供大部分必须的清洁用品。<br /><a class="popdown" id='supply'>了解更多</a></p>
+			<div class="bpop" id="bpop-supply">
+				<span class="b-close">x</span>
+				<div class="b-content">
+					<h4 class="space-border">用品包括</h4>
+					<div class="supply-content">
+						<h4 class="supply-title">为您的家庭提供高品质的清洁产品</h4>
+						<table>
+							<tr>
+								<td>
+									<img src="/static/img/sup1.png">
+								</td>
+								<td>
+									<p class="big-font">化学清洁剂</p>
+									<p>万能清洁剂<br />
+									浴室清洁剂<br />
+									厨房清洁剂</p>
+								</td>
+							</tr>
+							</table>
+							<h4 class="supply-title"></h4>
+							<table>
+							<tr>
+								<td>
+									<p class="big-font">清洁工具</p>
+									<p>一副手套<br />
+									4块纤维抹布<br />
+									2块白口布<br />
+									玻璃刮刀<br />
+									百洁布<br />
+									浴缸刷<br />
+									钢丝球</p>
+								</td>
+								<td>
+									<img src="/static/img/sup2.png">
+								</td>
+							</tr>
+						</table>
+					</div>
+					<h4 class="space-border"></h4>
+					<div class="supply-content">
+						<h4 class="supply-title">不包含的清洁用品</h4>
+						<p><em>请确保您可以提供打扫公寓所需的必需用品</em></p>
+						<ul>
+							<li>吸尘器</li>
+							<li>尘拂</li>
+							<li>地板拖把</li>
+							<li>马桶刷</li>
+							<li>水桶</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}
+{% block extra_js %}
+<script type="text/javascript">
+$('#id_bedroom').val('1');
+$('#id_bathroom').val('1');
+$('#id_hour').val('3');
+$(".add-require").click(function(){
+	var need = $(this).attr('class').split(' ')[0];
+	$('.'+need).removeClass("tiffany-blue-btn");
+	if ($(this).hasClass('add-re')){
+		$('#id_'+need).val('True').trigger("change");
+	}else{
+		$('#id_'+need).val('False').trigger("change");
+	}
+	$(this).addClass("tiffany-blue-btn");
+	var total = $(".add-hour[value=True]").length;
+	var bed = Number($("#id_bedroom").val())*0.5;
+	var bath = Number($("#id_bathroom").val())*0.5;
+	var total_hours = 2+bed+bath+total;
+	if (total_hours < 3){
+		var total_hours = 3;
+	}
+	$('#id_hour').val(total_hours);
+});
+$("#id_bedroom, #id_bathroom").change(function(){
+	var bed = Number($("#id_bedroom").val())*0.5;
+	var bath = Number($("#id_bathroom").val())*0.5;
+	var addition = $(".add-hour[value=True]").length;
+	var total_hours = 2+bed+bath+addition;
+	if (total_hours < 3){
+		var total_hours = 3;
+	}
+	$('#id_hour').val(total_hours);
+});
+
+$("#id_laundry").click(function(){
+	$(".no-laundry").removeClass("tiffany-blue-btn");
+});
+$("#id_message").keyup(function(){
+	var counter = $(this).val().length;
+	$("#message-char var").text(300 - counter);
+});
+$('.add-re').tooltip();
+</script>
+{% endblock extra_js %}

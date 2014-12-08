@@ -74,8 +74,6 @@
 		<p><strong>Area:</strong> {{ item.booker.my_profile.get_area_display }}</p>
 		<p><strong>Compound Name:</strong> {{ item.booker.my_profile.compound }}</p>
 		<div id="divide"></div>
-		<form id="pay-form" action="{% url 'online_pay' item.id %}" method="post">
-		{% csrf_token %}
 		<div id="pay_method">
 			<div class="opt-box">
 				<table>
@@ -104,20 +102,7 @@
 			<div class="opt-box">
 				<table>
 					<tr>
-						<td width="10%"><input type="radio" name="pay_method" value="4"  id="alipay"></td>
-						<td width="90%"><label for="alipay">Ali Pay</label></td>
-					</tr>
-					<tr>
-						<td width="10%">&nbsp;</td>
-						<td width="90%"><img src="/static/img/alipay_logo.jpg"></td>
-					</tr>
-				</table>
-			</div>
-			<div style="clear:both;"></div>
-			<div class="opt-box">
-				<table>
-					<tr>
-						<td width="10%"><input type="radio" name="pay_method" value="3"  id="union" disabled="disabled"></td>
+						<td width="10%"><input type="radio" name="pay_method" value="2"  id="union" disabled="disabled"></td>
 						<td width="90%"><label for="union" class="poptip" data-toggle="tooltip" data-placement="top" title="Not available yet">Union Pay</label></td>
 					</tr>
 					<tr>
@@ -128,7 +113,6 @@
 			</div>
 		</div>
 		<button id="s2-sm" type="submit">CONFIRM BOOKING</button>
-		</form>
 		<div class="confirm-pop">
 				<span class="b-close confirm-close">x</span>
 				<div class="confirm-content">
@@ -136,7 +120,6 @@
 					<h4>Here's what to expect next:</h4>
 					<ol>
 						<li>You will receive a confirmation email. Please check your spam box if not received</li>
-						<li>Please put the appointment in your calendar. We will wait a maximum of 15 minutes. If no one is home, you will still be responsible for the payment.</li>
 						<li>You will make the payment before the start of your cleaning to the Merry Cleaner</li>
 						<li>Sign in your account to see schedule details or make a cancellation. For changes, please call us at 021-6380 1553</li>
 					</ol>
@@ -313,13 +296,9 @@ $(document).ready(function(){
 $.ajaxSetup({
 	  data: {csrfmiddlewaretoken: '{{ csrf_token }}' }
 });
-$('#s2-sm').click(function(e){
-	e.preventDefault();
+$('#s2-sm').click(function(){
 	$(this).html('PROCESSING...');
 	$(this).attr('disabled','disabled');
-	if ($("input[name='pay_method']:checked").val()==4){
-		$('#pay-form').submit();
-	}else{
 	$.post(
 			"{% url 'handle_confirm' %}",
 			function(data){
@@ -332,7 +311,6 @@ $('#s2-sm').click(function(e){
 				    });
 				}
 			});
-	}
 });
 });
 $('.confirm-close').click(function(){

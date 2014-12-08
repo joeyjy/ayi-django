@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/step.css">
+{% endblock extra_css %}
+{% block content %}
+<div class="page-box">
+	<div class="container">
+		<div id="custom-step">
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-2">
+					 <div class="service_border bdr-blue"></div>
+	                 <div class="service_icon active">
+	                        1
+	                 </div>
+	                 <div class="service_content">
+	                     <h3>日期时间</h3>
+	                 </div>
+				</div>
+				<div class="col-md-2">
+					 <div class="service_border bdr-default"></div>
+	                 <div class="service_icon active">
+	                        2
+	                 </div>
+	                 <div class="service_content">
+	                     <h3>联系信息</h3>
+	                 </div>
+				</div>
+				<div class="col-md-2">
+					 <div class="service_border bdr-default"></div>
+	                 <div class="service_icon default">
+	                        3
+	                 </div>
+	                 <div class="service_content text-default">
+	                     <h3>清洁要求</h3>
+	                 </div>
+				</div>
+				<div class="col-md-2">
+	                 <div class="service_icon default">
+	                        4
+	                 </div>
+	                 <div class="service_content text-default">
+	                     <h3>确认付款</h3>
+	                 </div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="top-line col-md-8">
+		<h3>联系信息</h3>
+		<a href="{% url 'userena_signin' %}">已经注册?</a>
+	</div>
+	<div class="col-md-8">
+		<form method="post">
+			{% csrf_token %}
+			<ul class="form-inner">
+				<li class="form-fields">
+					<font>用户名</font>
+					{{ form.username }}
+					{{ form.username.errors }}
+				</li>
+				<li class="form-fields">
+					<font>邮箱</font>
+					{{ form.email }}
+					{{ form.email.errors }}
+				</li>
+				<li class="make-line"></li>
+				<li class="form-fields">
+					<font>手机号码</font>
+					{{ form.mobile }}
+					{{ form.mobile.errors }}
+				</li>
+				<li class="form-fields">
+					<font>确认邮箱</font>
+					{{ form.email2 }}
+					{{ form.email2.errors }}
+					{{ form.non_field_errors }}
+				</li>
+				<li class="make-line"></li>
+				<li class="form-fields">
+					<font>姓</font>
+					{{ form.first_name }}
+					{{ form.first_name.errors }}
+				</li>
+				<li class="form-fields">
+					<font>密码</font>
+					{{ form.password1 }}
+					{{ form.password1.errors }}
+				</li>
+				<li class="make-line"></li>
+				<li class="form-fields">
+					<font>名</font>
+					{{ form.last_name }}
+					{{ form.last_name.errors }}
+				</li>
+			</ul>
+			<div class="top-line">
+				<h3>房屋信息</h3><br />
+			</div>
+			<div style="clear:both;"></div>
+			<ul class="form-inner">
+				<li class="form-fields">
+					<font>公寓名称<span class="optional-area">（可选）</span></font>
+					{{ form.compound }}
+					{{ form.compound.errors }}
+				</li>
+				<li class="form-fields">
+					<font>区域<span class="optional-area">（可选）</span></font>
+					{{ form.area }}
+					{{ form.area.errors }}
+				</li>
+				<li class="make-line"></li>
+				<li class="form-fields">
+					<font>街道号码</font>
+					{{ form.street_num }}
+					{{ form.street_num.errors }}
+				</li>
+				<li class="form-fields">
+					<font>街道名称</font>
+					{{ form.street }}
+					{{ form.street.errors }}
+				</li>
+				<li class="make-line"></li>
+				<li class="form-fields">
+					<font>交叉路口</font>
+					{{ form.cross }}
+					{{ form.cross.errors }}
+				</li>
+				<li class="form-fields">
+					<font>楼房号码<span class="optional-area">（可选）</span></font>
+					{{ form.bldg_num }}
+					{{ form.bldg_num.errors }}
+				</li>
+				<li class="make-line"></li>
+				<li class="form-fields">
+					<font>公寓号码<span class="optional-area">（可选）</span></font>
+					{{ form.apt_num }}
+					{{ form.apt_num.errors }}
+				</li>
+				<li class="form-fields">
+					{{ form.captcha }}
+					{{ form.captcha.errors }}
+				</li>
+			</ul>
+			<button id="s2-sm" type="submit">下一步</button>
+		</form>
+	</div>
+	<div class="col-md-1"></div>
+	<div class="col-md-3">
+		<div class="feature-info">
+			<h2>安全保障，值得信赖</h2>
+			<p>每一位清洁超人都经过严格的实名认证和资料备案，以确保您的家庭安全</p>
+		</div>
+		<div class="feature-info">
+			<h2>满意的服务保证</h2>
+			<p>如果您对我们的清洁服务不满意，我们承诺免费重新帮您打扫</p>
+		</div>
+	</div>
+</div>
+{% endblock content %}
+{% block extra_js %}
+<script type="text/javascript">
+$(document).ready(function(){
+	$.ajaxSetup({
+			  data: {csrfmiddlewaretoken: '{{ csrf_token }}' }
+	});
+	$('.captcha').click(function(){
+	    $.get("?nc=1", function(result){
+	       	//alert(result);
+	        $('.captcha').attr("src",result);
+	        $('#id_captcha_0').attr("value",result.split('/')[3]);
+	     });
+	return false;
+	});
+	$('#id_compound').change(function(){
+		//alert ($(this).children('option:selected').val()); 
+		var pk = $(this).children('option:selected').val();
+		if (pk){
+		$.get('/accounts/compound/'+pk, function (data) {
+            //$("#id_location").data('position', data);
+            $('#id_area, #id_street_num, #id_street, #id_cross').attr('readonly','true');
+            $('#id_area').val(data.area);
+            $('#id_street_num').val(data.address);
+            $('#id_street').val(data.name);
+            $('#id_cross').val(data.cross);
+        });
+		}else{
+			$('#id_area, #id_street_num, #id_street, #id_cross').removeAttr('readonly');
+			$('#id_area, #id_street_num, #id_street, #id_cross').val('');
+		}
+	});
+});
+$('.poptip').tooltip();
+</script>
+{% endblock extra_js %}

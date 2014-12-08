@@ -1,0 +1,41 @@
+{% extends 'userena/base_userena.html' %}
+{% load i18n %}
+{% load url from future %}
+{% block description %}Sign In - Luxury ayi house cleaning in Shanghai, China for expats and local Chinese.  English speaking customer service. Book Online{% endblock description %}
+{% block title %}{% trans "Merry Cleaning Services - Sign In" %}{% endblock %}
+
+{% block content_extra %}
+<div id="si-content">
+	<div id="si-box">
+		<form action="" method="post">
+		  {% csrf_token %}
+		  <fieldset>
+		    {{ form.non_field_errors }}
+		    {% for field in form %}
+		    {% comment %} Displaying checkboxes differently {% endcomment %}
+		    {% if field.name == 'password' %}
+		    <p class="si-field">
+		    <label for="id_password">密码 <a href="{% url 'userena_password_reset' %}" title="{% trans 'Forgot your password?' %}">{% trans "忘记密码?" %}</a></label>{{ field }} 
+		    </p>
+		    {% else %}
+		    <p class="si-field">
+		    <label for="id_identification">邮箱地址</label>
+		    <input id="id_identification" maxlength="75" name="identification" placeholder="Email Address" type="text">
+		    </p>
+		    {% endif %}
+		    {{ field.errors }}
+		    {% endfor %}
+		  </fieldset>
+		  <input id="si_sub" type="submit" value="登录" />
+		  {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
+		</form>
+	</div>
+	<div id="si-fea">
+		<p>下单</p>
+		<p>更改/取消订单</p>
+		<p>订单历史</p>
+		<p>服务评价</p>
+		<div id="si-qr"><img src="/static/img/qr.jpg" alt="" /></div>
+	</div>
+</div>
+{% endblock %}

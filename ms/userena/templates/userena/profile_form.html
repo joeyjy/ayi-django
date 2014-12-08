@@ -7,13 +7,19 @@
 {% block content_title %}<h2>{% blocktrans with profile.user.username as username %}Account &raquo; {{ username }}{% endblocktrans %}</h2>{% endblock %}
 
 {% block content_extra %}
+{% if request.user.is_staff %}
+<p>&nbsp;</p>
+{% else %}
 {% include 'book_line.html' %}
+{% endif %}
 <div id="r-column">
 	<h5 id="a-active">My Account</h5>
-	<h5><a href="{% url 'booking_history' user.username %}">Cleaning History</a></h5>
-	<h5><a href="{% url 'billing' user.username %}">Billing History</a></h5>
+	<h5><a href="{% url 'booking_history' user.username %}" id="hist_tab">Cleaning History</a></h5>
+	<h5><a href="{% url 'billing' user.username %}" id="bill_tab">Billing History</a></h5>
+	{% if not request.user.is_staff %}
 	<h5><a href="{% url 'userena_password_change' user.username %}">{% trans "Change Password" %}</a></h5>
 	<h5><a href="{% url 'userena_signout'%}">Sign Out</a></h5>
+	{% endif %}
 	<div id="a-box">
 		<div id="a-type">Account Balance</div>
 		<div id="a-rest">0 RMB</div>
@@ -23,7 +29,7 @@
 	<ul class="form-inner">
 				<li class="form-fields input-group">
 					<font>User Name</font>
-					<input type="text" value="{{ profile.user.username }}" disabled="disabled">
+					<input type="text" value="{{ profile.user.username }}" disabled="disabled" id="customer_name">
 				</li>
 				<li class="form-fields">
 					<font>Email</font>
@@ -93,13 +99,43 @@
 				</li>
 	</ul>
 	{{ form.privacy }}
-	<input id="s2-sm" type="submit" value="{% trans "SAVE CHANGES" %}" />
+	<input id="s2-sm" type="submit" value="{% trans "SAVE CHANGES" %}" {% if request.user.is_staff %}disabled="disabled"{% endif %} />
 	</form>
 </div>
-
-
+<div class="confirm-pop">
+	<span class="b-close confirm-close">x</span>
+	<div class="confirm-content">
+		<h3 id="confirm-top">YOUR BOOKING IS NOW CONFIRMED</h3>
+		<h4>ALIPAY PAYMENT IS NOW COMPLETED</h4>
+		<h4>Here's what to expect next:</h4>
+		<ol>
+			<li>You will receive a confirmation email. Please check your spam box if not received</li>
+			<li>Please put the appointment in your calendar. We will wait a maximum of 15 minutes. If no one is home, you will still be responsible for the payment.</li>
+			<li>Sign in your account to see schedule details or make a cancellation. For changes, please call us at 021-6380 1553</li>
+		</ol>
+    </div>
+</div>
 {% endblock %}
 {% block extra_js %}
+{% if request.user.is_staff %}
+<script type="text/javascript">
+var GET = $.urlGet();
+var paid = GET['is_success'];
+if(paid=='T'){
+	$('.confirm-pop').bPopup({
+		modalClose: false,
+	    easing: 'easeOutBack', //uses jQuery easing plugin
+        speed: 450,
+        transition: 'slideDown'
+    });
+}
+var username = $('#customer_name').val();
+var bill_url = '/accounts/billing/'+username;
+var hist_url = '/accounts/history/'+username;
+$('#bill_tab').attr('href',bill_url);
+$('#hist_tab').attr('href',hist_url);
+</script>
+{% endif %}
 <script type="text/javascript">
 $(document).ready(function(){
 	$.ajaxSetup({

@@ -31,6 +31,8 @@ urlpatterns = patterns('',
     url(r'^faq/', 'home.views.merry_faq', name='merry_faq'),
     url(r'^about-us/', 'home.views.about_us', name='about_us'),
     url(r'^lang/(?P<lang>\w+)/', 'home.views.switch_to_cn', name='switch_to_cn'),
+    url(r'^payment/(?P<id>\d+)/$', "booking.views.payment", name="online_pay"),
+    url(r'^alipay_notify_endpoint/$', "booking.views.alipay_notify", name="alipay_notify_endpoint"),
 )
 
 # Uncomment the next line to serve media files in dev.

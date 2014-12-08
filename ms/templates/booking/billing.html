@@ -5,13 +5,19 @@
 {% block title %}{% trans "Billing History" %}{% endblock %}
 
 {% block content_extra %}
+{% if request.user.is_staff %}
+<p>&nbsp;</p>
+{% else %}
 {% include 'book_line.html' %}
+{% endif %}
 <div id="r-column">
-	<h5><a href="{% url 'userena_profile_edit' user.username %}">My Account</a></h5>
-	<h5><a href="{% url 'booking_history' user.username %}">Cleaning History</a></h5>
+	<h5><a href="{% url 'userena_profile_edit' user.username %}" id="accounts_tab">My Account</a></h5>
+	<h5><a href="{% url 'booking_history' user.username %}" id="hist_tab">Cleaning History</a></h5>
 	<h5 id="a-active">Billing History</h5>
+	{% if not request.user.is_staff %}
 	<h5><a href="{% url 'userena_password_change' user.username %}">{% trans "Change Password" %}</a></h5>
 	<h5><a href="{% url 'userena_signout'%}">Sign Out</a></h5>
+	{% endif %}
 	<div id="a-box">
 		<div id="a-type">Account Balance</div>
 		<div id="a-rest">0 RMB</div>
@@ -29,3 +35,13 @@
 </div>
 
 {% endblock %}
+{% block extra_js %}
+{% if request.user.is_staff %}
+<script type="text/javascript">
+var profile_url = '/accounts/'+'{{customer}}'+'/edit';
+var hist_url = '/accounts/history/'+'{{customer}}';
+$('#accounts_tab').attr('href',profile_url);
+$('#hist_tab').attr('href',hist_url);
+</script>
+{% endif %}
+{% endblock extra_js %}

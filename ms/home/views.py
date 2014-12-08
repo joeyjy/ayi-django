@@ -27,6 +27,9 @@ def index(request):
             else:
                 return HttpResponseRedirect(reverse('clean_info'))
     default_date = DefaultDate()
+    if request.session.get('lang') == 'cn':
+        return render_to_response('cn/home/index.html',
+                                  RequestContext(request, locals()))
     return render_to_response('home/index.html',
                                   RequestContext(request, locals()))
 
@@ -37,19 +40,25 @@ def clean_info(request):
                                   RequestContext(request, locals()))
                                   
 def privacy_policy(request):
-    pass
+    if request.session.get('lang') == 'cn':
+        return render_to_response('cn/home/policy.html',
+                                  RequestContext(request, locals()))
 
     return render_to_response('home/policy.html',
                                   RequestContext(request, locals()))
 
 def merry_faq(request):
-    pass
+    if request.session.get('lang') == 'cn':
+        return render_to_response('cn/home/faq.html',
+                                  RequestContext(request, locals()))
 
     return render_to_response('home/faq.html',
                                   RequestContext(request, locals()))
                                   
 def about_us(request):
-    pass
+    if request.session.get('lang') == 'cn':
+        return render_to_response('cn/home/about.html',
+                                  RequestContext(request, locals()))
 
     return render_to_response('home/about.html',
                                   RequestContext(request, locals()))

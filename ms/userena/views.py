@@ -159,6 +159,9 @@ def signup(request, signup_form=SignupForm,
             print form.errors
     if not extra_context: extra_context = dict()
     extra_context['form'] = form
+    if request.session.get('lang') == 'cn':
+        return ExtraContextTemplateView.as_view(template_name='cn/home/info.html',
+                                            extra_context=extra_context)(request)
     return ExtraContextTemplateView.as_view(template_name=template_name,
                                             extra_context=extra_context)(request)
 
@@ -483,6 +486,9 @@ def signin(request, auth_form=AuthenticationForm,
         'form': form,
         'next': request.REQUEST.get(redirect_field_name),
     })
+    if request.session.get('lang') == 'cn':
+        return ExtraContextTemplateView.as_view(template_name='userena/cn/signin_form.html',
+                                            extra_context=extra_context)(request)
     return ExtraContextTemplateView.as_view(template_name=template_name,
                                             extra_context=extra_context)(request)
 
@@ -645,10 +651,13 @@ def password_change(request, username, template_name='userena/password_form.html
     return ExtraContextTemplateView.as_view(template_name=template_name,
                                             extra_context=extra_context)(request)
 @secure_required
-@permission_required_or_403('change_profile', (get_profile_model(), 'user__username', 'username'))
+#@permission_required_or_403('change_profile', (get_profile_model(), 'user__username', 'username'))
 def profile_edit(request, username, edit_profile_form=EditProfileForm,
                  template_name='userena/profile_form.html', success_url=None,
                  extra_context=None, **kwargs):
+    print 'aaaaaaaaaaaaa'
+    if request.user.username != username and not request.user.has_perm('accounts.change_profile'):
+        raise PermissionDenied
     """
     Edit profile.
 

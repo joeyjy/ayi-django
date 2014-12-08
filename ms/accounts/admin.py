@@ -7,7 +7,7 @@ class AyiAdmin(admin.ModelAdmin):
     list_display = ('name', 'area', 'mobile', 'rate', 'home', 'work_place',)
 
 class MyProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'get_join', 'compound', 'area', 'get_email', 'mobile')
+    list_display = ('user', 'get_join', 'compound', 'area', 'get_email', 'mobile', 'revenue', 'balance')
     search_fields = ('user__username', 'user__email', )
     ordering = ('user__username', )
     #list_filter = ['date_created']
