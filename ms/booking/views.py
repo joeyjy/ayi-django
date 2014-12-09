@@ -143,7 +143,7 @@ def payment(request, id):
             url = alipay.create_direct_pay_by_user_url(
                         out_trade_no=item.id,
                         subject='Merry clean service',
-                        total_fee=1,
+                        total_fee=fee,
                         return_url=url(reverse('userena_profile_edit',args=[item.booker.username])),
                         notify_url=url("/alipay_notify_endpoint/"))
 
