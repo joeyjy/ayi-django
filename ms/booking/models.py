@@ -25,6 +25,7 @@ class Booking(CommonMixin, models.Model):
     hour = models.FloatField(choices=HOUR, null=True, blank=True, verbose_name=u'Hours')
     message = models.TextField(validators=[MaxLengthValidator(300)], null=True, blank=True, verbose_name=u'SPECIAL INSTRUCTIONS')
     fee = models.IntegerField(null=True, blank=True)
+    pay_method = models.IntegerField(choices=PAYMETHOD, null=True, blank=True, verbose_name=u'payment')
     date_created = models.DateTimeField(null=True, blank=True, verbose_name='Date Created')
     date_modified = models.DateTimeField(null=True, blank=True)
 

@@ -117,8 +117,8 @@
 			<div class="opt-box">
 				<table>
 					<tr>
-						<td width="10%"><input type="radio" name="pay_method" value="3"  id="union" disabled="disabled"></td>
-						<td width="90%"><label for="union" class="poptip" data-toggle="tooltip" data-placement="top" title="Not available yet">Union Pay</label></td>
+						<td width="10%"><input type="radio" name="pay_method" value="3"  id="unipay"></td>
+						<td width="90%"><label for="unipay">Union Pay</label></td>
 					</tr>
 					<tr>
 						<td width="10%">&nbsp;</td>
@@ -317,7 +317,8 @@ $('#s2-sm').click(function(e){
 	e.preventDefault();
 	$(this).html('PROCESSING...');
 	$(this).attr('disabled','disabled');
-	if ($("input[name='pay_method']:checked").val()==4){
+	var choose_method = $("input[name='pay_method']:checked").val()
+	if (choose_method==4 || choose_method==3){
 		$('#pay-form').submit();
 	}else{
 	$.post(

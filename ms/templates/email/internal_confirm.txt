@@ -1,5 +1,5 @@
 {% ifequal status 5 %}
-ALIPAY PAYMENT COMPLETED
+PAYMENT COMPLETED
 {% endifequal %}
 Customer
 First Name: {{ firstname }}

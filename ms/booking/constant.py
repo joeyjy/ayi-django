@@ -1,3 +1,9 @@
+PAYMETHOD = (
+    (1,"cash"),
+    (2,"alipay"),
+    (3,"union pay"),
+    (4,"credit card"),
+)
 STATUS = (
     (1,"Open"),
     (2,"Completed"),
@@ -26,19 +32,19 @@ LAUNDRY = (
     (4,"YES(+120 MINS)"),
 )
 HOUR = (
-    (3,"3 hours"),
+    (3.0,"3 hours"),
     (3.5,"3.5 hours"),
-    (4,"4 hours"),
+    (4.0,"4 hours"),
     (4.5,"4.5 hours"),
-    (5,"5 hours"),
+    (5.0,"5 hours"),
     (5.5,"5.5 hours"),
-    (6,"6 hours"),
+    (6.0,"6 hours"),
     (6.5,"6.5 hours"),
-    (7,"7 hours"),
+    (7.0,"7 hours"),
     (7.5,"7.5 hours"),
-    (8,"8 hours"),
+    (8.0,"8 hours"),
     (8.5,"8.5 hours"),
-    (9,"9 hours"),
+    (9.0,"9 hours"),
     (9.5,"9.5 hours"),
-    (10,"10 hours"),
+    (10.0,"10 hours"),
 )

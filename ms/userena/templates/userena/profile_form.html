@@ -106,7 +106,7 @@
 	<span class="b-close confirm-close">x</span>
 	<div class="confirm-content">
 		<h3 id="confirm-top">YOUR BOOKING IS NOW CONFIRMED</h3>
-		<h4>ALIPAY PAYMENT IS NOW COMPLETED</h4>
+		<h4>PAYMENT IS NOW COMPLETED</h4>
 		<h4>Here's what to expect next:</h4>
 		<ol>
 			<li>You will receive a confirmation email. Please check your spam box if not received</li>
@@ -121,7 +121,8 @@
 <script type="text/javascript">
 var GET = $.urlGet();
 var paid = GET['is_success'];
-if(paid=='T'){
+var paid_u = GET['payResult'];
+if(paid=='T' || paid_u=='1'){
 	$('.confirm-pop').bPopup({
 		modalClose: false,
 	    easing: 'easeOutBack', //uses jQuery easing plugin

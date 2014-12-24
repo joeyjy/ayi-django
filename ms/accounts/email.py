@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import time
 from pytz import timezone
 
@@ -5,6 +7,17 @@ from django.conf import settings
 from django.template.loader import get_template, render_to_string
 from django.template import Context
 from .utils import send_mail_via_tencent
+
+def create_sms(user,obj,cancel=None):
+    import requests
+    url = 'http://api.sms.cn/mt/'
+    date_obj = obj.clean_time.astimezone(timezone('Asia/Shanghai'))
+    mobile = user.my_profile.mobile
+    content = '您的预订已成功。若更改服务时间，请致电021-63801553。Booking Confirmed- at %s for %s hrs. Call 021-63801553 from 9AM to 6PM to make changes.【MCS清洁超人】' % (date_obj.strftime('%I:%M %p, %b %d, %Y'), obj.hour)
+    if cancel:
+        content = '您的预订已取消。期待您的下次预订。Booking Cancellation- at %s for %s hrs. Look forward to your next booking.【MCS清洁超人】' % (date_obj.strftime('%I:%M %p, %b %d, %Y'), obj.hour)
+    payload = {'uid':settings.SMS_USER, 'pwd':settings.SMS_PWD, 'mobile':mobile, 'encode':'utf8', 'content':content}
+    requests.post(url,data=payload)
 
 def create_mail_welcome(user):
     subject = 'Merry Cleaning Services - Welcome!'

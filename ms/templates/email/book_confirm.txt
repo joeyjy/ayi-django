@@ -4,7 +4,7 @@ Thank you for making a cleaning appointment with Merry Cleaning Services!
 
 Please put the appointment in your calendar. We will wait a maximum of 15 minutes. If no one is home, you will still be responsible for the payment.
 {% ifequal status 5 %}
-Your Alipay payment is completed.
+Your payment is completed.
 {% endifequal %}
 Your booking details are below:
 
