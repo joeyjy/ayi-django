@@ -1,0 +1,18 @@
+.page-box {
+margin-top: 90px;
+background: #fff;
+}
+#revenue-opt{
+	margin-top:30px;
+}
+#revenue-opt tr .opt{
+	padding: 10px 20px;
+	font-weight:bold;
+}
+#ayi-select{
+	width: 174px;
+    height: 26px;
+}
+.number-large{
+	font-size:24px;
+}

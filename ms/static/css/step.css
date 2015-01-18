@@ -32,6 +32,7 @@ a:hover{
 }
 #custom-step .col-md-2{
 	width:170px;
+	float:left;
 }
 #custom-step .active{
 	background: #84d6d2;
@@ -105,8 +106,21 @@ a:hover{
 	width:100%;
 	font-weight:bold;
 }
-.col-md-8, .col-md-3{
+.col-md-9, .col-md-8, .col-md-3, .col-md-1{
 	padding:0;
+	float:left;
+}
+.col-md-9{
+	width:765px;
+}
+.col-md-8{
+	width:650px;
+}
+.col-md-1{
+	width:86px;
+}
+.col-md-3{
+	width:255px;
 }
 .form-inner, .form-needs{
 	padding: 0;

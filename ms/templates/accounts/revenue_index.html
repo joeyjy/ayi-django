@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/ayi.css">
+<link rel="stylesheet" href="/static/css/bootstrap-datetimepicker.css">
+{% endblock extra_css %}
+{% block content %}
+<div class="page-box">
+	<div class="container" style="width: 1050px;">
+	    <h2>Revenue resluts</h2>
+	    <form action="{% url 'revenue_results' %}" method="get">
+	        <table id="revenue-opt">
+	        	<tr>
+	        		<td class="opt">Time:</td>
+	        		<td><input type="text" class="year-pick" readonly="readonly" name="time" value=""></td>
+	        	</tr>
+	    	    <tr>
+	        		<td class="opt">Ayi:</td>
+	        		<td>
+	        		    <select name="ayi" id="ayi-select">
+	        		    	<option value='' selected="selected">---------</option>
+							{% for one in ayis %}
+								<option value="{{ one.id }}">{{ one.name }}</option>
+							{% endfor %}
+	        		    </select>
+	        		</td>
+	        	</tr>
+	        	<tr>
+	        		<td class="opt"><input type="submit" class="btn" value="GO"></td>
+	        		<td>&nbsp;</td>
+	        	</tr>
+	    	</table>
+	    </form>
+	    <br /><br />
+	    <strong>Total number of completed bookings: <font class="number-large">{{qs.count}}</font><br />
+	    Total revenue: <font class="number-large">{{ revenue }}</font></strong>
+	</div>
+</div>
+
+{% endblock content %}
+{% block extra_js %}
+<script src="/static/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript">
+$('.year-pick').datetimepicker({
+	format:'yyyy-m',
+	initialDate : new Date(),
+	startView:4,
+	maxView:4,
+	minView:3,
+	autoclose:true,
+});
+</script>
+{% endblock extra_js %}

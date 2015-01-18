@@ -10,6 +10,8 @@ class BookingAdmin(admin.ModelAdmin):
     list_display = ('booker', 'status', 'pay_method', 'date_created', 'hour', 'clean_time', 'get_compound', 'get_area', 'clean_ayi', 'bedroom',)
     search_fields = ('booker__username', 'booker__email', )
     ordering = ('-date_created', )
+    date_hierarchy = 'clean_time'
+    list_filter = ('status', 'pay_method')
     readonly_fields = ('get_name', 'get_mobile', 'get_email', 'get_compound', 'get_street_num', 'get_street', 'get_cross', 'get_area', 'get_bldg', 'get_apt')
     #list_filter = ['date_created']
     def get_name(self, obj):
