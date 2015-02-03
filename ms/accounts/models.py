@@ -24,7 +24,7 @@ class Compound(models.Model):
 class Ayi(models.Model):
     name = models.CharField(max_length=500, null=True, blank=True)
     pic = models.ImageField(upload_to='ayi/image/', null=True, blank=True, verbose_name='Ayi Photo')
-    id_num = models.IntegerField(null=True, blank=True, verbose_name='ID card number')
+    id_num = models.BigIntegerField(null=True, blank=True, verbose_name='ID card number')
     street_num = models.IntegerField(null=True, blank=True)
     street = models.CharField(max_length=300, null=True, blank=True)
     area = models.IntegerField(choices=AREA, null=True, blank=True)
@@ -36,7 +36,12 @@ class Ayi(models.Model):
 
     class Meta:
         ordering = ['name']
-
+    def admin_image(self):
+        if self.pic:
+            return '<img src="/media/%s"/>' % self.pic
+        else:
+            return 'no thumbnail.'
+    admin_image.allow_tags = True
     def __unicode__(self):
         return self.name
 

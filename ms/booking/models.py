@@ -14,6 +14,7 @@ from booking.utils import CommonMixin
 
 class Booking(CommonMixin, models.Model):
     booker = models.ForeignKey(User, db_index=True, verbose_name=u'Customer')
+    book_type = models.IntegerField(choices=TYPE, null=True, blank=True)
     status = models.IntegerField(choices=STATUS, null=True, blank=True)
     clean_ayi = models.ForeignKey(Ayi, null=True, blank=True, verbose_name=u'ayi')
     clean_time = models.DateTimeField(null=True, blank=True, verbose_name=u'Clean Time')

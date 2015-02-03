@@ -15,13 +15,14 @@ def switch_to_cn(request, lang):
 def index(request):
     if request.method == 'POST':
         post_data = request.POST.copy()
-        print post_data
-        if post_data['clean_date'] and post_data['clean_time']:
+        #print post_data
+        if post_data['clean_date'] and post_data['clean_time'] and post_data['clean_type']:
             book_time = post_data['clean_date'] + ' ' + post_data['clean_time']
             conv = time.strptime(book_time,"%d %b %Y %H:%M")
             request.session['booking_time'] = time.strftime('%Y-%m-%d %H:%M',conv)
-            print request.session['booking_time']
-            print book_time
+	    request.session['booking_type'] = int(post_data['clean_type'])
+            #print request.session['booking_time']
+            print request.session['booking_type']
             if request.user.id:
                 return HttpResponseRedirect(reverse('clean_needs'))
             else:

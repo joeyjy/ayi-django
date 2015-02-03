@@ -6,7 +6,7 @@
 {% block content %}
 <div class="page-box">
 	<div class="container" style="width: 1050px;">
-	    <h2>Revenue resluts</h2>
+	    <h2>Payroll</h2>
 	    <form action="{% url 'revenue_results' %}" method="get">
 	        <table id="revenue-opt">
 	        	<tr>
@@ -17,7 +17,7 @@
 	        		<td class="opt">Ayi:</td>
 	        		<td>
 	        		    <select name="ayi" id="ayi-select">
-	        		    	<option value='' selected="selected">---------</option>
+	        		    	<option value='' selected="selected">-------------------------------</option>
 							{% for one in ayis %}
 								<option value="{{ one.id }}">{{ one.name }}</option>
 							{% endfor %}

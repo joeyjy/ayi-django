@@ -5,6 +5,7 @@ You have CANCELED the booking below:
 Booking CANCELED
 First Name: {{ firstname }}
 Last Name: {{ lastname }}
+Type: {{ type }}
 Day: {{ day }}
 Date: {{ date }}
 Time: {{ time }}

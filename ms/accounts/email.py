@@ -62,6 +62,7 @@ def create_mail_book_confirm(user, obj):
         'area': user.my_profile.get_area_display(),
         'compound': user.my_profile.compound,
         'status': obj.status,
+        'type': obj.get_book_type_display(),
     })
     template = 'email/book_confirm.txt'
     message = get_template(template).render(context)
@@ -101,6 +102,7 @@ def internal_book_confirm(user, obj):
         'area': user.my_profile.get_area_display(),
         'compound': user.my_profile.compound,
         'status': obj.status,
+        'type': obj.get_book_type_display(),
     })
     template = 'email/internal_confirm.txt'
     message = get_template(template).render(context)
@@ -137,6 +139,7 @@ def create_mail_book_cancel(user, obj):
         'cross': user.my_profile.cross,
         'area': user.my_profile.get_area_display(),
         'compound': user.my_profile.compound,
+        'type': obj.get_book_type_display(),
     })
     template = 'email/book_cancel.txt'
     message = get_template(template).render(context)
@@ -174,6 +177,7 @@ def internal_book_cancel(user, obj):
         'cross': user.my_profile.cross,
         'area': user.my_profile.get_area_display(),
         'compound': user.my_profile.compound,
+        'type': obj.get_book_type_display(),
     })
     template = 'email/internal_cancel.txt'
     message = get_template(template).render(context)

@@ -109,21 +109,21 @@
 				</li>
 				<li class="ne-li-2">
 					<select id="id_hour" name="hour">
-						<option value="3" selected="selected">3 小时</option>
+						<option value="3.0" selected="selected">3 小时</option>
 						<option value="3.5">3.5 小时</option>
-						<option value="4">4 小时</option>
+						<option value="4.0">4 小时</option>
 						<option value="4.5">4.5 小时</option>
-						<option value="5">5 小时</option>
+						<option value="5.0">5 小时</option>
 						<option value="5.5">5.5 小时</option>
-						<option value="6">6 小时</option>
+						<option value="6.0">6 小时</option>
 						<option value="6.5">6.5 小时</option>
-						<option value="7">7 小时</option>
+						<option value="7.0">7 小时</option>
 						<option value="7.5">7.5 小时</option>
-						<option value="8">8 小时</option>
+						<option value="8.0">8 小时</option>
 						<option value="8.5">8.5 小时</option>
-						<option value="9">9 小时</option>
+						<option value="9.0">9 小时</option>
 						<option value="9.5">9.5 小时</option>
-						<option value="10">10 小时</option>
+						<option value="10.0">10 小时</option>
 					</select>
 				</li>
 				<li class="ne-li-3"><h3>备注</h3></li>
@@ -304,7 +304,7 @@
 <script type="text/javascript">
 $('#id_bedroom').val('1');
 $('#id_bathroom').val('1');
-$('#id_hour').val('3');
+$('#id_hour').val('3.0');
 $(".add-require").click(function(){
 	var need = $(this).attr('class').split(' ')[0];
 	$('.'+need).removeClass("tiffany-blue-btn");
@@ -321,7 +321,7 @@ $(".add-require").click(function(){
 	if (total_hours < 3){
 		var total_hours = 3;
 	}
-	$('#id_hour').val(total_hours);
+	$('#id_hour').val(total_hours.toFixed(1));
 });
 $("#id_bedroom, #id_bathroom").change(function(){
 	var bed = Number($("#id_bedroom").val())*0.5;
@@ -331,7 +331,7 @@ $("#id_bedroom, #id_bathroom").change(function(){
 	if (total_hours < 3){
 		var total_hours = 3;
 	}
-	$('#id_hour').val(total_hours);
+	$('#id_hour').val(total_hours.toFixed(1));
 });
 
 $("#id_laundry").click(function(){

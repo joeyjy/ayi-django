@@ -31,6 +31,10 @@ def pay(request):
     if request.session.get('pay_booking_id', False):
         item = Booking.objects.get(id=request.session['pay_booking_id'])
         fee = item.hour*35
+        per_hour = 35
+        if item.book_type == 1:
+            fee = item.hour*50
+            per_hour = 50
     else:
         return HttpResponse('Pay without booking anything? :)')
 
@@ -51,6 +55,7 @@ def clean_needs(request):
             obj.booker = request.user
             obj.status = 4
             obj.hour = post_data.get('hour')
+            obj.book_type = request.session.get('booking_type', '')
             obj.clean_time = request.session.get('booking_time', '')
             obj.save()
             request.session['pay_booking_id'] = obj.id
@@ -142,6 +147,9 @@ def payment(request, id):
     item = get_object_or_404(Booking, id=id)
     fee = item.hour*35
     fee_uni = item.hour*3500
+    if item.book_type == 1:
+        fee = item.hour*50
+        fee_uni = item.hour*5000
     url = lambda path: "".join(["http://", get_current_site(request).domain, path])
     if request.method == "POST":
         data = request.POST.copy()

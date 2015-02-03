@@ -4,6 +4,7 @@ Last Name: {{ lastname }}
 Phone: {{ phone }}
 
 Canceled Booking:
+Type: {{ type }}
 Day: {{ day }}
 Date: {{ date }}
 Time: {{ time }}

@@ -7,6 +7,7 @@ Last Name: {{ lastname }}
 Phone: {{ phone }}
 
 Booking Details
+Type: {{ type }}
 Day: {{ day }}
 Date: {{ date }}
 Time: {{ time }}

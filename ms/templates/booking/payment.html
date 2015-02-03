@@ -61,7 +61,7 @@
 		</div>
 		<div class="co-sc">
 			<h3>COST</h3>
-			<p>{{ item.hour }} hours @ 35 rmb/hr</p>
+			<p>{{ item.hour }} hours @ {{ per_hour }} rmb/hr</p>
 			<p><strong>Total Cost:</strong> {{ fee }} rmb</p>
 		</div>
 		<div style="clear:both;"></div>
@@ -73,6 +73,9 @@
 		<p><strong>Cross Street:</strong> {{ item.booker.my_profile.cross }}</p>
 		<p><strong>Area:</strong> {{ item.booker.my_profile.get_area_display }}</p>
 		<p><strong>Compound Name:</strong> {{ item.booker.my_profile.compound }}</p>
+		<div style="clear:both;"></div>
+		<br />
+		<p><strong>**Cleaning Rate:</strong><br />One Time is 50rmb/hour - This applies to all cleanings which are NOT weekly.  You will need to make each bookings online.<br /><br />Weekly is 35rmb/hour - We will come to your apartment EVERY week on the SAME day and time as indicated by this booking.  Therefore, you will NOT need to make further bookings online for the same day and time.  If you wish to cancel or change the day or time, please call 24 hours in advance at (021) 6380 1553, otherwise we will show up as normal and you will be charged.</p>
 		<div id="divide"></div>
 		<form id="pay-form" action="{% url 'online_pay' item.id %}" method="post">
 		{% csrf_token %}

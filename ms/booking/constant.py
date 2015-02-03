@@ -4,6 +4,10 @@ PAYMETHOD = (
     (3,"union pay"),
     (4,"credit card"),
 )
+TYPE = (
+    (1,"One Time"),
+    (2,"Weekly"),
+)
 STATUS = (
     (1,"Open"),
     (2,"Completed"),
@@ -32,6 +36,7 @@ LAUNDRY = (
     (4,"YES(+120 MINS)"),
 )
 HOUR = (
+    (2.0,"2 hours"),
     (3.0,"3 hours"),
     (3.5,"3.5 hours"),
     (4.0,"4 hours"),

@@ -43,6 +43,6 @@ def revenue_results(request):
         qs = qs.filter(clean_time__year=time[0], clean_time__month=time[1])
     if data.get('ayi'):
         qs = qs.filter(clean_ayi__id=data.get('ayi'))
-    revenue = qs.count()*35
+    revenue = qs.count()*25
     return render_to_response('accounts/revenue_index.html',
                                   RequestContext(request, locals()))
